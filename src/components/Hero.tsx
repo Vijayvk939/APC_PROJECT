@@ -1,0 +1,96 @@
+import { ArrowRight } from 'lucide-react';
+
+const Hero = () => {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: 'url(/images/PAS_BG.jpg)',
+        }}
+      ></div>
+      
+      {/* Dark Overlay for Better Text Readability */}
+      <div className="absolute inset-0 bg-black/60"></div>
+      
+      {/* Gradient Overlay for Enhanced Visual Appeal */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-900/80 via-secondary-800/70 to-accent-900/60"></div>
+      
+      {/* Subtle Pattern Overlay */}
+      <div className="absolute inset-0 bg-black/20"></div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div>
+          {/* Logo */}
+          <div className="flex justify-center mb-8">
+            <div className="relative">
+              <img 
+                src=""
+                alt="APC Logo"
+                className="w-24 h-24 md:w-32 md:h-32 drop-shadow-2xl relative z-10"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-primary-400 to-secondary-400 rounded-full blur-xl opacity-50"></div>
+            </div>
+          </div>
+
+          {/* Main Heading with Enhanced Typography */}
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-2xl">
+            Welcome to
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary-300 via-secondary-300 to-accent-300 drop-shadow-lg">
+              AGAPE
+            </span>
+            <span className="block text-2xl md:text-4xl lg:text-5xl font-light text-white/95 drop-shadow-xl">
+              Pentecostal Church
+            </span>
+          </h1>
+
+          {/* Subtitle with Enhanced Readability */}
+          <p className="text-xl md:text-2xl text-white/95 mb-8 max-w-3xl mx-auto leading-relaxed drop-shadow-lg font-medium">
+            A place where love meets purpose, and faith transforms lives. 
+            Join our community of believers as we grow together in God's love.
+          </p>
+
+          {/* Mission Statement with Glassmorphism Effect */}
+          <div className="bg-white/15 backdrop-blur-xl rounded-3xl p-6 md:p-8 mb-10 max-w-4xl mx-auto border border-white/30 shadow-2xl hover:bg-white/20 transition-all duration-500">
+            <p className="text-lg md:text-xl text-white/95 italic leading-relaxed relative z-10 font-medium">
+              "Experience many Powerful Messages and Glorious Songs. Join our community where 
+              faith transforms lives through God's unconditional love and divine purpose."
+            </p>
+          </div>
+
+          {/* Call to Action Buttons with Enhanced Styling */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <button 
+              onClick={() => scrollToSection('about')}
+              className="group bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:from-primary-600 hover:to-secondary-600 transition-all duration-300 flex items-center shadow-2xl hover:shadow-primary-500/25 hover:scale-105 transform"
+            >
+              Learn More About Us
+              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+            </button>
+            <button 
+              onClick={() => scrollToSection('services')}
+              className="group border-2 border-white/60 text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-white/20 hover:border-white transition-all duration-300 flex items-center backdrop-blur-sm hover:scale-105 transform shadow-xl"
+            >
+              Join Our Service
+              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+            </button>
+          </div>
+
+
+        </div>
+      </div>
+
+
+    </section>
+  );
+};
+
+export default Hero;
