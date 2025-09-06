@@ -59,28 +59,34 @@ const Hero = () => {
           </p>
 
           {/* Mission Statement with Glassmorphism Effect */}
-          <div className="bg-white/15 backdrop-blur-xl rounded-3xl p-6 md:p-8 mb-10 max-w-4xl mx-auto border border-white/30 shadow-2xl hover:bg-white/20 transition-all duration-500">
-            <p className="text-lg md:text-xl text-white/95 italic leading-relaxed relative z-10 font-medium">
-              "Experience many Powerful Messages and Glorious Songs. Join our community where 
-              faith transforms lives through God's unconditional love and divine purpose."
-            </p>
-          </div>
+          <div className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-4 md:p-6 border border-white/20 shadow-2xl group-hover:bg-white/15 transition-all duration-500 group-hover:scale-105 transform max-w-4xl mx-auto">
+              {/* Decorative Elements */}
+              <div className="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-cyan-300/50 rounded-tl-lg"></div>
+              <div className="absolute bottom-3 right-3 w-6 h-6 border-r-2 border-b-2 border-pink-300/50 rounded-br-lg"></div>
+              
+              <p className="text-lg md:text-xl text-white/95 italic leading-relaxed font-light relative z-10 text-center">
+                <span className="text-cyan-300 font-medium">"Experience Powerful Messages</span> and 
+                <span className="text-pink-300 font-medium"> Glorious Songs</span>. Join our community where 
+                <span className="text-yellow-300 font-medium"> faith transforms lives</span> through God's 
+                <span className="text-emerald-300 font-medium"> unconditional love</span> and divine purpose."
+              </p>
+            </div>
 
           {/* Call to Action Buttons with Enhanced Styling */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mt-8">
             <button 
               onClick={() => scrollToSection('about')}
-              className="group bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:from-primary-600 hover:to-secondary-600 transition-all duration-300 flex items-center shadow-2xl hover:shadow-primary-500/25 hover:scale-105 transform"
+              className="group bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-6 py-3 rounded-xl font-semibold text-base hover:from-primary-600 hover:to-secondary-600 transition-all duration-300 flex items-center shadow-2xl hover:shadow-primary-500/25 hover:scale-105 transform"
             >
               Learn More About Us
-              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
             </button>
             <button 
               onClick={() => scrollToSection('services')}
-              className="group border-2 border-white/60 text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-white/20 hover:border-white transition-all duration-300 flex items-center backdrop-blur-sm hover:scale-105 transform shadow-xl"
+              className="group border-2 border-white/60 text-white px-6 py-3 rounded-xl font-semibold text-base hover:bg-white/20 hover:border-white transition-all duration-300 flex items-center backdrop-blur-sm hover:scale-105 transform shadow-xl"
             >
               Join Our Service
-              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
             </button>
           </div>
 

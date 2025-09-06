@@ -34,22 +34,22 @@ const Events = () => {
 
   const specialPrayerEvents = [
     {
-      title: "Agape Church Anniversary(Gollapudi)",
-      date: "February 13",
-      time: "Special Service",
-      location: "Gollapudi",
-      description: "Celebrating the anniversary of our Gollapudi church with special worship, testimonies, and community fellowship.",
-      image: "https://images.pexels.com/photos/8468419/pexels-photo-8468419.jpeg?auto=compress&cs=tinysrgb&w=600",
-      category: "Church Anniversary",
-      attendees: "All Members"
-    },
-    {
       title: "Agape Church Anniversary(Bhavanipuram)",
       date: "April 13",
       time: "Special Service",
       location: "Bhavanipuram",
       description: "Celebrating the anniversary of our Bhavanipuram church with special worship, testimonies, and community fellowship.",
       image: "https://images.pexels.com/photos/8468526/pexels-photo-8468526.jpeg?auto=compress&cs=tinysrgb&w=600",
+      category: "Church Anniversary",
+      attendees: "All Members"
+    },
+    {
+      title: "Agape Church Anniversary(Gollapudi)",
+      date: "February 13",
+      time: "Special Service",
+      location: "Gollapudi",
+      description: "Celebrating the anniversary of our Gollapudi church with special worship, testimonies, and community fellowship.",
+      image: "https://images.pexels.com/photos/8468419/pexels-photo-8468419.jpeg?auto=compress&cs=tinysrgb&w=600",
       category: "Church Anniversary",
       attendees: "All Members"
     },

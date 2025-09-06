@@ -64,9 +64,25 @@ const Contact = () => {
                 <h4 className="font-bold text-gray-900 mb-2 text-lg">{info.title}</h4>
                 <p className="text-gray-800 font-semibold mb-2 break-words">{info.content}</p>
                 <p className="text-gray-600 text-sm mb-4">{info.description}</p>
-                <button className={`w-full py-3 px-4 bg-gradient-to-r ${info.color} text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105`}>
-                  {info.action}
-                </button>
+                {info.title === "Email" ? (
+                  <a 
+                    href="mailto:agapepentecostalchurchapc@gmail.com"
+                    className={`w-full py-3 px-4 bg-gradient-to-r ${info.color} text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 inline-block text-center`}
+                  >
+                    {info.action}
+                  </a>
+                ) : info.title === "Phone" ? (
+                  <a 
+                    href="tel:+919390232344"
+                    className={`w-full py-3 px-4 bg-gradient-to-r ${info.color} text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 inline-block text-center`}
+                  >
+                    {info.action}
+                  </a>
+                ) : (
+                  <button className={`w-full py-3 px-4 bg-gradient-to-r ${info.color} text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105`}>
+                    {info.action}
+                  </button>
+                )}
               </div>
             ))}
           </div>

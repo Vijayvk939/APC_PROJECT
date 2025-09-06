@@ -108,7 +108,7 @@ const About = () => {
           <div className="relative">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
               <img 
-                src="https://images.pexels.com/photos/8468103/pexels-photo-8468103.jpeg?auto=compress&cs=tinysrgb&w=600" 
+                src="/images/church_people.png" 
                 alt="Church Community" 
                 className="w-full h-96 object-cover"
               />
@@ -166,7 +166,7 @@ const About = () => {
             <p className="text-lg mb-6 opacity-90">
               We'd love to welcome you with open arms. Come experience the love and community that makes Agape special.
             </p>
-            <button className="bg-white text-primary-600 px-8 py-3 rounded-xl font-semibold hover:bg-gray-100 transition-colors inline-flex items-center group">
+            <button onClick={() => window.open('https://maps.app.goo.gl/FzWhZsGQTtNoy49LA', '_blank')} className="bg-white text-primary-600 px-8 py-3 rounded-xl font-semibold hover:bg-gray-100 transition-colors inline-flex items-center group">
               Plan Your Visit
               <ArrowRight className="w-5 h-5 ml-2" />
             </button>
