@@ -9,7 +9,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -18,22 +18,18 @@ const Hero = () => {
         }}
       ></div>
       
-      {/* Dark Overlay for Better Text Readability */}
-      <div className="absolute inset-0 bg-black/60"></div>
-      
-      {/* Gradient Overlay for Enhanced Visual Appeal */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary-900/80 via-secondary-800/70 to-accent-900/60"></div>
-      
-      {/* Subtle Pattern Overlay */}
-      <div className="absolute inset-0 bg-black/20"></div>
+      {/* Left side overlay for content readability */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="flex items-center min-h-screen">
+          {/* Left side content */}
+          <div className="w-full lg:w-1/2 text-left">
           {/* Logo */}
-          <div className="flex justify-center mb-8">
+          <div className="flex justify-start mb-8">
             <div className="relative">
               <img 
-                src=""
+                src="/images/apclogo.png"
                 alt="APC Logo"
                 className="w-24 h-24 md:w-32 md:h-32 drop-shadow-2xl relative z-10"
               />
@@ -53,7 +49,7 @@ const Hero = () => {
           </h1>
 
           {/* Subtitle with Enhanced Readability */}
-          <p className="text-xl md:text-2xl text-white/95 mb-8 max-w-3xl mx-auto leading-relaxed drop-shadow-lg font-medium">
+          <p className="text-lg md:text-xl text-white/95 mb-8 max-w-3xl mx-auto leading-relaxed drop-shadow-lg font-medium">
             A place where love meets purpose, and faith transforms lives. 
             Join our community of believers as we grow together in God's love.
           </p>
@@ -73,7 +69,7 @@ const Hero = () => {
             </div>
 
           {/* Call to Action Buttons with Enhanced Styling */}
-          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mt-8">
+          <div className="flex flex-col sm:flex-row gap-3 justify-start items-start mt-8">
             <button 
               onClick={() => scrollToSection('about')}
               className="group bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-6 py-3 rounded-xl font-semibold text-base hover:from-primary-600 hover:to-secondary-600 transition-all duration-300 flex items-center shadow-2xl hover:shadow-primary-500/25 hover:scale-105 transform"
@@ -90,7 +86,7 @@ const Hero = () => {
             </button>
           </div>
 
-
+          </div>
         </div>
       </div>
 
