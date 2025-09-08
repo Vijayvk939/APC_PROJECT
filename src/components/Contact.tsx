@@ -8,7 +8,9 @@ const Contact = () => {
       content: "+91 9390232344",
       description: "Call us anytime for questions or prayer requests",
       color: "from-blue-500 to-teal-500",
-      action: "Call Now"
+      action: "Call Now",
+      status: "Available",
+      accentColor: "bg-green-500"
     },
     {
       icon: Mail,
@@ -16,7 +18,9 @@ const Contact = () => {
       content: "agapepentecostalchurchapc@gmail.com",
       description: "Send us a message and we'll respond within 24 hours",
       color: "from-purple-500 to-pink-500",
-      action: "Send Email"
+      action: "Send Email",
+      status: "Active",
+      accentColor: "bg-purple-500"
     }
   ];
 
@@ -124,7 +128,7 @@ const Contact = () => {
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden border border-white/50">
               <div className="h-80 bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center relative">
                 <iframe
-                  src="https://maps.app.goo.gl/yWjFoRix5TvbEhtx6"
+                  src="https://maps.app.goo.gl/dP8GA2UzU3D7Urvw6"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
