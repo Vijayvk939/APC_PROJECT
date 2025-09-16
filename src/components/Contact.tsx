@@ -95,7 +95,7 @@ const Contact = () => {
           <div className="lg:col-span-2 space-y-6">
             {/* Main Church Map */}
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden border border-white/50">
-              <div className="h-80 bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center relative">
+              <div className="h-64 bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center relative">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3826.1234567890123!2d80.6489!3d16.5069!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTbCsDMwJzI0LjgiTiA4MMKwMzgnNTYuMCJF!5e0!3m2!1sen!2sin!4v1234567890123"
                   width="100%"
@@ -107,15 +107,20 @@ const Contact = () => {
                   className="absolute inset-0"
                 ></iframe>
                 <div className="absolute inset-0 bg-black/10 flex items-center justify-center">
-                  <div className="text-center bg-white/95 backdrop-blur-sm rounded-2xl p-6 max-w-sm shadow-2xl">
-                    <MapPin className="w-10 h-10 text-blue-600 mx-auto mb-3" />
-                    <h4 className="text-xl font-bold text-gray-900 mb-2">Main Church</h4>
-                    <p className="text-gray-700 text-sm mb-4">Gurukrupa Rd, Kamakoti Nagar, VD Puram, Vijayawada</p>
+                  <div className="text-center bg-white/95 backdrop-blur-sm rounded-2xl p-4 max-w-xs shadow-2xl">
+                    <MapPin className="w-8 h-8 text-blue-600 mx-auto mb-2" />
+                    <h4 className="text-lg font-bold text-gray-900 mb-2">Bhavanipuram Church</h4>
+                    <p className="text-gray-700 text-xs mb-2">Gurukrupa Rd, Kamakoti Nagar, VD Puram, Vijayawada</p>
+                    <div className="bg-blue-50 rounded-lg p-2 mb-3">
+                      <p className="text-blue-800 font-semibold text-xs mb-1">Service Times:</p>
+                      <p className="text-blue-700 text-xs">Sunday Morning: 8:30 AM - 11:00 AM</p>
+                      <p className="text-blue-700 text-xs">Sunday School: 9:00 AM - 11:00 AM</p>
+                    </div>
                     <a 
                       href="https://maps.app.goo.gl/FzWhZsGQTtNoy49LA" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="inline-block bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl"
+                      className="inline-block bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-2 rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl text-sm"
                     >
                       Get Directions
                     </a>
@@ -126,9 +131,9 @@ const Contact = () => {
 
             {/* Gollapudi Church Map */}
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden border border-white/50">
-              <div className="h-80 bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center relative">
+              <div className="h-64 bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center relative">
                 <iframe
-                  src="https://maps.app.goo.gl/dP8GA2UzU3D7Urvw6"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3826.1234567890123!2d80.6489!3d16.5069!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTbCsDMwJzI0LjgiTiA4MMKwMzgnNTYuMCJF!5e0!3m2!1sen!2sin!4v1234567890123"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -138,15 +143,20 @@ const Contact = () => {
                   className="absolute inset-0"
                 ></iframe>
                 <div className="absolute inset-0 bg-black/10 flex items-center justify-center">
-                  <div className="text-center bg-white/95 backdrop-blur-sm rounded-2xl p-6 max-w-sm shadow-2xl">
-                    <MapPin className="w-10 h-10 text-purple-600 mx-auto mb-3" />
-                    <h4 className="text-xl font-bold text-gray-900 mb-2">Gollapudi Church</h4>
-                    <p className="text-gray-700 text-sm mb-4">Sunday Evening Service: 6:30 PM - 8:30 PM</p>
+                  <div className="text-center bg-white/95 backdrop-blur-sm rounded-2xl p-4 max-w-xs shadow-2xl">
+                    <MapPin className="w-8 h-8 text-purple-600 mx-auto mb-2" />
+                    <h4 className="text-lg font-bold text-gray-900 mb-2">Gollapudi Church</h4>
+                    <p className="text-gray-700 text-xs mb-2">Gollapudi, Vijayawada, Andhra Pradesh</p>
+                    <div className="bg-purple-50 rounded-lg p-2 mb-3">
+                      <p className="text-purple-800 font-semibold text-xs mb-1">Service Times:</p>
+                      <p className="text-purple-700 text-xs">Sunday Evening: 6:30 PM - 8:30 PM</p>
+                      <p className="text-purple-700 text-xs">Sunday School: 7:30 PM - 8:30 PM</p>
+                    </div>
                     <a 
-                      href="https://maps.app.goo.gl/yWjFoRix5TvbEhtx6" 
+                      href="https://maps.app.goo.gl/aigoDKEeq5YVC9Ac6" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="inline-block bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl"
+                      className="inline-block bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl text-sm"
                     >
                       Get Directions
                     </a>

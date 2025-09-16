@@ -143,44 +143,44 @@ const WorshipServices = () => {
 
         {/* Enhanced Call to Action */}
         <div className="text-center">
-          <div className="relative bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 rounded-3xl p-12 text-white overflow-hidden">
+          <div className="relative bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 rounded-2xl p-6 text-white overflow-hidden">
             {/* Background Pattern */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/10"></div>
             
             {/* Floating Icons */}
-            <div className="absolute top-8 right-8 opacity-20">
-              <Church className="w-20 h-20" />
+            <div className="absolute top-4 right-4 opacity-20">
+              <Church className="w-12 h-12" />
             </div>
-            <div className="absolute bottom-8 left-8 opacity-20">
-              <Users className="w-16 h-16" />
+            <div className="absolute bottom-4 left-4 opacity-20">
+              <Users className="w-10 h-10" />
             </div>
 
             <div className="relative z-10">
-              <h3 className="text-3xl font-bold mb-4">Join Us This Sunday</h3>
-              <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+              <h3 className="text-2xl font-bold mb-3">Join Us This Sunday</h3>
+              <p className="text-lg mb-6 opacity-90 max-w-xl mx-auto">
                 Experience the transformative power of worship and the Word of God in our welcoming community
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
                 <a 
                   href="https://maps.app.goo.gl/FdKWAgfJd1mNDVDz8" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="group bg-white text-blue-600 px-8 py-4 rounded-2xl font-semibold hover:bg-gray-50 transition-all duration-300 flex items-center shadow-lg hover:shadow-xl"
+                  className="group bg-white text-blue-600 px-6 py-3 rounded-xl font-semibold hover:bg-gray-50 transition-all duration-300 flex items-center shadow-lg hover:shadow-xl"
                 >
-                  <MapPin className="w-5 h-5 mr-2" />
+                  <MapPin className="w-4 h-4 mr-2" />
                   Plan Your Visit
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-3 h-3 ml-2 group-hover:translate-x-1 transition-transform" />
                 </a>
                 <a 
                   href="https://www.youtube.com/@agapepentecostalchurch/streams" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="group border-2 border-white text-white px-8 py-4 rounded-2xl font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300 flex items-center"
+                  className="group border-2 border-white text-white px-6 py-3 rounded-xl font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300 flex items-center"
                 >
-                  <Play className="w-5 h-5 mr-2" />
+                  <Play className="w-4 h-4 mr-2" />
                   Watch Online
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-3 h-3 ml-2 group-hover:translate-x-1 transition-transform" />
                 </a>
               </div>
             </div>
