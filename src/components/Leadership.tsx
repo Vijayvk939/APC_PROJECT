@@ -1,10 +1,13 @@
 import { Phone, Heart, BookOpen, Users, Star, Sparkles, ArrowRight } from 'lucide-react';
 
+// Import images
+import pastorImage from '/images/SamuelPrasad.jpg';
+
 const Leadership = () => {
   const pastorInfo = {
     name: "Pastor Prasad Machavarapu",
     title: "Senior Pastor",
-    image: "/images/PRASADM.png",
+    image: pastorImage,
     bio: "Pastor Prasad Machavarapu has been faithfully serving the Agape Pentecostal Church community in Vijayawada with passion, wisdom, and unwavering commitment to God's Word. His heart for people and dedication to biblical truth has helped countless individuals grow in their faith journey through powerful messages and glorious songs.",
     education: [
       "Diploma in Theology - South India Biblical Seminary",

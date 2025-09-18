@@ -1,6 +1,9 @@
 
 import { Heart, MapPin, Phone, Mail, Facebook, Instagram, Youtube, MessageSquare, ChevronRight } from 'lucide-react';
 
+// Import images
+import logoImage from '/images/APCcircle.png';
+
 const Footer = () => {
 
   const quickLinks = [
@@ -34,7 +37,7 @@ const Footer = () => {
             <div className="flex items-center mb-6">
               <div className="relative mr-3">
                 <img 
-                  src="/images/APCcircle.png" 
+                  src={logoImage} 
                   alt="Agape Pentecostal Church Logo" 
                   className="h-12 w-12 relative z-10"
                 />

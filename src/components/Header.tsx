@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, Phone, MapPin, Clock } from 'lucide-react';
 
+// Import images
+import logoImage from '/images/APCcircle.png';
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -90,7 +93,7 @@ const Header = () => {
           <div className="flex items-center">
             <div className="relative mr-2 sm:mr-3 md:mr-4">
               <img 
-                src="/images/APCcircle.png" 
+                src={logoImage} 
                 alt="Agape Pentecostal Church Logo" 
                 className="h-12 w-12 sm:h-14 sm:w-14 md:h-16 md:w-16 relative z-10"
               />

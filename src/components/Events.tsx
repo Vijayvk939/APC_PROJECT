@@ -1,5 +1,13 @@
 import { Calendar, Clock, Users, ArrowRight, Heart, BookOpen } from 'lucide-react';
 
+// Import images
+import bvmpCA from '/images/Events/BVMP_CA.jpg';
+import glpCA from '/images/Events/GLP_CA.jpg';
+import fasting21Days from '/images/Events/21days_fastings.jpg';
+import prayer40Days from '/images/Events/40DaysPrayers.jpg';
+import semiChristmas from '/images/Events/Semi_Christmas.jpg';
+import newYearGM from '/images/Events/New-year_GM.jpg';
+
 const Events = () => {
   const regularPrograms = [
     {
@@ -47,7 +55,7 @@ const Events = () => {
       time: "Special Service",
       location: "Bhavanipuram",
       description: "Celebrating the anniversary of our Bhavanipuram church with special worship and testimonies.",
-      image: "/images/Events/APC_Bhavanipuram_ChurchAnniversary.jpg",
+      image: bvmpCA,
       category: "Church Anniversary",
       attendees: "All Members",
       status: "Upcoming",
@@ -59,7 +67,7 @@ const Events = () => {
       time: "Special Service",
       location: "Gollapudi",
       description: "Celebrating the anniversary of our Gollapudi church with special worship and testimonies.",
-      image: "/images/Events/APC_Gollapudi_ChurchAnniversary.jpg",
+      image: glpCA,
       category: "Church Anniversary",
       attendees: "All Members",
       status: "Completed",
@@ -71,7 +79,7 @@ const Events = () => {
       time: "Daily Prayer Times",
       location: "Main Sanctuary",
       description: "Intensive 21-day fasting prayer program for spiritual breakthrough and renewal.",
-      image: "https://images.pexels.com/photos/8468419/pexels-photo-8468419.jpeg?auto=compress&cs=tinysrgb&w=600",
+      image: fasting21Days,
       category: "Fasting Prayer",
       attendees: "All Members",
       status: "Upcoming",
@@ -83,8 +91,8 @@ const Events = () => {
       time: "Daily Prayer Times",
       location: "Main Sanctuary",
       description: "Extended prayer focus on family growth, safety, and spiritual protection.",
-      image: "https://images.pexels.com/photos/8468526/pexels-photo-8468526.jpeg?auto=compress&cs=tinysrgb&w=600",
-      category: "Family Prayer",
+        image: prayer40Days,
+        category: "Family Prayer",
       attendees: "All Families",
       status: "Upcoming",
       accentColor: "bg-purple-500"
@@ -95,7 +103,7 @@ const Events = () => {
       time: "Daily Prayer Times",
       location: "Main Sanctuary",
       description: "Month-long prayer focus leading up to Christmas, emphasizing family unity and Christ's birth.",
-      image: "https://images.pexels.com/photos/8468421/pexels-photo-8468421.jpeg?auto=compress&cs=tinysrgb&w=600",
+      image: semiChristmas,
       category: "Christmas Prayer",
       attendees: "All Families",
       status: "Upcoming",
@@ -107,7 +115,7 @@ const Events = () => {
       time: "Special Service",
       location: "Main Sanctuary",
       description: "Annual gospel meeting to start the new year with God's word and renewed commitment.",
-      image: "https://images.pexels.com/photos/8468419/pexels-photo-8468419.jpeg?auto=compress&cs=tinysrgb&w=600",
+      image: newYearGM,
       category: "Gospel Meeting",
       attendees: "All Ages Welcome",
       status: "Upcoming",

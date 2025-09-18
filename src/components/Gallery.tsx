@@ -1,37 +1,45 @@
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Cross, Camera } from 'lucide-react';
 
+// Import images
+import img1 from '/images/Gallery/IMG1.jpg';
+import img2 from '/images/Gallery/IMG2.jpg';
+import img3 from '/images/Gallery/IMG3.jpg';
+import img4 from '/images/Gallery/IMG4.jpg';
+import img5 from '/images/Gallery/IMG5.jpg';
+import img6 from '/images/Gallery/IMG6.jpg';
+
 const Gallery = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const galleryImages = [
     {
-      url: "/images/Gallery/family.png",
+      url: img1,
       title: "Blessed Family",
       description: "A beautiful family portrait showing the love and unity that God creates in our homes"
     },
     {
-      url: "/images/Gallery/church2.jpg",
+      url: img2,
       title: "Women's Prayer Meeting",
       description: "Sisters in Christ gathering for prayer, worship, and spiritual fellowship"
     },
     {
-      url: "/images/Gallery/P_J.JPG",
+      url: img3,
       title: "Church Leadership",
       description: "Our dedicated church leaders serving God and our community with love and dedication"
     },
     {
-      url: "/images/Gallery/church.jpg",
+      url: img4,
       title: "Community Candlelight Gathering",
       description: "Our church family coming together in prayer and fellowship, holding candles of hope and faith"
     },
     {
-      url: "/images/Gallery/P_M.jpg",
+      url: img5,
       title: "Pastoral Ministry",
       description: "Spreading God's word and ministering to our congregation with passion and grace"
     },
     {
-      url: "/images/Gallery/Sundayschool.jpg",
+      url: img6,
       title: "Sunday School Celebration",
       description: "Children learning about God's love through music, stories, and joyful activities"
     }

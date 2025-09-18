@@ -1,5 +1,8 @@
 import { Heart, Users, BookOpen, Sparkles, ArrowRight, MapPin, Phone } from 'lucide-react';
 
+// Import images
+import churchImage from '/images/BVPM_CHURCH.jpg';
+
 const About = () => {
   const values = [
     {
@@ -119,7 +122,7 @@ const About = () => {
           <div className="relative">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
               <img 
-                src="/images/PAS_GLP.jpg" 
+                src={churchImage} 
                 alt="Church Community" 
                 className="w-full h-96 object-cover"
               />

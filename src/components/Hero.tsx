@@ -1,5 +1,8 @@
 import { ArrowRight } from 'lucide-react';
 
+// Import images
+import bannerImage from '/images/Prasad_DAS_Banner.jpg';
+
 const Hero = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -14,7 +17,7 @@ const Hero = () => {
       <div 
         className="absolute top-20 xs:top-22 sm:top-24 md:top-28 lg:top-32 left-0 right-0 bottom-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: 'url(/images/Prasad_DAS_Banner.jpg)',
+          backgroundImage: `url(${bannerImage})`,
           backgroundPosition: 'right top',
         }}
       ></div>
