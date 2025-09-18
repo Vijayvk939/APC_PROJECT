@@ -10,8 +10,8 @@ const WorshipServices = () => {
       location: "Bhavanipuram",
       description: "Our main worship service featuring powerful messages, glorious songs, and community fellowship.",
       highlights: ["Live Worship", "Community Fellowship", "Inspiring Sermons", "Communion Service"],
-      color: "from-blue-500 to-indigo-600",
-      accentColor: "bg-blue-500",
+      color: "from-primary-500 to-secondary-600",
+      accentColor: "bg-primary-500",
       status: "Active"
     },
     {
@@ -22,8 +22,8 @@ const WorshipServices = () => {
       location: "Bhavanipuram",
       description: "Children's ministry and Sunday School program running alongside the main service.",
       highlights: ["Bible Stories", "Worship Songs", "Arts & Crafts", "Prayer Time"],
-      color: "from-emerald-500 to-teal-600",
-      accentColor: "bg-emerald-500",
+      color: "from-secondary-500 to-accent-600",
+      accentColor: "bg-secondary-500",
       status: "Active"
     },
     {
@@ -34,8 +34,8 @@ const WorshipServices = () => {
       location: "Gollapudi",
       description: "Evening worship service with inspiring messages and community fellowship.",
       highlights: ["Evening Worship", "Inspiring Sermons", "Community Fellowship", "Prayer Ministry"],
-      color: "from-rose-500 to-pink-600",
-      accentColor: "bg-rose-500",
+      color: "from-accent-500 to-primary-600",
+      accentColor: "bg-accent-500",
       status: "Active"
     },
     {
@@ -46,41 +46,31 @@ const WorshipServices = () => {
       location: "Gollapudi",
       description: "Evening Sunday School program for children during the second service.",
       highlights: ["Evening Bible Study", "Children's Worship", "Interactive Learning", "Family Time"],
-      color: "from-amber-500 to-orange-600",
-      accentColor: "bg-amber-500",
+      color: "from-primary-500 to-accent-600",
+      accentColor: "bg-primary-500",
       status: "Active"
     }
   ];
 
 
   return (
-    <section id="services" className="pt-4 pb-12 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden">
+    <section id="services" className="pt-4 pb-12 bg-gradient-to-br from-slate-50 via-primary-50 to-secondary-50 relative overflow-hidden">
       {/* Enhanced Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-purple-50/20 to-indigo-50/30"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-50/30 via-secondary-50/20 to-accent-50/30"></div>
       
-      {/* Floating Elements with Animation */}
-      <div className="absolute top-20 left-20 animate-bounce">
-        <div className="w-16 h-16 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full backdrop-blur-sm border border-white/20"></div>
-      </div>
-      <div className="absolute top-32 right-32 animate-pulse">
-        <div className="w-12 h-12 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full backdrop-blur-sm border border-white/20"></div>
-      </div>
-      <div className="absolute bottom-32 left-32 animate-bounce">
-        <div className="w-20 h-20 bg-gradient-to-br from-indigo-400/20 to-blue-400/20 rounded-full backdrop-blur-sm border border-white/20"></div>
-      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Enhanced Section Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full border border-blue-200/50 mb-6">
-            <span className="text-sm font-medium text-blue-700">Join Us Every Sunday</span>
+          <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 rounded-full border border-primary-200/50 mb-6">
+            <span className="text-sm font-medium text-primary-700">Join Us Every Sunday</span>
           </div>
-          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600">
               Worship Services
             </span>
           </h2>
-          <div className="w-32 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500 mx-auto mb-8 rounded-full"></div>
+          <div className="w-32 h-1 bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-500 mx-auto mb-8 rounded-full"></div>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
             Experience the transformative power of worship through inspiring messages, 
             glorious songs, and meaningful fellowship in our vibrant community.
@@ -113,11 +103,11 @@ const WorshipServices = () => {
               {/* Time and Location - Side by Side */}
               <div className="grid grid-cols-2 gap-3 mb-4">
                 <div className="flex items-center text-gray-700 bg-gray-50 rounded-md px-3 py-2">
-                  <Clock className="w-4 h-4 mr-2 text-blue-500 flex-shrink-0" />
+                  <Clock className="w-4 h-4 mr-2 text-primary-500 flex-shrink-0" />
                   <span className="font-semibold text-sm">{service.time}</span>
                 </div>
                 <div className="flex items-center text-gray-700 bg-gray-50 rounded-md px-3 py-2">
-                  <MapPin className="w-4 h-4 mr-2 text-purple-500 flex-shrink-0" />
+                  <MapPin className="w-4 h-4 mr-2 text-secondary-500 flex-shrink-0" />
                   <span className="font-semibold text-sm">{service.location}</span>
                 </div>
               </div>
@@ -135,7 +125,7 @@ const WorshipServices = () => {
               </div>
 
               {/* Hover Effect Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-secondary-500/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
             </div>
           ))}
         </div>
@@ -143,7 +133,7 @@ const WorshipServices = () => {
 
         {/* Enhanced Call to Action */}
         <div className="text-center">
-          <div className="relative bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 rounded-2xl p-6 text-white overflow-hidden">
+          <div className="relative bg-gradient-to-br from-primary-800 via-secondary-800 to-accent-800 rounded-2xl p-6 text-white overflow-hidden">
             {/* Background Pattern */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/10"></div>
             
@@ -156,7 +146,7 @@ const WorshipServices = () => {
             </div>
 
             <div className="relative z-10">
-              <h3 className="text-2xl font-bold mb-3">Join Us This Sunday</h3>
+              <h3 className="text-xl md:text-2xl font-bold mb-3">Join Us This Sunday</h3>
               <p className="text-lg mb-6 opacity-90 max-w-xl mx-auto">
                 Experience the transformative power of worship and the Word of God in our welcoming community
               </p>
@@ -166,7 +156,7 @@ const WorshipServices = () => {
                   href="https://maps.app.goo.gl/FdKWAgfJd1mNDVDz8" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="group bg-white text-blue-600 px-6 py-3 rounded-xl font-semibold hover:bg-gray-50 transition-all duration-300 flex items-center shadow-lg hover:shadow-xl"
+                  className="group bg-white text-primary-600 px-6 py-3 rounded-xl font-semibold hover:bg-gray-50 transition-all duration-300 flex items-center shadow-lg hover:shadow-xl"
                 >
                   <MapPin className="w-4 h-4 mr-2" />
                   Plan Your Visit
@@ -176,7 +166,7 @@ const WorshipServices = () => {
                   href="https://www.youtube.com/@agapepentecostalchurch/streams" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="group border-2 border-white text-white px-6 py-3 rounded-xl font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300 flex items-center"
+                  className="group border-2 border-white text-white px-6 py-3 rounded-xl font-semibold hover:bg-white hover:text-primary-600 transition-all duration-300 flex items-center"
                 >
                   <Play className="w-4 h-4 mr-2" />
                   Watch Online

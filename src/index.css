@@ -73,51 +73,7 @@
   color: #ffffff;
 }
 
-/* Floating Particle Animations */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-    opacity: 0.3;
-  }
-  50% {
-    transform: translateY(-20px) rotate(180deg);
-    opacity: 0.8;
-  }
-}
 
-@keyframes float-delayed {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-    opacity: 0.2;
-  }
-  50% {
-    transform: translateY(-15px) rotate(90deg);
-    opacity: 0.6;
-  }
-}
-
-@keyframes float-slow {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-    opacity: 0.2;
-  }
-  50% {
-    transform: translateY(-10px) rotate(45deg);
-    opacity: 0.5;
-  }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-float-delayed {
-  animation: float-delayed 8s ease-in-out infinite;
-}
-
-.animate-float-slow {
-  animation: float-slow 10s ease-in-out infinite;
-}
 
 /* Enhanced Shadow Utilities */
 .shadow-3xl {

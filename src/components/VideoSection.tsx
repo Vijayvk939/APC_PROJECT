@@ -4,7 +4,7 @@ import { Play, Cross, Heart, Youtube, Clock, Eye, Share2, ArrowRight, Sparkles, 
 const VideoSection = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const [activeVideo, setActiveVideo] = useState(0);
+  const [activeVideo] = useState(0);
 
   const handleCloseVideo = () => {
     setIsPlaying(false);
@@ -40,40 +40,30 @@ const VideoSection = () => {
   ];
 
   return (
-    <section className="py-24 bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900 relative overflow-hidden">
+    <section className="py-24 bg-gradient-to-br from-slate-900 via-primary-900 to-secondary-900 relative overflow-hidden">
       {/* Enhanced Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-pink-500/3 to-blue-500/5"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 via-secondary-500/3 to-accent-500/5"></div>
       
-      {/* Floating Elements with Animation */}
-      <div className="absolute top-20 left-20 animate-bounce">
-        <div className="w-16 h-16 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full backdrop-blur-sm border border-white/20"></div>
-      </div>
-      <div className="absolute top-32 right-32 animate-pulse">
-        <div className="w-12 h-12 bg-gradient-to-br from-blue-400/20 to-indigo-400/20 rounded-full backdrop-blur-sm border border-white/20"></div>
-      </div>
-      <div className="absolute bottom-32 left-32 animate-bounce">
-        <div className="w-20 h-20 bg-gradient-to-br from-pink-400/20 to-purple-400/20 rounded-full backdrop-blur-sm border border-white/20"></div>
-      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Enhanced Section Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-sm rounded-full border border-purple-300/30 mb-6">
-            <Sparkles className="w-4 h-4 text-purple-300 mr-2" />
-            <span className="text-purple-200 font-medium text-xs">Featured Content</span>
+          <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary-500/20 to-secondary-500/20 backdrop-blur-sm rounded-full border border-primary-300/30 mb-6">
+            <Sparkles className="w-4 h-4 text-primary-300 mr-2" />
+            <span className="text-primary-200 font-medium text-xs">Featured Content</span>
           </div>
           
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-pink-300 to-purple-300">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-300 via-secondary-300 to-primary-300">
               Transformative
             </span>
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-indigo-300 to-blue-300">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary-300 via-accent-300 to-secondary-300">
               Messages
             </span>
           </h2>
           
-          <div className="w-32 h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 mx-auto mb-6 rounded-full shadow-xl"></div>
+          <div className="w-32 h-1 bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-500 mx-auto mb-6 rounded-full shadow-xl"></div>
           
           <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light">
             Experience powerful messages and glorious songs that transform lives and strengthen faith. 
@@ -114,7 +104,7 @@ const VideoSection = () => {
                       
                       {/* Category Badge */}
                       <div className="absolute top-3 left-3">
-                        <span className="inline-flex items-center px-2 py-1 bg-gradient-to-r from-purple-500/90 to-pink-500/90 backdrop-blur-sm rounded-full text-xs font-semibold text-white border border-white/20">
+                        <span className="inline-flex items-center px-2 py-1 bg-gradient-to-r from-primary-500/90 to-secondary-500/90 backdrop-blur-sm rounded-full text-xs font-semibold text-white border border-white/20">
                           {video.category}
                         </span>
                       </div>
@@ -125,7 +115,7 @@ const VideoSection = () => {
                           <h3 className="text-xl font-bold text-white mb-2 leading-tight">
                             {video.title}
                           </h3>
-                          <p className="text-base text-purple-200 mb-2 font-medium">
+                          <p className="text-base text-primary-200 mb-2 font-medium">
                             {video.subtitle}
                           </p>
                           <p className="text-gray-300 text-sm leading-relaxed">
@@ -137,19 +127,19 @@ const VideoSection = () => {
                         <div className="flex items-center justify-between">
                           <div className="flex items-center space-x-3 text-gray-300 text-xs">
                             <div className="flex items-center bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full">
-                              <Clock className="w-3 h-3 mr-2 text-purple-300" />
+                              <Clock className="w-3 h-3 mr-2 text-primary-300" />
                               <span>{video.duration}</span>
                             </div>
                             <div className="flex items-center bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full">
-                              <Eye className="w-3 h-3 mr-2 text-blue-300" />
+                              <Eye className="w-3 h-3 mr-2 text-secondary-300" />
                               <span>{video.views}</span>
                             </div>
                           </div>
                           
                           <div className="flex items-center space-x-2">
-                            <div className="flex items-center bg-gradient-to-r from-pink-500/20 to-purple-500/20 backdrop-blur-sm px-3 py-1 rounded-full border border-pink-300/30">
-                              <Heart className="w-3 h-3 mr-2 text-pink-300" />
-                              <span className="text-pink-200 text-xs">{video.likes}</span>
+                            <div className="flex items-center bg-gradient-to-r from-accent-500/20 to-primary-500/20 backdrop-blur-sm px-3 py-1 rounded-full border border-accent-300/30">
+                              <Heart className="w-3 h-3 mr-2 text-accent-300" />
+                              <span className="text-accent-200 text-xs">{video.likes}</span>
                             </div>
                           </div>
                         </div>
@@ -185,7 +175,7 @@ const VideoSection = () => {
         <div className="relative">
           <div className="bg-gradient-to-br from-white/10 via-white/5 to-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20 shadow-xl">
             {/* Background Pattern */}
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 rounded-2xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-secondary-500/5 rounded-2xl"></div>
             
             {/* Floating Icons */}
             <div className="absolute top-4 right-4 opacity-20">
@@ -230,7 +220,7 @@ const VideoSection = () => {
                   <ArrowRight className="w-3 h-3 ml-1.5 group-hover:translate-x-1 transition-transform duration-300" />
                 </a>
                 
-                <button className="group bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 flex items-center justify-center transform hover:scale-105 hover:shadow-xl shadow-lg text-xs">
+                <button className="group bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-4 py-2 rounded-lg font-semibold hover:from-primary-600 hover:to-secondary-600 transition-all duration-300 flex items-center justify-center transform hover:scale-105 hover:shadow-xl shadow-lg text-xs">
                   <Share2 className="w-4 h-4 mr-1.5 group-hover:scale-110 transition-transform duration-300" />
                   Share Message
                   <ArrowRight className="w-3 h-3 ml-1.5 group-hover:translate-x-1 transition-transform duration-300" />

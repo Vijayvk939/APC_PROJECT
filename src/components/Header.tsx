@@ -56,49 +56,57 @@ const Header = () => {
     }`}>
       {/* Top Bar - Hidden when scrolled */}
       {!isScrolled && (
-        <div className="bg-gradient-to-r from-primary-800 via-secondary-800 to-accent-800 text-white py-3 px-4 shadow-lg transition-colors duration-300">
-          <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center text-sm">
-            <div className="flex items-center space-x-6">
-              <div className="flex items-center space-x-2 hover:text-primary-200 transition-colors">
-                <Phone className="w-4 h-4" />
-                <span>+91 9390232344</span>
+        <div className="bg-gradient-to-r from-primary-800 via-secondary-800 to-accent-800 text-white py-2 sm:py-3 px-3 sm:px-4 shadow-lg transition-colors duration-300">
+          <div className="max-w-7xl mx-auto">
+            
+            {/* Desktop Layout */}
+            <div className="hidden sm:flex justify-between items-center text-xs md:text-xs lg:text-sm">
+              {/* Left side - Phone and Address */}
+              <div className="flex items-center space-x-2 md:space-x-3 lg:space-x-4">
+                <div className="flex items-center space-x-1">
+                  <Phone className="w-3 h-3 md:w-4 md:h-4" />
+                  <span>+91 9390232344</span>
+                </div>
+                <span className="text-white/60">•</span>
+                <div className="flex items-center space-x-1">
+                  <MapPin className="w-3 h-3 md:w-4 md:h-4" />
+                  <span>Vijayawada-520012, AP</span>
+                </div>
               </div>
-              <div className="flex items-center space-x-2 hover:text-primary-200 transition-colors">
-                <MapPin className="w-4 h-4" />
-                <span>Vijayawada-520012, Andhra Pradesh</span>
+              
+              {/* Right side - Services */}
+              <div className="flex items-center space-x-1">
+                <Clock className="w-3 h-3 md:w-4 md:h-4" />
+                <span>Sunday: Bhavanipuram 8:30-11:00AM, Gollapudi 6:30-8:30PM</span>
               </div>
-            </div>
-            <div className="flex items-center space-x-2 hover:text-primary-200 transition-colors">
-              <Clock className="w-4 h-4" />
-              <span>Sunday: Bhavanipuram 8:30-11AM, Gollapudi 6:30-8:30PM</span>
             </div>
           </div>
         </div>
       )}
 
       {/* Main Navigation */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+        <div className="flex justify-between items-center py-3 sm:py-4">
           <div className="flex items-center">
-            <div className="relative mr-4">
+            <div className="relative mr-2 sm:mr-3 md:mr-4">
               <img 
                 src="/images/APCcircle.png" 
                 alt="Agape Pentecostal Church Logo" 
-                className="h-16 w-16 relative z-10"
+                className="h-12 w-12 sm:h-14 sm:w-14 md:h-16 md:w-16 relative z-10"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-primary-400 to-secondary-400 rounded-full blur-lg opacity-30"></div>
             </div>
             <div>
-              <h1 className="text-xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">AGAPE... MINISTRIES</h1>
-              <p className="text-sm text-gray-600">Pastor Prasad Machavarapu</p>
+              <h1 className="text-sm sm:text-sm md:text-sm lg:text-xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">AGAPE... MINISTRIES</h1>
+              <p className="text-xs sm:text-xs md:text-xs lg:text-sm text-gray-600">Pastor Prasad Machavarapu</p>
             </div>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-4 lg:space-x-8">
             <button 
               onClick={() => scrollToSection('home')}
-              className={`font-medium transition-all duration-500 ease-out relative group ${
+              className={`font-medium text-sm md:text-sm lg:text-base transition-all duration-500 ease-out relative group ${
                 activeSection === 'home' 
                   ? 'text-primary-600 transform scale-105' 
                   : 'text-gray-700 hover:text-primary-600 hover:transform hover:scale-105'
@@ -117,7 +125,7 @@ const Header = () => {
             </button>
             <button 
               onClick={() => scrollToSection('services')}
-              className={`font-medium transition-all duration-500 ease-out relative group ${
+              className={`font-medium text-sm md:text-sm lg:text-base transition-all duration-500 ease-out relative group ${
                 activeSection === 'services' 
                   ? 'text-primary-600 transform scale-105' 
                   : 'text-gray-700 hover:text-primary-600 hover:transform hover:scale-105'
@@ -136,7 +144,7 @@ const Header = () => {
             </button>
             <button 
               onClick={() => scrollToSection('events')}
-              className={`font-medium transition-all duration-500 ease-out relative group ${
+              className={`font-medium text-sm md:text-sm lg:text-base transition-all duration-500 ease-out relative group ${
                 activeSection === 'events' 
                   ? 'text-primary-600 transform scale-105' 
                   : 'text-gray-700 hover:text-primary-600 hover:transform hover:scale-105'
@@ -155,7 +163,7 @@ const Header = () => {
             </button>
             <button 
               onClick={() => scrollToSection('leadership')}
-              className={`font-medium transition-all duration-500 ease-out relative group ${
+              className={`font-medium text-sm md:text-sm lg:text-base transition-all duration-500 ease-out relative group ${
                 activeSection === 'leadership' 
                   ? 'text-primary-600 transform scale-105' 
                   : 'text-gray-700 hover:text-primary-600 hover:transform hover:scale-105'
@@ -174,7 +182,7 @@ const Header = () => {
             </button>
             <button 
               onClick={() => scrollToSection('about')}
-              className={`font-medium transition-all duration-500 ease-out relative group ${
+              className={`font-medium text-sm md:text-sm lg:text-base transition-all duration-500 ease-out relative group ${
                 activeSection === 'about' 
                   ? 'text-primary-600 transform scale-105' 
                   : 'text-gray-700 hover:text-primary-600 hover:transform hover:scale-105'
@@ -193,7 +201,7 @@ const Header = () => {
             </button>
             <button 
               onClick={() => scrollToSection('contact')}
-              className={`px-6 py-3 rounded-xl transition-colors duration-300 shadow-lg font-semibold ${
+              className={`px-4 py-2 rounded-xl transition-colors duration-300 shadow-lg font-semibold text-sm md:text-sm lg:text-base ${
                 activeSection === 'contact'
                   ? 'bg-gradient-to-r from-primary-700 via-secondary-700 to-accent-700 text-white shadow-primary-500/25'
                   : 'bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 text-white hover:from-primary-700 hover:via-secondary-700 hover:to-accent-700'
@@ -214,11 +222,11 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-primary-200/20 bg-white/95 backdrop-blur-md rounded-b-2xl shadow-xl">
-            <div className="flex flex-col space-y-4">
+          <div className="md:hidden py-3 sm:py-4 border-t border-primary-200/20 bg-white/95 backdrop-blur-md rounded-b-2xl shadow-xl">
+            <div className="flex flex-col space-y-2 sm:space-y-3">
               <button 
                 onClick={() => scrollToSection('home')}
-                className={`font-medium transition-all duration-500 ease-out text-left px-4 py-2 rounded-lg relative overflow-hidden group ${
+                className={`font-medium transition-all duration-500 ease-out text-left px-3 sm:px-4 py-2.5 sm:py-2 rounded-lg relative overflow-hidden group text-sm sm:text-base ${
                   activeSection === 'home'
                     ? 'bg-primary-50 transform scale-105'
                     : 'hover:bg-primary-50 hover:transform hover:scale-105'
@@ -237,7 +245,7 @@ const Header = () => {
               </button>
               <button 
                 onClick={() => scrollToSection('services')}
-                className={`font-medium transition-all duration-500 ease-out text-left px-4 py-2 rounded-lg relative overflow-hidden group ${
+                className={`font-medium transition-all duration-500 ease-out text-left px-3 sm:px-4 py-2.5 sm:py-2 rounded-lg relative overflow-hidden group text-sm sm:text-base ${
                   activeSection === 'services'
                     ? 'bg-primary-50 transform scale-105'
                     : 'hover:bg-primary-50 hover:transform hover:scale-105'
@@ -256,7 +264,7 @@ const Header = () => {
               </button>
               <button 
                 onClick={() => scrollToSection('events')}
-                className={`font-medium transition-all duration-500 ease-out text-left px-4 py-2 rounded-lg relative overflow-hidden group ${
+                className={`font-medium transition-all duration-500 ease-out text-left px-3 sm:px-4 py-2.5 sm:py-2 rounded-lg relative overflow-hidden group text-sm sm:text-base ${
                   activeSection === 'events'
                     ? 'bg-primary-50 transform scale-105'
                     : 'hover:bg-primary-50 hover:transform hover:scale-105'
@@ -275,7 +283,7 @@ const Header = () => {
               </button>
               <button 
                 onClick={() => scrollToSection('leadership')}
-                className={`font-medium transition-all duration-500 ease-out text-left px-4 py-2 rounded-lg relative overflow-hidden group ${
+                className={`font-medium transition-all duration-500 ease-out text-left px-3 sm:px-4 py-2.5 sm:py-2 rounded-lg relative overflow-hidden group text-sm sm:text-base ${
                   activeSection === 'leadership'
                     ? 'bg-primary-50 transform scale-105'
                     : 'hover:bg-primary-50 hover:transform hover:scale-105'
@@ -294,7 +302,7 @@ const Header = () => {
               </button>
               <button 
                 onClick={() => scrollToSection('about')}
-                className={`font-medium transition-all duration-500 ease-out text-left px-4 py-2 rounded-lg relative overflow-hidden group ${
+                className={`font-medium transition-all duration-500 ease-out text-left px-3 sm:px-4 py-2.5 sm:py-2 rounded-lg relative overflow-hidden group text-sm sm:text-base ${
                   activeSection === 'about'
                     ? 'bg-primary-50 transform scale-105'
                     : 'hover:bg-primary-50 hover:transform hover:scale-105'
@@ -313,7 +321,7 @@ const Header = () => {
               </button>
               <button 
                 onClick={() => scrollToSection('contact')}
-                className={`px-6 py-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl text-left w-fit font-semibold ${
+                className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl text-left w-fit font-semibold text-sm sm:text-base ${
                   activeSection === 'contact'
                     ? 'bg-gradient-to-r from-primary-700 via-secondary-700 to-accent-700 text-white shadow-primary-500/25'
                     : 'bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 text-white hover:from-primary-700 hover:via-secondary-700 hover:to-accent-700'

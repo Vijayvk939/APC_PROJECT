@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Cross, Heart, Star } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Cross, Camera } from 'lucide-react';
 
 const Gallery = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -59,26 +59,22 @@ const Gallery = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
-      {/* Floating Cross Elements */}
-      <div className="absolute top-10 left-10">
-        <Cross className="w-6 h-6 text-primary-200" />
-      </div>
-      <div className="absolute top-20 right-20">
-        <Cross className="w-8 h-8 text-secondary-200" />
-      </div>
-      <div className="absolute bottom-20 left-20">
-        <Heart className="w-7 h-7 text-accent-200" />
-      </div>
-      <div className="absolute bottom-10 right-10">
-        <Star className="w-5 h-5 text-primary-200" />
-      </div>
+    <section id="gallery" className="pt-4 pb-24 bg-gradient-to-br from-slate-50 via-primary-50 to-secondary-50 relative overflow-hidden">
+      {/* Enhanced Background Elements */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-50/30 via-secondary-50/20 to-accent-50/30"></div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Enhanced Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Church <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600">Gallery</span>
+          <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 rounded-full border border-primary-200/50 mb-6">
+            <Camera className="w-4 h-4 text-primary-600 mr-2" />
+            <span className="text-xs font-medium text-primary-700">Our Moments</span>
+          </div>
+          
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600">
+              Church Gallery
+            </span>
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-primary-600 to-secondary-600 mx-auto mb-6"></div>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -107,7 +103,7 @@ const Gallery = () => {
                 
                 {/* Content Overlay */}
                 <div className="absolute bottom-8 left-8 right-8 text-white">
-                  <h3 className="text-2xl md:text-3xl font-bold mb-2">{image.title}</h3>
+                  <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-2">{image.title}</h3>
                   <p className="text-lg opacity-90">{image.description}</p>
                 </div>
               </div>
@@ -171,11 +167,11 @@ const Gallery = () => {
 
         {/* Call to Action */}
         <div className="text-center mt-16">
-          <div className="bg-gradient-to-r from-primary-600 to-secondary-600 rounded-2xl p-8 text-white relative overflow-hidden">
+          <div className="bg-gradient-to-r from-primary-800 to-secondary-800 rounded-2xl p-8 text-white relative overflow-hidden">
             <div className="absolute top-4 right-4 opacity-20">
               <Cross className="w-16 h-16" />
             </div>
-            <h3 className="text-2xl font-bold mb-4">Be Part of Our Story</h3>
+            <h3 className="text-xl md:text-2xl font-bold mb-4">Be Part of Our Story</h3>
             <p className="text-lg mb-6 opacity-90">
               Join us for worship services filled with powerful messages and glorious songs
             </p>
