@@ -2,7 +2,7 @@
 import { Heart, MapPin, Phone, Mail, Facebook, Instagram, Youtube, MessageSquare, ChevronRight } from 'lucide-react';
 
 // Import images
-import logoImage from '/images/APCcircle.png';
+import logoImage from '/images/AGP.png';
 
 const Footer = () => {
 

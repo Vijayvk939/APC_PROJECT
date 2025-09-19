@@ -10,7 +10,7 @@ const Leadership = () => {
     image: pastorImage,
     bio: "Pastor Prasad Machavarapu has been faithfully serving the Agape Pentecostal Church in Vijayawada with passion, wisdom, and unwavering commitment to God's Word. His heart for people and dedication to biblical truth has helped countless individuals grow in their faith journey through powerful messages and glorious songs.",
     education: [
-      "Diploma in Theology - South India Biblical Seminary",
+      "Diploma in Theology - World Bible College",
       "Advanced Biblical Studies & Ministry Training",
       "Leadership Development & Church Administration"
     ],
@@ -92,7 +92,7 @@ const Leadership = () => {
               <div className="p-4 xs:p-5 sm:p-6 lg:p-8 flex flex-col justify-center lg:min-h-[600px] bg-gradient-to-br from-white/50 to-white/30 backdrop-blur-sm md:col-span-1 lg:col-span-1">
                 <div className="mb-4 xs:mb-5 sm:mb-6">
                   <div className="inline-flex items-center px-2 xs:px-3 py-1 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 rounded-full border border-primary-200/50 mb-2 xs:mb-3">
-                    <span className="text-xs font-medium text-primary-700">Founding Pastor</span>
+                    <span className="text-xs font-medium text-primary-700">Visionary Pastor</span>
                   </div>
                   
                   <h3 className="text-xl xs:text-2xl sm:text-3xl font-bold text-gray-900 mb-1 xs:mb-2 leading-tight">
