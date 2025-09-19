@@ -44,7 +44,7 @@ const Hero = () => {
           {/* Subtitle with Enhanced Responsive Readability */}
           <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-lg text-white/95 mb-3 xs:mb-4 sm:mb-6 max-w-3xl leading-relaxed drop-shadow-lg font-medium">
             A place where love meets purpose, and faith transforms lives. 
-            Join our community of believers as we grow together in God's love.
+            Join our church of believers as we grow together in God's love.
           </p>
 
           {/* Mission Statement with Responsive Glassmorphism Effect */}
@@ -55,7 +55,7 @@ const Hero = () => {
               
               <p className="text-xs xs:text-sm sm:text-sm md:text-base lg:text-lg text-white/95 italic leading-relaxed font-light relative z-10 text-center">
                 <span className="text-cyan-300 font-medium">"Experience Powerful Messages</span> and 
-                <span className="text-pink-300 font-medium"> Glorious Songs</span>. Join our community where 
+                <span className="text-pink-300 font-medium"> Glorious Songs</span>. Join our church where 
                 <span className="text-yellow-300 font-medium"> faith transforms lives</span> through God's 
                 <span className="text-emerald-300 font-medium"> unconditional love</span> and divine purpose."
               </p>
