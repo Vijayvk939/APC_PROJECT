@@ -1,5 +1,5 @@
 
-import { Heart, MapPin, Phone, Mail, Facebook, Instagram, Youtube, MessageSquare, ChevronRight } from 'lucide-react';
+import { MapPin, Phone, Mail, Facebook, Instagram, Youtube, MessageSquare, ChevronRight } from 'lucide-react';
 
 // Import images
 import logoImage from '/images/AGP.png';
@@ -171,12 +171,17 @@ const Footer = () => {
               © 2025 Agape Pentecostal Church. All rights reserved.
             </p>
             
-            <div className="flex items-center">
-              <Heart className="w-3 h-3 xs:w-4 xs:h-4 text-accent-400 mr-1.5 xs:mr-2 flex-shrink-0" />
-              <p className="text-white text-xs xs:text-sm">
-                Made with love for our church family
-              </p>
-            </div>
+             <div className="flex items-center">
+               <p className="text-white text-xs xs:text-sm">
+                 Need a professional website? We'd love to help!{' '}
+                 <a 
+                   href="mailto:vsnextgentech@gmail.com" 
+                   className="text-primary-300 hover:text-primary-200 transition-colors underline font-medium"
+                 >
+                   Contact vsnextgentech@gmail.com
+                 </a>
+               </p>
+             </div>
           </div>
         </div>
       </div>

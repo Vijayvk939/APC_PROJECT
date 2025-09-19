@@ -95,25 +95,25 @@ const Leadership = () => {
                     <span className="text-xs font-medium text-primary-700">Visionary Pastor</span>
                   </div>
                   
-                  <h3 className="text-xl xs:text-2xl sm:text-3xl font-bold text-gray-900 mb-1 xs:mb-2 leading-tight">
+                  <h3 className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-1 xs:mb-2 leading-tight">
                     {pastorInfo.name}
                   </h3>
-                  <p className="text-base xs:text-lg text-primary-600 font-semibold mb-3 xs:mb-4">{pastorInfo.title}</p>
+                  <p className="text-base xs:text-lg lg:text-xl text-primary-600 font-semibold mb-3 xs:mb-4">{pastorInfo.title}</p>
                   
-                  <p className="text-gray-700 leading-relaxed mb-4 xs:mb-5 sm:mb-6 text-sm xs:text-base">
+                  <p className="text-gray-700 leading-relaxed mb-4 xs:mb-5 sm:mb-6 text-sm xs:text-base lg:text-lg">
                     {pastorInfo.bio}
                   </p>
                 </div>
 
                 {/* Enhanced Education - Desktop Only */}
                 <div className="mb-4 xs:mb-5 sm:mb-6 hidden lg:block">
-                  <h4 className="font-bold text-gray-900 mb-2 xs:mb-3 flex items-center text-sm xs:text-base">
+                  <h4 className="font-bold text-gray-900 mb-2 xs:mb-3 flex items-center text-sm xs:text-base lg:text-lg">
                     <BookOpen className="w-3 h-3 xs:w-4 xs:h-4 mr-1.5 xs:mr-2 text-primary-600" />
                     Education & Training
                   </h4>
                   <ul className="space-y-1.5 xs:space-y-2">
                     {pastorInfo.education.map((edu, index) => (
-                      <li key={index} className="text-gray-700 flex items-start text-xs xs:text-sm">
+                      <li key={index} className="text-gray-700 flex items-start text-xs xs:text-sm lg:text-base">
                         <div className="w-1.5 h-1.5 xs:w-2 xs:h-2 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full mr-2 xs:mr-3 mt-1.5 xs:mt-2 flex-shrink-0"></div>
                         <span className="leading-relaxed">{edu}</span>
                       </li>
@@ -123,7 +123,7 @@ const Leadership = () => {
 
                 {/* Enhanced Specialties - Desktop Only */}
                 <div className="mb-4 xs:mb-5 sm:mb-6 hidden lg:block">
-                  <h4 className="font-bold text-gray-900 mb-2 xs:mb-3 flex items-center text-sm xs:text-base">
+                  <h4 className="font-bold text-gray-900 mb-2 xs:mb-3 flex items-center text-sm xs:text-base lg:text-lg">
                     <Heart className="w-3 h-3 xs:w-4 xs:h-4 mr-1.5 xs:mr-2 text-accent-600" />
                     Ministry Focus
                   </h4>
@@ -131,7 +131,7 @@ const Leadership = () => {
                     {pastorInfo.specialties.map((specialty, index) => (
                       <span 
                         key={index}
-                        className="bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-2 xs:px-3 py-1 rounded-full text-xs font-semibold shadow-lg"
+                        className="bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-2 xs:px-3 py-1 rounded-full text-xs lg:text-sm font-semibold shadow-lg"
                       >
                         {specialty}
                       </span>
@@ -145,13 +145,13 @@ const Leadership = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 xs:gap-6 sm:gap-8 mt-0 xs:mt-1 sm:mt-2 lg:hidden">
               {/* Enhanced Education */}
               <div className="bg-white/50 backdrop-blur-sm rounded-xl xs:rounded-2xl p-4 xs:p-5 sm:p-6 border border-white/50">
-                <h4 className="font-bold text-gray-900 mb-3 xs:mb-4 flex items-center text-sm xs:text-base">
+                <h4 className="font-bold text-gray-900 mb-3 xs:mb-4 flex items-center text-sm xs:text-base lg:text-lg">
                   <BookOpen className="w-4 h-4 mr-2 text-primary-600" />
                   Education & Training
                 </h4>
                 <ul className="space-y-2 xs:space-y-3">
                   {pastorInfo.education.map((edu, index) => (
-                    <li key={index} className="text-gray-700 flex items-start text-sm xs:text-base">
+                    <li key={index} className="text-gray-700 flex items-start text-sm xs:text-base lg:text-lg">
                       <div className="w-2 h-2 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full mr-3 mt-2 flex-shrink-0"></div>
                       <span className="leading-relaxed">{edu}</span>
                     </li>
@@ -161,7 +161,7 @@ const Leadership = () => {
 
               {/* Enhanced Specialties */}
               <div className="bg-white/50 backdrop-blur-sm rounded-xl xs:rounded-2xl p-4 xs:p-5 sm:p-6 border border-white/50">
-                <h4 className="font-bold text-gray-900 mb-3 xs:mb-4 flex items-center text-sm xs:text-base">
+                <h4 className="font-bold text-gray-900 mb-3 xs:mb-4 flex items-center text-sm xs:text-base lg:text-lg">
                   <Heart className="w-4 h-4 mr-2 text-accent-600" />
                   Ministry Focus
                 </h4>
@@ -169,7 +169,7 @@ const Leadership = () => {
                   {pastorInfo.specialties.map((specialty, index) => (
                     <span 
                       key={index}
-                      className="bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-3 xs:px-4 py-1.5 xs:py-2 rounded-full text-xs xs:text-sm font-semibold shadow-lg"
+                      className="bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-3 xs:px-4 py-1.5 xs:py-2 rounded-full text-xs xs:text-sm lg:text-base font-semibold shadow-lg"
                     >
                       {specialty}
                     </span>

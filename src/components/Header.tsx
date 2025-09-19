@@ -100,7 +100,7 @@ const Header = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-primary-400 to-secondary-400 rounded-full blur-lg opacity-30"></div>
             </div>
             <div>
-              <h1 className="text-sm sm:text-sm md:text-sm lg:text-xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">AGAPE... MINISTRIES</h1>
+              <h1 className="text-sm sm:text-sm md:text-sm lg:text-xl font-bold bg-gradient-to-r from-red-400 via-primary-600 to-secondary-600 bg-clip-text text-transparent">AGAPE... MINISTRIES</h1>
               <p className="text-xs sm:text-xs md:text-xs lg:text-sm text-gray-600">Pastor Prasad Machavarapu</p>
             </div>
           </div>

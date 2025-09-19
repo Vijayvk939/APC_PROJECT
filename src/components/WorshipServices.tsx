@@ -96,30 +96,30 @@ const WorshipServices = () => {
               
               {/* Service Title */}
               <div className="mb-3 xs:mb-4">
-                <h3 className="text-lg xs:text-xl font-bold text-gray-900 mb-1 leading-tight">{service.title}</h3>
-                <p className="text-sm xs:text-base font-medium text-gray-600">{service.subtitle}</p>
+                <h3 className="text-lg xs:text-xl lg:text-2xl font-bold text-gray-900 mb-1 leading-tight">{service.title}</h3>
+                <p className="text-sm xs:text-base lg:text-lg font-medium text-gray-600">{service.subtitle}</p>
               </div>
 
               {/* Time and Location - Responsive Layout */}
               <div className="grid grid-cols-1 xs:grid-cols-2 gap-2 xs:gap-3 mb-3 xs:mb-4">
                 <div className="flex items-center text-gray-700 bg-gray-50 rounded-md px-2 xs:px-3 py-1.5 xs:py-2">
                   <Clock className="w-3 h-3 xs:w-4 xs:h-4 mr-1.5 xs:mr-2 text-primary-500 flex-shrink-0" />
-                  <span className="font-semibold text-xs xs:text-sm truncate">{service.time}</span>
+                  <span className="font-semibold text-xs xs:text-sm lg:text-base truncate">{service.time}</span>
                 </div>
                 <div className="flex items-center text-gray-700 bg-gray-50 rounded-md px-2 xs:px-3 py-1.5 xs:py-2">
                   <MapPin className="w-3 h-3 xs:w-4 xs:h-4 mr-1.5 xs:mr-2 text-secondary-500 flex-shrink-0" />
-                  <span className="font-semibold text-xs xs:text-sm truncate">{service.location}</span>
+                  <span className="font-semibold text-xs xs:text-sm lg:text-base truncate">{service.location}</span>
                 </div>
               </div>
               
-              <p className="text-gray-600 mb-3 xs:mb-4 leading-relaxed text-sm xs:text-base flex-grow">{service.description}</p>
+              <p className="text-gray-600 mb-3 xs:mb-4 leading-relaxed text-sm xs:text-base lg:text-lg flex-grow">{service.description}</p>
               
               {/* Highlights - Responsive Grid Layout */}
               <div className="grid grid-cols-1 xs:grid-cols-2 gap-1.5 xs:gap-2">
                 {service.highlights.map((highlight, highlightIndex) => (
                   <div key={highlightIndex} className="flex items-center text-gray-700">
                     <div className={`w-1.5 h-1.5 xs:w-2 xs:h-2 ${service.accentColor} mr-1.5 xs:mr-2 flex-shrink-0 rounded-full`}></div>
-                    <span className="text-xs xs:text-sm font-medium leading-tight">{highlight}</span>
+                    <span className="text-xs xs:text-sm lg:text-base font-medium leading-tight">{highlight}</span>
                   </div>
                 ))}
               </div>
