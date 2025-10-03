@@ -78,7 +78,7 @@ const WorshipServices = () => {
         </div>
 
         {/* Modern Worship Services Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 xs:gap-6 sm:gap-8 mb-8 xs:mb-10 sm:mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 xs:gap-6 sm:gap-8 mb-8 xs:mb-10 sm:mb-12">
           {worshipServices.map((service, index) => (
             <div 
               key={index}

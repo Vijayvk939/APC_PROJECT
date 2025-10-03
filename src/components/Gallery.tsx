@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Cross, Camera } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Camera } from 'lucide-react';
 
 // Import images
 import img1 from '/images/Gallery/IMG1.jpg';
@@ -149,45 +149,7 @@ const Gallery = () => {
           </div>
         </div>
 
-        {/* Thumbnail Strip */}
-        <div className="mt-8 xs:mt-10 sm:mt-12 grid grid-cols-3 xs:grid-cols-4 sm:grid-cols-5 md:grid-cols-6 gap-2 xs:gap-3 sm:gap-4">
-          {galleryImages.map((image, index) => (
-            <button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className={`relative h-16 xs:h-20 sm:h-24 rounded-lg xs:rounded-xl overflow-hidden transition-all duration-300 ${
-                index === currentSlide
-                  ? 'ring-2 xs:ring-3 sm:ring-4 ring-primary-500 scale-105'
-                  : ''
-              }`}
-            >
-              <img
-                src={image.url}
-                alt={image.title}
-                className="w-full h-full object-cover"
-              />
-              <div className={`absolute inset-0 transition-opacity duration-300 ${
-                index === currentSlide ? 'bg-primary-500/20' : 'bg-black/20 hover:bg-black/10'
-              }`}></div>
-            </button>
-          ))}
-        </div>
 
-        {/* Call to Action */}
-        <div className="text-center mt-12 xs:mt-14 sm:mt-16">
-          <div className="bg-gradient-to-r from-primary-800 to-secondary-800 rounded-xl xs:rounded-2xl p-4 xs:p-6 sm:p-8 text-white relative overflow-hidden">
-            <div className="absolute top-3 xs:top-4 right-3 xs:right-4 opacity-20">
-              <Cross className="w-10 h-10 xs:w-12 xs:h-12 sm:w-16 sm:h-16" />
-            </div>
-            <h3 className="text-lg xs:text-xl sm:text-2xl font-bold mb-2 xs:mb-3 sm:mb-4 px-2">Be Part of Our Story</h3>
-            <p className="text-sm xs:text-base sm:text-lg mb-4 xs:mb-5 sm:mb-6 opacity-90 px-4 leading-relaxed">
-              Join us for worship services filled with powerful messages and glorious songs
-            </p>
-            <button className="bg-white text-primary-600 px-6 xs:px-8 py-2 xs:py-3 rounded-lg xs:rounded-xl font-semibold hover:bg-gray-100 transition-colors text-sm xs:text-base">
-              Visit Us This Sunday
-            </button>
-          </div>
-        </div>
       </div>
     </section>
   );

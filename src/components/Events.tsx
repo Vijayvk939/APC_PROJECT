@@ -1,5 +1,5 @@
 import { Calendar, Clock, Users, Heart, BookOpen, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 // Import images
 import bvmpCA from '/images/Events/BVMP_CA.jpg';
@@ -12,26 +12,38 @@ import newYearGM from '/images/Events/New-year_GM.jpg';
 const Events = () => {
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
   const [cardsPerView, setCardsPerView] = useState(3);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 640) {
-        setCardsPerView(1); // Mobile: 1 card
-      } else if (window.innerWidth < 1024) {
-        setCardsPerView(2); // Tablet: 2 cards
-      } else {
-        setCardsPerView(3); // Desktop: 3 cards
+      try {
+        if (window && window.innerWidth) {
+          if (window.innerWidth < 640) {
+            setCardsPerView(1); // Mobile: 1 card
+          } else if (window.innerWidth < 1024) {
+            setCardsPerView(2); // Tablet: 2 cards
+          } else {
+            setCardsPerView(3); // Desktop: 3 cards
+          }
+          // Reset to first page when screen size changes
+          setCurrentEventIndex(0);
+        }
+      } catch (error) {
+        console.error('Error handling resize:', error);
+        // Fallback to default values
+        setCardsPerView(3);
+        setCurrentEventIndex(0);
       }
-      // Reset to first page when screen size changes
-      setCurrentEventIndex(0);
     };
 
     handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    if (window) {
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }
   }, []);
 
-  const specialPrayerEvents = [
+  const specialPrayerEvents = useMemo(() => [
     {
       title: "APC(Bhavanipuram)",
       date: "April 13",
@@ -104,20 +116,61 @@ const Events = () => {
       status: "Upcoming",
       accentColor: "bg-indigo-500"
     }
-  ];
+  ], []);
+
+  // Auto-movement functionality
+  useEffect(() => {
+    if (isHovered) return;
+
+    const interval = setInterval(() => {
+      try {
+        setCurrentEventIndex((prevIndex) => {
+          if (specialPrayerEvents && specialPrayerEvents.length > 0 && cardsPerView > 0) {
+            const maxIndex = Math.ceil(specialPrayerEvents.length / cardsPerView) - 1;
+            return prevIndex === maxIndex ? 0 : prevIndex + 1;
+          }
+          return prevIndex;
+        });
+      } catch (error) {
+        console.error('Error in auto-movement:', error);
+      }
+    }, 2000); // Auto-advance every 2 seconds
+
+    return () => clearInterval(interval);
+  }, [isHovered, cardsPerView, specialPrayerEvents]);
 
   const nextEvent = () => {
-    const maxIndex = Math.ceil(specialPrayerEvents.length / cardsPerView) - 1;
-    setCurrentEventIndex((prevIndex) => 
-      prevIndex === maxIndex ? 0 : prevIndex + 1
-    );
+    try {
+      if (specialPrayerEvents && specialPrayerEvents.length > 0 && cardsPerView > 0) {
+        const maxIndex = Math.ceil(specialPrayerEvents.length / cardsPerView) - 1;
+        setCurrentEventIndex((prevIndex) => 
+          prevIndex === maxIndex ? 0 : prevIndex + 1
+        );
+      }
+    } catch (error) {
+      console.error('Error in nextEvent:', error);
+    }
   };
 
   const prevEvent = () => {
-    const maxIndex = Math.ceil(specialPrayerEvents.length / cardsPerView) - 1;
-    setCurrentEventIndex((prevIndex) => 
-      prevIndex === 0 ? maxIndex : prevIndex - 1
-    );
+    try {
+      if (specialPrayerEvents && specialPrayerEvents.length > 0 && cardsPerView > 0) {
+        const maxIndex = Math.ceil(specialPrayerEvents.length / cardsPerView) - 1;
+        setCurrentEventIndex((prevIndex) => 
+          prevIndex === 0 ? maxIndex : prevIndex - 1
+        );
+      }
+    } catch (error) {
+      console.error('Error in prevEvent:', error);
+    }
+  };
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
   };
 
   const regularPrograms = [
@@ -247,7 +300,11 @@ const Events = () => {
             </div>
           </div>
           
-          <div className="relative overflow-hidden">
+          <div 
+            className="relative overflow-hidden"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
             <div 
               className="flex transition-transform duration-500 ease-in-out"
               style={{ 

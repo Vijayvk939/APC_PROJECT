@@ -173,12 +173,12 @@ const Footer = () => {
             
              <div className="flex items-center">
                <p className="text-white text-xs xs:text-sm">
-                 Need a professional website? We'd love to help!{' '}
+                 Need a professional website? We'd love to help!{' '} Contact us at:
                  <a 
                    href="mailto:vsnextgentech@gmail.com" 
                    className="text-primary-300 hover:text-primary-200 transition-colors underline font-medium"
                  >
-                   Contact vsnextgentech@gmail.com
+                   vsnextgentech@gmail.com
                  </a>
                </p>
              </div>

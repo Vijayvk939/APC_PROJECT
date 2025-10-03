@@ -15,18 +15,24 @@ const Header = () => {
     const handleScroll = () => {
       if (!ticking) {
         requestAnimationFrame(() => {
-          setIsScrolled(window.scrollY > 20);
-          
-          // Update active section based on scroll position
-          const sections = ['home', 'services', 'events', 'leadership', 'about', 'contact'];
-          const scrollPosition = window.scrollY + 120; // Reduced offset for minimal padding
-          
-          for (let i = sections.length - 1; i >= 0; i--) {
-            const section = document.getElementById(sections[i]);
-            if (section && section.offsetTop <= scrollPosition) {
-              setActiveSection(sections[i]);
-              break;
+          try {
+            if (window && window.scrollY !== undefined) {
+              setIsScrolled(window.scrollY > 20);
+              
+              // Update active section based on scroll position
+              const sections = ['home', 'services', 'events', 'leadership', 'about', 'contact'];
+              const scrollPosition = window.scrollY + 120; // Reduced offset for minimal padding
+              
+              for (let i = sections.length - 1; i >= 0; i--) {
+                const section = document.getElementById(sections[i]);
+                if (section && section.offsetTop <= scrollPosition) {
+                  setActiveSection(sections[i]);
+                  break;
+                }
+              }
             }
+          } catch (error) {
+            console.error('Error handling scroll:', error);
           }
           
           ticking = false;
@@ -35,21 +41,27 @@ const Header = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    if (window) {
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      return () => window.removeEventListener('scroll', handleScroll);
+    }
   }, []);
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const headerHeight = 80; // Reduced header height for minimal padding
-      const elementPosition = element.offsetTop - headerHeight;
-      
-      window.scrollTo({
-        top: elementPosition,
-        behavior: 'smooth'
-      });
-      setIsMenuOpen(false);
+    try {
+      const element = document.getElementById(sectionId);
+      if (element && window) {
+        const headerHeight = 80; // Reduced header height for minimal padding
+        const elementPosition = element.offsetTop - headerHeight;
+        
+        window.scrollTo({
+          top: elementPosition,
+          behavior: 'smooth'
+        });
+        setIsMenuOpen(false);
+      }
+    } catch (error) {
+      console.error('Error scrolling to section:', error);
     }
   };
 
@@ -100,7 +112,7 @@ const Header = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-primary-400 to-secondary-400 rounded-full blur-lg opacity-30"></div>
             </div>
             <div>
-              <h1 className="text-sm sm:text-sm md:text-sm lg:text-xl font-bold bg-gradient-to-r from-red-400 via-primary-600 to-secondary-600 bg-clip-text text-transparent">AGAPE... MINISTRIES</h1>
+              <h1 className="text-sm sm:text-sm md:text-sm lg:text-xl font-bold bg-gradient-to-r from-red-400 via-primary-600 to-secondary-600 bg-clip-text text-transparent">AGAPE PENTECOSTAL CHURCH</h1>
               <p className="text-xs sm:text-xs md:text-xs lg:text-sm text-gray-600">Pastor Prasad Machavarapu</p>
             </div>
           </div>

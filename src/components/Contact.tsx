@@ -1,4 +1,4 @@
-import { MapPin, Phone, Mail, Users, Heart } from 'lucide-react';
+import { MapPin, Phone, Mail } from 'lucide-react';
 
 const Contact = () => {
   const contactInfo = [
@@ -161,43 +161,6 @@ const Contact = () => {
           </div>
         </div>
 
-        {/* Enhanced Call to Action */}
-        <div className="text-center mt-8 xs:mt-10 sm:mt-12">
-          <div className="relative bg-gradient-to-br from-primary-900 via-secondary-900 to-accent-900 rounded-xl xs:rounded-2xl sm:rounded-3xl p-4 xs:p-5 sm:p-6 md:p-8 text-white overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/10"></div>
-            <div className="absolute top-3 xs:top-4 sm:top-6 right-3 xs:right-4 sm:right-6 opacity-20">
-              <Heart className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 md:w-16 md:h-16" />
-            </div>
-            <div className="absolute bottom-3 xs:bottom-4 sm:bottom-6 left-3 xs:left-4 sm:left-6 opacity-20">
-              <Users className="w-6 h-6 xs:w-8 xs:h-8 sm:w-10 sm:h-10 md:w-12 md:h-12" />
-            </div>
-
-            <div className="relative z-10">
-              <h3 className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold mb-2 xs:mb-3 px-2">Ready to Visit?</h3>
-              <p className="text-sm xs:text-base sm:text-lg mb-3 xs:mb-4 sm:mb-6 opacity-90 max-w-xl md:max-w-2xl mx-auto leading-relaxed px-4">
-                Experience the warmth of our church and the power of worship. 
-                We can't wait to welcome you!
-              </p>
-              
-              <div className="flex flex-row gap-2 xs:gap-3 justify-center items-center px-4">
-                <a 
-                  href="tel:+919390232344"
-                  className="group bg-white text-primary-600 px-3 xs:px-4 sm:px-6 py-2 xs:py-2.5 sm:py-3 rounded-lg xs:rounded-xl font-semibold hover:bg-gray-50 transition-all duration-300 flex items-center shadow-lg hover:shadow-xl text-xs xs:text-sm sm:text-base w-full sm:w-auto"
-                >
-                  <Phone className="w-3 h-3 xs:w-4 xs:h-4 mr-1.5 xs:mr-2 flex-shrink-0" />
-                  <span className="truncate">Call Us Now</span>
-                </a>
-                <a 
-                  href="mailto:agapepentecostalchurchapc@gmail.com"
-                  className="group border-2 border-white text-white px-3 xs:px-4 sm:px-6 py-2 xs:py-2.5 sm:py-3 rounded-lg xs:rounded-xl font-semibold hover:bg-white hover:text-primary-600 transition-all duration-300 flex items-center text-xs xs:text-sm sm:text-base w-full sm:w-auto"
-                >
-                  <Mail className="w-3 h-3 xs:w-4 xs:h-4 mr-1.5 xs:mr-2 flex-shrink-0" />
-                  <span className="truncate">Send Email</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
