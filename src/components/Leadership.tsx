@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { Phone, Heart, BookOpen, Users, Star, Sparkles, ArrowRight } from 'lucide-react';
 
 // Import images
@@ -30,36 +31,72 @@ const Leadership = () => {
   };
 
   return (
-    <section id="leadership" className="pt-4 pb-16 md:pb-20 lg:pb-24 bg-gradient-to-br from-slate-50 via-primary-50 to-secondary-50 relative overflow-hidden">
+    <section id="leadership" className="py-8 md:py-12 lg:py-16 bg-gradient-to-br from-slate-50 via-primary-50 to-secondary-50 relative overflow-hidden">
       {/* Enhanced Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary-50/30 via-secondary-50/20 to-accent-50/30"></div>
       
 
       <div className="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Enhanced Section Header */}
-        <div className="text-center mb-12 xs:mb-14 sm:mb-16">
-          <div className="inline-flex items-center px-3 xs:px-4 py-1.5 xs:py-2 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 rounded-full border border-primary-200/50 mb-4 xs:mb-6">
+        <motion.div 
+          className="text-center mb-8 xs:mb-10 sm:mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+        >
+          <motion.div 
+            className="inline-flex items-center px-3 xs:px-4 py-1.5 xs:py-2 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 rounded-full border border-primary-200/50 mb-4 xs:mb-6"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
             <Sparkles className="w-3 h-3 xs:w-4 xs:h-4 text-primary-600 mr-1.5 xs:mr-2" />
-            <span className="text-xs font-medium text-primary-700">Meet Our Leaders</span>
-          </div>
+            <span className="text-xs font-medium text-primary-700">Meet Our Leader</span>
+          </motion.div>
           
-          <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 xs:mb-6 leading-tight px-2">
+          <motion.h2 
+            className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 xs:mb-6 leading-tight px-2"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600">
               Spiritual Leadership
             </span>
-          </h2>
+          </motion.h2>
           
-          <div className="w-24 xs:w-32 h-1 bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-500 mx-auto mb-4 xs:mb-6 rounded-full shadow-xl"></div>
+          <motion.div 
+            className="w-24 xs:w-32 h-1 bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-500 mx-auto mb-4 xs:mb-6 rounded-full shadow-xl"
+            initial={{ width: 0 }}
+            whileInView={{ width: "auto" }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          ></motion.div>
           
-          <p className="text-base xs:text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
+          <motion.p 
+            className="text-base xs:text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
             Meet the dedicated servants who guide our church family with wisdom, 
             compassion, and a heart for God's people. Experience the transformative 
             leadership that shapes our spiritual church.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         {/* Enhanced Senior Pastor Section */}
-        <div className="mb-16 xs:mb-18 sm:mb-20">
+        <motion.div 
+          className="mb-10 xs:mb-12 sm:mb-14"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+        >
           <div className="relative bg-gradient-to-br from-white/80 to-white/60 backdrop-blur-sm rounded-2xl xs:rounded-3xl shadow-2xl overflow-hidden border border-white/50">
             {/* Background Pattern */}
             <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 via-secondary-500/3 to-accent-500/5"></div>
@@ -178,7 +215,7 @@ const Leadership = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Enhanced Call to Action */}
         <div className="text-center">
@@ -202,22 +239,40 @@ const Leadership = () => {
               </p>
               
               <div className="flex flex-row gap-2 xs:gap-3 justify-center items-center">
-                <a 
+                <motion.a 
                   href="#contact" 
-                  className="bg-white text-primary-600 px-3 xs:px-4 py-2 rounded-xl font-semibold flex items-center shadow-lg text-xs xs:text-sm"
+                  className="bg-white text-primary-600 px-3 xs:px-4 py-2 rounded-xl font-semibold flex items-center shadow-lg text-xs xs:text-sm relative overflow-hidden group"
+                  whileHover={{ scale: 1.08, y: -3 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 >
-                  <Users className="w-3 h-3 mr-1.5 xs:mr-2 flex-shrink-0" />
-                  <span className="truncate">Get in Touch</span>
-                  <ArrowRight className="w-3 h-3 ml-1.5 xs:ml-2 flex-shrink-0" />
-                </a>
-                <a 
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-primary-50 to-secondary-50"
+                    initial={{ x: "-100%" }}
+                    whileHover={{ x: "100%" }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                  />
+                  <Users className="w-3 h-3 mr-1.5 xs:mr-2 flex-shrink-0 relative z-10" />
+                  <span className="truncate relative z-10">Get in Touch</span>
+                  <ArrowRight className="w-3 h-3 ml-1.5 xs:ml-2 flex-shrink-0 relative z-10 group-hover:translate-x-1 transition-transform" />
+                </motion.a>
+                <motion.a 
                   href="tel:+919390232344"
-                  className="border-2 border-white text-white px-3 xs:px-4 py-2 rounded-xl font-semibold flex items-center text-xs xs:text-sm"
+                  className="border-2 border-white text-white px-3 xs:px-4 py-2 rounded-xl font-semibold flex items-center text-xs xs:text-sm relative overflow-hidden group"
+                  whileHover={{ scale: 1.08, y: -3, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 >
-                  <Phone className="w-3 h-3 mr-1.5 xs:mr-2 flex-shrink-0" />
-                  <span className="truncate">Call Now</span>
-                  <ArrowRight className="w-3 h-3 ml-1.5 xs:ml-2 flex-shrink-0" />
-                </a>
+                  <motion.div
+                    className="absolute inset-0 bg-white/10"
+                    initial={{ x: "-100%" }}
+                    whileHover={{ x: "100%" }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                  />
+                  <Phone className="w-3 h-3 mr-1.5 xs:mr-2 flex-shrink-0 relative z-10" />
+                  <span className="truncate relative z-10">Call Now</span>
+                  <ArrowRight className="w-3 h-3 ml-1.5 xs:ml-2 flex-shrink-0 relative z-10 group-hover:translate-x-1 transition-transform" />
+                </motion.a>
               </div>
             </div>
           </div>

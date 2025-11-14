@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Play, Cross, Heart, Youtube, Clock, Eye, Share2, ArrowRight, Sparkles, Zap } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Play, Cross, Heart, Youtube, Clock, Eye, ArrowRight, Sparkles, Zap } from 'lucide-react';
 
 const VideoSection = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -40,41 +41,112 @@ const VideoSection = () => {
   ];
 
   return (
-    <section className="py-16 md:py-20 lg:py-24 bg-gradient-to-br from-slate-900 via-primary-900 to-secondary-900 relative overflow-hidden">
+    <section className="py-8 md:py-12 lg:py-16 bg-gradient-to-br from-slate-900 via-primary-900 to-secondary-900 relative overflow-hidden">
       {/* Enhanced Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 via-secondary-500/3 to-accent-500/5"></div>
       
 
       <div className="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Enhanced Section Header */}
-        <div className="text-center mb-12 xs:mb-14 sm:mb-16">
-          <div className="inline-flex items-center px-3 xs:px-4 py-1.5 xs:py-2 bg-gradient-to-r from-primary-500/20 to-secondary-500/20 backdrop-blur-sm rounded-full border border-primary-300/30 mb-4 xs:mb-6">
+        <motion.div 
+          className="text-center mb-8 xs:mb-10 sm:mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+        >
+          <motion.div 
+            className="inline-flex items-center px-3 xs:px-4 py-1.5 xs:py-2 bg-gradient-to-r from-primary-500/20 to-secondary-500/20 backdrop-blur-sm rounded-full border border-primary-300/30 mb-4 xs:mb-6"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
             <Sparkles className="w-3 h-3 xs:w-4 xs:h-4 text-primary-300 mr-1.5 xs:mr-2" />
             <span className="text-primary-200 font-medium text-xs">Featured Content</span>
-          </div>
+          </motion.div>
           
-          <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 xs:mb-6 leading-tight px-2">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-300 via-secondary-300 to-primary-300">
-              Transformative
-            </span>
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary-300 via-accent-300 to-secondary-300">
+          <motion.h2 
+            className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 xs:mb-6 leading-tight px-2"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <motion.span 
+              className="text-transparent bg-clip-text bg-gradient-to-r from-primary-300 via-secondary-300 to-primary-300"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              Transformative{' '}
+            </motion.span>
+            <motion.span 
+              className="text-transparent bg-clip-text bg-gradient-to-r from-secondary-300 via-accent-300 to-secondary-300"
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
               Messages
-            </span>
-          </h2>
+            </motion.span>
+          </motion.h2>
           
           <div className="w-24 xs:w-32 h-1 bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-500 mx-auto mb-4 xs:mb-6 rounded-full shadow-xl"></div>
           
-          <p className="text-base xs:text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light px-4">
+          <motion.p 
+            className="text-base xs:text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light px-4"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          >
             Experience powerful messages and glorious songs that transform lives and strengthen faith. 
             Join us on a spiritual journey of growth and inspiration.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         {/* Modern Video Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 xs:gap-6 sm:gap-8 mb-12 xs:mb-14 sm:mb-16">
+        <motion.div 
+          className="grid grid-cols-1 lg:grid-cols-2 gap-4 xs:gap-6 sm:gap-8 mb-8 xs:mb-10 sm:mb-12"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6 }}
+        >
           {videos.map((video, index) => (
-            <div key={index} className="group relative">
+            <motion.div 
+              key={index} 
+              className="group relative"
+              initial={{ opacity: 0, y: 80, scale: 0.85, rotateY: -20 }}
+              whileInView={{ 
+                opacity: 1, 
+                y: 0, 
+                scale: 1,
+                rotateY: 0,
+                transition: {
+                  duration: 0.9,
+                  delay: index * 0.15,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                  type: "spring",
+                  stiffness: 100,
+                  damping: 15
+                }
+              }}
+              viewport={{ once: true }}
+              whileHover={{ 
+                y: -12, 
+                scale: 1.03,
+                rotateY: 3,
+                transition: {
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 20,
+                  duration: 0.4
+                }
+              }}
+            >
               <div className="relative bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-xl xs:rounded-2xl p-1 shadow-xl border border-white/10">
                 <div className="relative rounded-lg xs:rounded-xl overflow-hidden bg-black">
                   {!isPlaying || activeVideo !== index ? (
@@ -94,16 +166,43 @@ const VideoSection = () => {
                       
                       {/* Enhanced Play Button Overlay */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex items-center justify-center">
-                        <div className={`relative w-16 h-16 xs:w-18 xs:h-18 sm:w-20 sm:h-20 bg-gradient-to-br ${video.color} rounded-full flex items-center justify-center transition-all duration-700 hover:scale-110 shadow-xl border-4 border-white/20 hover:border-white/40 ${
-                          isHovered ? 'animate-pulse' : ''
-                        }`}>
+                        <motion.div 
+                        className={`relative w-16 h-16 xs:w-18 xs:h-18 sm:w-20 sm:h-20 bg-gradient-to-br ${video.color} rounded-full flex items-center justify-center shadow-xl border-4 border-white/20`}
+                        whileHover={{ 
+                          scale: 1.2,
+                          rotate: [0, -10, 10, -10, 0],
+                          borderColor: "rgba(255, 255, 255, 0.6)",
+                          transition: { duration: 0.5 }
+                        }}
+                        animate={{
+                          scale: isHovered ? [1, 1.1, 1] : 1,
+                        }}
+                        transition={{
+                          scale: {
+                            duration: 1.5,
+                            repeat: isHovered ? Infinity : 0,
+                            ease: "easeInOut"
+                          }
+                        }}
+                      >
                           <Play className="w-8 h-8 xs:w-9 xs:h-9 sm:w-10 sm:h-10 text-white ml-1" />
-                          <div className="absolute inset-0 w-16 h-16 xs:w-18 xs:h-18 sm:w-20 sm:h-20 border-4 border-white/40 rounded-full animate-ping opacity-75"></div>
-                        </div>
+                          <motion.div 
+                            className="absolute inset-0 w-16 h-16 xs:w-18 xs:h-18 sm:w-20 sm:h-20 border-4 border-white/40 rounded-full"
+                            animate={{
+                              scale: [1, 1.5, 1.5],
+                              opacity: [0.75, 0, 0],
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              ease: "easeOut"
+                            }}
+                          />
+                        </motion.div>
                       </div>
                       
                       {/* Category Badge */}
-                      <div className="absolute top-2 xs:top-3 left-2 xs:left-3">
+                      <div className="absolute top-2 xs:top-3 right-2 xs:right-3">
                         <span className="inline-flex items-center px-2 py-1 bg-gradient-to-r from-primary-500/90 to-secondary-500/90 backdrop-blur-sm rounded-full text-xs font-semibold text-white border border-white/20">
                           {video.category}
                         </span>
@@ -167,13 +266,23 @@ const VideoSection = () => {
                   )}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Enhanced Call to Action Section */}
-        <div className="relative">
-          <div className="bg-gradient-to-br from-white/10 via-white/5 to-white/10 backdrop-blur-xl rounded-xl xs:rounded-2xl p-4 xs:p-5 sm:p-6 border border-white/20 shadow-xl">
+        <motion.div 
+          className="relative"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8 }}
+        >
+          <motion.div 
+            className="bg-gradient-to-br from-white/10 via-white/5 to-white/10 backdrop-blur-xl rounded-xl xs:rounded-2xl p-4 xs:p-5 sm:p-6 border border-white/20 shadow-xl"
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.3 }}
+          >
             {/* Background Pattern */}
             <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-secondary-500/5 rounded-xl xs:rounded-2xl"></div>
             
@@ -210,7 +319,7 @@ const VideoSection = () => {
                 </a>
                 
                 <a
-                  href="https://youtube.com/channel/UCjdJChq8HST_jDuZSElFz3Q"
+                  href="https://www.youtube.com/@agapepentecostalchurch/videos"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group border-2 border-white/30 text-white px-3 xs:px-4 py-2 rounded-lg font-semibold hover:bg-white hover:text-slate-900 transition-all duration-300 flex items-center justify-center backdrop-blur-sm hover:border-white transform hover:scale-105 text-xs w-full sm:w-auto"
@@ -221,8 +330,8 @@ const VideoSection = () => {
                 </a>
               </div>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

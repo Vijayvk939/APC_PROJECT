@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Phone, MapPin, Clock } from 'lucide-react';
 
 // Import images
@@ -236,9 +237,21 @@ const Header = () => {
         </div>
 
         {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden py-3 sm:py-4 border-t border-primary-200/20 bg-white/95 backdrop-blur-md rounded-b-2xl shadow-xl">
-            <div className="flex flex-col space-y-2 sm:space-y-3">
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div 
+              className="md:hidden py-3 sm:py-4 border-t border-primary-200/20 bg-white/95 backdrop-blur-md rounded-b-2xl shadow-xl"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              <motion.div 
+                className="flex flex-col space-y-2 sm:space-y-3"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3, delay: 0.1 }}
+              >
               <button 
                 onClick={() => scrollToSection('home')}
                 className={`font-medium transition-all duration-500 ease-out text-left px-3 sm:px-4 py-2.5 sm:py-2 rounded-lg relative overflow-hidden group text-sm sm:text-base ${
@@ -344,9 +357,10 @@ const Header = () => {
               >
                 Contact Us
               </button>
-            </div>
-          </div>
-        )}
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </header>
   );

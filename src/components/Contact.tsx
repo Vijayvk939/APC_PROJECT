@@ -1,6 +1,32 @@
+import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail } from 'lucide-react';
 
 const Contact = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 70, scale: 0.85, rotateX: -15 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      rotateX: 0,
+      transition: {
+        duration: 0.8,
+        type: "spring" as const,
+        stiffness: 100,
+        damping: 15,
+      },
+    },
+  };
   const contactInfo = [
     {
       icon: Phone,
@@ -25,46 +51,112 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-16 md:py-20 lg:py-24 bg-gradient-to-br from-slate-50 via-primary-50 to-secondary-50 relative overflow-hidden">
+    <section id="contact" className="py-8 md:py-12 lg:py-16 bg-gradient-to-br from-slate-50 via-primary-50 to-secondary-50 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary-50/30 via-secondary-50/20 to-accent-50/30"></div>
 
       <div className="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Enhanced Section Header */}
-        <div className="text-center mb-12 xs:mb-14 sm:mb-16">
-          <div className="inline-flex items-center px-3 xs:px-4 py-1.5 xs:py-2 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 rounded-full border border-primary-200/50 mb-4 xs:mb-6">
+        <motion.div 
+          className="text-center mb-8 xs:mb-10 sm:mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+        >
+          <motion.div 
+            className="inline-flex items-center px-3 xs:px-4 py-1.5 xs:py-2 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 rounded-full border border-primary-200/50 mb-4 xs:mb-6"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <Phone className="w-3 h-3 xs:w-4 xs:h-4 text-primary-600 mr-1.5 xs:mr-2" />
             <span className="text-xs xs:text-sm font-medium text-primary-700">Get Connected</span>
-          </div>
-          <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 xs:mb-6 leading-tight px-2">
+          </motion.div>
+          <motion.h2 
+            className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 xs:mb-6 leading-tight px-2"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600">
               Contact Us
             </span>
-          </h2>
-          <div className="w-24 xs:w-32 h-1 bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-500 mx-auto mb-4 xs:mb-6 sm:mb-8 rounded-full"></div>
-          <p className="text-base xs:text-lg sm:text-xl text-gray-600 max-w-3xl md:max-w-4xl mx-auto leading-relaxed px-4">
+          </motion.h2>
+          <motion.div 
+            className="w-24 xs:w-32 h-1 bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-500 mx-auto mb-4 xs:mb-6 sm:mb-8 rounded-full"
+            initial={{ width: 0 }}
+            whileInView={{ width: "auto" }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          ></motion.div>
+          <motion.p 
+            className="text-base xs:text-lg sm:text-xl text-gray-600 max-w-3xl md:max-w-4xl mx-auto leading-relaxed px-4"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
             We'd love to hear from you! Whether you have questions, need prayer, or want to get involved, 
             we're here to connect and support you on your faith journey.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-3 gap-6 xs:gap-8 md:gap-10 lg:gap-12 mb-12 xs:mb-14 sm:mb-16 md:mb-20">
+        <motion.div 
+          className="grid lg:grid-cols-3 gap-6 xs:gap-8 md:gap-10 lg:gap-12 mb-8 xs:mb-10 sm:mb-12"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
           {/* Contact Information Cards */}
           <div className="lg:col-span-1 space-y-4 xs:space-y-5 sm:space-y-6">
             {contactInfo.map((info, index) => (
-              <div 
+              <motion.div 
                 key={index}
-                className="group bg-white/80 backdrop-blur-sm rounded-xl xs:rounded-2xl p-4 xs:p-5 sm:p-6 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:bg-white/90"
+                variants={cardVariants}
+                whileHover={{ 
+                  y: -10, 
+                  scale: 1.03,
+                  rotateY: 2,
+                  transition: {
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 20,
+                    duration: 0.4
+                  }
+                }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="group bg-white/80 backdrop-blur-sm rounded-xl xs:rounded-2xl p-4 xs:p-5 sm:p-6 shadow-xl border border-white/50 hover:shadow-2xl hover:bg-white/90 overflow-hidden relative"
               >
-                <div className={`w-10 h-10 xs:w-12 xs:h-12 sm:w-14 sm:h-14 bg-gradient-to-r ${info.color} rounded-xl xs:rounded-2xl flex items-center justify-center mb-3 xs:mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                {/* Animated gradient overlay */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-br from-primary-500/0 via-secondary-500/0 to-accent-500/0 opacity-0 group-hover:opacity-10"
+                  initial={false}
+                  transition={{ duration: 0.5 }}
+                />
+                <motion.div 
+                  className={`w-10 h-10 xs:w-12 xs:h-12 sm:w-14 sm:h-14 bg-gradient-to-r ${info.color} rounded-xl xs:rounded-2xl flex items-center justify-center mb-3 xs:mb-4 shadow-lg`}
+                  whileHover={{ 
+                    scale: 1.2, 
+                    rotate: [0, -15, 15, -15, 0],
+                    transition: { duration: 0.6 }
+                  }}
+                  transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                >
                   <info.icon className="w-5 h-5 xs:w-6 xs:h-6 sm:w-7 sm:h-7 text-white" />
-                </div>
+                </motion.div>
                 <h4 className="font-bold text-gray-900 mb-2 text-sm xs:text-base sm:text-lg">{info.title}</h4>
                 <p className="text-gray-800 font-semibold mb-2 break-words text-xs xs:text-sm sm:text-base">{info.content}</p>
                 <p className="text-gray-600 text-xs xs:text-sm mb-3 xs:mb-4 leading-relaxed">{info.description}</p>
                 {info.title === "Email" ? (
                   <a 
-                    href="mailto:agapepentecostalchurchapc@gmail.com"
+                    href="https://mail.google.com/mail/?view=cm&fs=1&to=agapepentecostalchurchapc@gmail.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={`w-full py-2 xs:py-2.5 sm:py-3 px-3 xs:px-4 bg-gradient-to-r ${info.color} text-white rounded-lg xs:rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 inline-block text-center text-xs xs:text-sm sm:text-base`}
                   >
                     {info.action}
@@ -81,7 +173,7 @@ const Contact = () => {
                     {info.action}
                   </button>
                 )}
-              </div>
+              </motion.div>
             ))}
           </div>
 
@@ -159,7 +251,7 @@ const Contact = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
       </div>
     </section>
