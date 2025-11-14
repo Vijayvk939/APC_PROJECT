@@ -202,7 +202,7 @@ const Hero = () => {
                 whileHover={{ x: "100%" }}
                 transition={{ duration: 0.6, ease: "easeInOut" }}
               />
-              <span className="truncate relative z-10">Join Our Service</span>
+              <span className="truncate relative z-10">Join Our Services</span>
               <ArrowRight className="w-3 h-3 xs:w-3 xs:h-3 sm:w-4 sm:h-4 ml-1 xs:ml-1 sm:ml-2 group-hover:translate-x-2 transition-transform duration-300 flex-shrink-0 relative z-10" />
             </motion.button>
           </motion.div>
