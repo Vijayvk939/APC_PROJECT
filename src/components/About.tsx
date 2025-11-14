@@ -1,7 +1,38 @@
+import { useEffect, useRef } from 'react';
+import { motion, useInView, useMotionValue, useSpring } from 'framer-motion';
 import { Heart, Users, BookOpen, Sparkles, ArrowRight, MapPin, Phone, Church } from 'lucide-react';
 
 // Import images
 import churchImage from '/images/BVPM_CHURCH.jpg';
+
+// Component for animated counting number
+const CountUpNumber = ({ value }: { value: number }) => {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const motionValue = useMotionValue(0);
+  const springValue = useSpring(motionValue, {
+    damping: 60,
+    stiffness: 100,
+  });
+
+  useEffect(() => {
+    if (isInView) {
+      motionValue.set(value);
+    }
+  }, [motionValue, isInView, value]);
+
+  useEffect(() => {
+    const unsubscribe = springValue.on('change', (latest) => {
+      if (ref.current) {
+        const displayValue = Math.floor(latest);
+        ref.current.textContent = displayValue.toString();
+      }
+    });
+    return () => unsubscribe();
+  }, [springValue]);
+
+  return <span ref={ref} className="tabular-nums">0</span>;
+};
 
 const About = () => {
   const values = [
@@ -28,29 +59,60 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="pt-4 pb-16 md:pb-20 lg:pb-24 bg-gradient-to-br from-slate-50 via-primary-50 to-secondary-50 relative overflow-hidden">
+    <section id="about" className="py-8 md:py-12 lg:py-16 bg-gradient-to-br from-slate-50 via-primary-50 to-secondary-50 relative overflow-hidden">
       {/* Enhanced Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary-50/30 via-secondary-50/20 to-accent-50/30"></div>
       
       <div className="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Enhanced Section Header */}
-        <div className="text-center mb-12 xs:mb-14 sm:mb-16">
-          <div className="inline-flex items-center px-3 xs:px-4 py-1.5 xs:py-2 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 rounded-full border border-primary-200/50 mb-4 xs:mb-6">
+        <motion.div 
+          className="text-center mb-8 xs:mb-10 sm:mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+        >
+          <motion.div 
+            className="inline-flex items-center px-3 xs:px-4 py-1.5 xs:py-2 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 rounded-full border border-primary-200/50 mb-4 xs:mb-6"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <BookOpen className="w-3 h-3 xs:w-4 xs:h-4 text-primary-600 mr-1.5 xs:mr-2" />
             <span className="text-xs xs:text-sm font-medium text-primary-700">Our Story</span>
-          </div>
-          <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 xs:mb-6 leading-tight px-2">
+          </motion.div>
+          <motion.h2 
+            className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 xs:mb-6 leading-tight px-2"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600">
               About Agape
             </span>
-          </h2>
-          <div className="w-24 xs:w-32 h-1 bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-500 mx-auto mb-4 xs:mb-6 sm:mb-8 rounded-full"></div>
-          <p className="text-base xs:text-lg sm:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-4">
+          </motion.h2>
+          <motion.div 
+            className="w-24 xs:w-32 h-1 bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-500 mx-auto mb-4 xs:mb-6 sm:mb-8 rounded-full"
+            initial={{ width: 0 }}
+            whileInView={{ width: "auto" }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          ></motion.div>
+          <motion.p 
+            className="text-base xs:text-lg sm:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-4"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
             For over two decades, Agape Pentecostal Church has been a beacon of hope, 
             love, and spiritual growth in our church.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-8 xs:gap-10 sm:gap-12 md:gap-14 lg:gap-16 items-center mb-16 xs:mb-18 sm:mb-20">
+        <div className="grid lg:grid-cols-2 gap-8 xs:gap-10 sm:gap-12 md:gap-14 lg:gap-16 items-center mb-10 xs:mb-12 sm:mb-14">
           {/* Left Content */}
           <div className="space-y-6 xs:space-y-7 sm:space-y-8">
             <div className="bg-white/80 backdrop-blur-sm rounded-xl xs:rounded-2xl p-4 xs:p-5 sm:p-6 md:p-8 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
@@ -128,70 +190,174 @@ const About = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary-900/50 to-transparent"></div>
               <div className="absolute bottom-3 xs:bottom-4 sm:bottom-6 left-3 xs:left-4 sm:left-6 text-white">
-                <p className="text-sm xs:text-base sm:text-lg font-semibold">Building Church</p>
-                <p className="text-white/80 text-xs xs:text-sm">One heart at a time</p>
+           
               </div>
             </div>
             
             {/* Floating Stats */}
-            <div className="absolute -top-4 xs:-top-6 sm:-top-8 -right-4 xs:-right-6 sm:-right-8 bg-white/80 backdrop-blur-sm rounded-xl xs:rounded-2xl p-3 xs:p-4 sm:p-6 shadow-xl border border-white/50">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, y: 20 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="absolute -top-4 xs:-top-6 sm:-top-8 -right-4 xs:-right-6 sm:-right-8 bg-white/80 backdrop-blur-sm rounded-xl xs:rounded-2xl p-3 xs:p-4 sm:p-6 shadow-xl border border-white/50"
+            >
               <div className="text-center">
-                <p className="text-xl xs:text-2xl sm:text-3xl font-bold text-primary-600">20+</p>
+                <p className="text-xl xs:text-2xl sm:text-3xl font-bold text-primary-600">
+                  <CountUpNumber value={20} />+
+                </p>
                 <p className="text-gray-600 text-xs xs:text-sm">Years Serving</p>
               </div>
-            </div>
+            </motion.div>
             
-            <div className="absolute -bottom-4 xs:-bottom-6 sm:-bottom-8 -left-4 xs:-left-6 sm:-left-8 bg-white/80 backdrop-blur-sm rounded-xl xs:rounded-2xl p-3 xs:p-4 sm:p-6 shadow-xl border border-white/50">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, y: 20 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
+              className="absolute -bottom-4 xs:-bottom-6 sm:-bottom-8 -left-4 xs:-left-6 sm:-left-8 bg-white/80 backdrop-blur-sm rounded-xl xs:rounded-2xl p-3 xs:p-4 sm:p-6 shadow-xl border border-white/50"
+            >
               <div className="text-center">
-                <p className="text-xl xs:text-2xl sm:text-3xl font-bold text-secondary-600">200+</p>
+                <p className="text-xl xs:text-2xl sm:text-3xl font-bold text-secondary-600">
+                  <CountUpNumber value={200} />+
+                </p>
                 <p className="text-gray-600 text-xs xs:text-sm">Church Family</p>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
 
         {/* Our Values */}
-        <div className="text-center mb-8 xs:mb-10 sm:mb-12">
-          <h3 className="text-xl xs:text-2xl sm:text-3xl font-bold text-gray-900 mb-2 xs:mb-3 sm:mb-4 px-2">Our Core Values</h3>
-          <p className="text-base xs:text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto px-4">
+        <motion.div 
+          className="text-center mb-6 xs:mb-8 sm:mb-10"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+        >
+          <motion.h3 
+            className="text-xl xs:text-2xl sm:text-3xl font-bold text-gray-900 mb-2 xs:mb-3 sm:mb-4 px-2"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            Our Core Values
+          </motion.h3>
+          <motion.p 
+            className="text-base xs:text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto px-4"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             These principles guide everything we do and shape who we are as a church.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-4 xs:gap-6 sm:gap-8">
+        <motion.div 
+          className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-4 xs:gap-6 sm:gap-8"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6 }}
+        >
           {values.map((value, index) => (
-            <div 
+            <motion.div 
               key={index}
-              className="group bg-white/80 backdrop-blur-sm rounded-xl xs:rounded-2xl p-4 xs:p-5 sm:p-6 md:p-8 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+              className="group bg-white/80 backdrop-blur-sm rounded-xl xs:rounded-2xl p-4 xs:p-5 sm:p-6 md:p-8 shadow-xl border border-white/50 hover:shadow-2xl overflow-hidden relative"
+              initial={{ opacity: 0, y: 70, scale: 0.85, rotateX: -15 }}
+              whileInView={{ 
+                opacity: 1, 
+                y: 0, 
+                scale: 1,
+                rotateX: 0,
+                transition: {
+                  duration: 0.8,
+                  delay: index * 0.1,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                  type: "spring",
+                  stiffness: 100,
+                  damping: 15
+                }
+              }}
+              viewport={{ once: true }}
+              whileHover={{ 
+                y: -12, 
+                scale: 1.03,
+                rotateY: 2,
+                transition: {
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 20,
+                  duration: 0.4
+                }
+              }}
             >
-              <div className="w-12 h-12 xs:w-14 xs:h-14 sm:w-16 sm:h-16 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-xl xs:rounded-2xl flex items-center justify-center mb-4 xs:mb-5 sm:mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+              {/* Animated gradient overlay */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-br from-primary-500/0 via-secondary-500/0 to-accent-500/0 opacity-0 group-hover:opacity-10"
+                initial={false}
+                transition={{ duration: 0.5 }}
+              />
+              <motion.div 
+                className="w-12 h-12 xs:w-14 xs:h-14 sm:w-16 sm:h-16 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-xl xs:rounded-2xl flex items-center justify-center mb-4 xs:mb-5 sm:mb-6 shadow-lg"
+                whileHover={{ 
+                  scale: 1.2, 
+                  rotate: [0, -15, 15, -15, 0],
+                  transition: { duration: 0.6 }
+                }}
+                transition={{ type: "spring", stiffness: 300, damping: 15 }}
+              >
                 <value.icon className="w-6 h-6 xs:w-7 xs:h-7 sm:w-8 sm:h-8 text-white" />
-              </div>
+              </motion.div>
               <h4 className="text-lg xs:text-xl font-bold text-gray-900 mb-2 xs:mb-3 sm:mb-4">{value.title}</h4>
               <p className="text-gray-600 leading-relaxed text-sm xs:text-base">{value.description}</p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Enhanced Call to Action */}
-        <div className="text-center mt-12 xs:mt-14 sm:mt-16">
-          <div className="relative bg-gradient-to-br from-primary-800 via-secondary-800 to-accent-800 rounded-xl xs:rounded-2xl p-4 xs:p-6 sm:p-8 text-white overflow-hidden">
+        <motion.div 
+          className="text-center mt-6 xs:mt-8 sm:mt-10"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8 }}
+        >
+          <motion.div 
+            className="relative bg-gradient-to-br from-primary-800 via-secondary-800 to-accent-800 rounded-2xl xs:rounded-3xl p-4 xs:p-6 sm:p-8 text-white overflow-hidden"
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.3 }}
+          >
             <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/10"></div>
+            
+            {/* Floating Icons - Responsive Sizing */}
+            <div className="absolute top-3 xs:top-4 sm:top-6 left-3 xs:left-4 sm:left-6 opacity-20">
+              <Church className="w-10 h-10 xs:w-12 xs:h-12 sm:w-16 sm:h-16" />
+            </div>
+            <div className="absolute bottom-3 xs:bottom-4 sm:bottom-6 right-3 xs:right-4 sm:right-6 opacity-20">
+              <Users className="w-10 h-10 xs:w-12 xs:h-12 sm:w-16 sm:h-16" />
+            </div>
+            
             <div className="relative z-10">
-              <div className="w-12 h-12 xs:w-14 xs:h-14 sm:w-16 sm:h-16 bg-white/20 backdrop-blur-sm rounded-xl xs:rounded-2xl flex items-center justify-center mx-auto mb-3 xs:mb-4 shadow-lg">
-                <Church className="w-6 h-6 xs:w-7 xs:h-7 sm:w-8 sm:h-8 text-white" />
-              </div>
-              <h3 className="text-lg xs:text-xl sm:text-2xl font-bold mb-2 xs:mb-3 sm:mb-4 px-2">Ready to Be Part of Our Family?</h3>
-              <p className="text-sm xs:text-base sm:text-lg mb-4 xs:mb-5 sm:mb-6 opacity-90 px-4 leading-relaxed">
+              <h3 className="text-lg xs:text-xl sm:text-2xl font-bold mb-1 xs:mb-2 px-2">Ready to Be Part of Our Family?</h3>
+              <p className="text-sm xs:text-base mb-3 xs:mb-4 opacity-90 max-w-3xl mx-auto leading-relaxed px-4">
                 We'd love to welcome you with open arms. Come experience the love and church that makes Agape special.
               </p>
-              <button onClick={() => window.open('https://maps.app.goo.gl/FzWhZsGQTtNoy49LA', '_blank')} className="bg-white text-primary-600 px-6 xs:px-8 py-2 xs:py-3 rounded-lg xs:rounded-xl font-semibold hover:bg-gray-50 transition-all duration-300 inline-flex items-center group shadow-lg hover:shadow-xl text-sm xs:text-base">
+              <motion.button 
+                onClick={() => window.open('https://maps.app.goo.gl/FzWhZsGQTtNoy49LA', '_blank')} 
+                className="bg-white text-primary-600 px-3 xs:px-4 py-2 rounded-xl font-semibold hover:bg-gray-50 transition-all duration-300 inline-flex items-center group shadow-lg text-xs xs:text-sm"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              >
                 Plan Your Visit
-                <ArrowRight className="w-4 h-4 xs:w-5 xs:h-5 ml-1.5 xs:ml-2 group-hover:translate-x-1 transition-transform" />
-              </button>
+                <ArrowRight className="w-3 h-3 ml-1.5 xs:ml-2 flex-shrink-0 group-hover:translate-x-1 transition-transform" />
+              </motion.button>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

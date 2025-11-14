@@ -11,11 +11,6 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 function App() {
-  // Error boundary for handling runtime errors
-  const handleError = (error: Error, errorInfo: any) => {
-    console.error('Application Error:', error, errorInfo);
-  };
-
   // Add global error handling
   React.useEffect(() => {
     const handleUnhandledRejection = (event: PromiseRejectionEvent) => {

@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { Calendar, Clock, Users, Heart, BookOpen, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useEffect, useMemo } from 'react';
 
@@ -213,47 +214,125 @@ const Events = () => {
   ];
 
   return (
-    <section id="events" className="pt-4 pb-16 md:pb-20 bg-gradient-to-br from-slate-50 via-primary-50 to-secondary-50 relative overflow-hidden">
+    <section id="events" className="py-8 md:py-12 lg:py-16 bg-gradient-to-br from-slate-50 via-primary-50 to-secondary-50 relative overflow-hidden">
       {/* Enhanced Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary-50/30 via-secondary-50/20 to-accent-50/30"></div>
       
       <div className="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Enhanced Section Header */}
-        <div className="text-center mb-8 xs:mb-10 sm:mb-12 md:mb-16">
-          <div className="inline-flex items-center px-3 xs:px-4 py-1.5 xs:py-2 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 rounded-full border border-primary-200/50 mb-4 xs:mb-6">
+        <motion.div 
+          className="text-center mb-6 xs:mb-8 sm:mb-10"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+        >
+          <motion.div 
+            className="inline-flex items-center px-3 xs:px-4 py-1.5 xs:py-2 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 rounded-full border border-primary-200/50 mb-4 xs:mb-6"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <Heart className="w-3 h-3 xs:w-4 xs:h-4 text-primary-600 mr-1.5 xs:mr-2" />
             <span className="text-xs xs:text-sm font-medium text-primary-700">Join Us for Prayer</span>
-          </div>
-          <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 xs:mb-6 leading-tight px-2">
+          </motion.div>
+          <motion.h2 
+            className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 xs:mb-6 leading-tight px-2"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600">
               Prayer Events
             </span>
-          </h2>
-          <div className="w-24 xs:w-32 h-1 bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-500 mx-auto mb-6 xs:mb-8 rounded-full"></div>
-          <p className="text-base xs:text-lg sm:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-4">
+          </motion.h2>
+          <motion.div 
+            className="w-24 xs:w-32 h-1 bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-500 mx-auto mb-6 xs:mb-8 rounded-full"
+            initial={{ width: 0 }}
+            whileInView={{ width: "auto" }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          ></motion.div>
+          <motion.p 
+            className="text-base xs:text-lg sm:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-4"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
             Join us for powerful prayer meetings and special events designed to strengthen your faith, 
             build relationships, and experience spiritual breakthrough.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         {/* Regular Programs */}
-        <div className="text-center mb-8 xs:mb-10 sm:mb-12">
+        <div className="text-center mb-6 xs:mb-8 sm:mb-10">
           <h3 className="text-xl xs:text-2xl sm:text-3xl font-bold text-gray-900 mb-3 xs:mb-4 px-2">Regular Prayer Programs</h3>
           <p className="text-base xs:text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed px-4">
             Consistent prayer opportunities to grow spiritually and connect with your church family throughout the week.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 xs:gap-6 mb-12 xs:mb-14 sm:mb-16">
+        <motion.div 
+          className="grid grid-cols-1 sm:grid-cols-2 gap-4 xs:gap-6 mb-8 xs:mb-10 sm:mb-12"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6 }}
+        >
           {regularPrograms.map((program, index) => (
-            <div 
+            <motion.div 
               key={index}
-              className="group relative bg-white/80 backdrop-blur-sm rounded-lg xs:rounded-xl p-4 xs:p-5 sm:p-6 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 sm:hover:-translate-y-3 hover:bg-white/90 flex flex-col h-full"
+              className="group relative bg-white/80 backdrop-blur-sm rounded-lg xs:rounded-xl p-4 xs:p-5 sm:p-6 shadow-xl border border-white/50 hover:shadow-2xl hover:bg-white/90 flex flex-col h-full overflow-hidden"
+              initial={{ opacity: 0, y: 60, scale: 0.85, rotateX: -10 }}
+              whileInView={{ 
+                opacity: 1, 
+                y: 0, 
+                scale: 1,
+                rotateX: 0,
+                transition: {
+                  duration: 0.8,
+                  delay: index * 0.1,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                  type: "spring",
+                  stiffness: 100,
+                  damping: 15
+                }
+              }}
+              viewport={{ once: true }}
+              whileHover={{ 
+                y: -12, 
+                scale: 1.03,
+                rotateY: 2,
+                transition: {
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 20,
+                  duration: 0.4
+                }
+              }}
             >
+              {/* Animated gradient overlay */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-br from-primary-500/0 via-secondary-500/0 to-accent-500/0 opacity-0 group-hover:opacity-10"
+                initial={false}
+                transition={{ duration: 0.5 }}
+              />
               {/* Header Row with Icon and Status */}
               <div className="flex items-start justify-between mb-3 xs:mb-4">
-                <div className={`w-12 h-12 xs:w-14 xs:h-14 bg-gradient-to-br ${program.color} rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                <motion.div 
+                  className={`w-12 h-12 xs:w-14 xs:h-14 bg-gradient-to-br ${program.color} rounded-lg flex items-center justify-center shadow-lg`}
+                  whileHover={{ 
+                    scale: 1.2, 
+                    rotate: [0, -15, 15, -15, 0],
+                    transition: { duration: 0.6 }
+                  }}
+                  transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                >
                   <program.icon className="w-6 h-6 xs:w-7 xs:h-7 text-white" />
-                </div>
+                </motion.div>
                 <span className={`inline-flex items-center px-2 py-1 text-xs font-medium ${program.accentColor} text-white rounded-full`}>
                   {program.status}
                 </span>
@@ -269,19 +348,19 @@ const Events = () => {
 
               {/* Hover Effect Overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-secondary-500/5 rounded-lg xs:rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Special Prayer Events Carousel */}
-        <div className="text-center mb-8 xs:mb-10 sm:mb-12">
+        <div className="text-center mb-6 xs:mb-8 sm:mb-10">
           <h3 className="text-xl xs:text-2xl sm:text-3xl font-bold text-gray-900 mb-3 xs:mb-4 px-2">Special Prayer Events</h3>
           <p className="text-base xs:text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed px-4">
             Extended prayer programs and special events for deeper spiritual growth and breakthrough.
           </p>
         </div>
 
-        <div className="max-w-7xl mx-auto mb-12 xs:mb-14 sm:mb-16">
+        <div className="max-w-7xl mx-auto mb-8 xs:mb-10 sm:mb-12">
           {/* Navigation Arrows */}
           <div className="flex justify-end mb-4 sm:mb-6">
             <div className="flex gap-1 sm:gap-2">
@@ -305,25 +384,61 @@ const Events = () => {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            <div 
-              className="flex transition-transform duration-500 ease-in-out"
-              style={{ 
-                transform: `translateX(-${currentEventIndex * 100}%)`
+            <motion.div 
+              className="flex"
+              animate={{ 
+                x: `-${currentEventIndex * 100}%`
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 300,
+                damping: 30,
+                mass: 0.8,
+                duration: 0.8,
+                ease: [0.25, 0.46, 0.45, 0.94]
               }}
             >
               {specialPrayerEvents.map((event, index) => (
-                <div 
+                <motion.div 
                   key={index}
                   className={`${cardsPerView === 1 ? 'w-full' : cardsPerView === 2 ? 'w-1/2' : 'w-1/3'} flex-shrink-0 px-1 sm:px-2`}
+                  initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                  animate={{ 
+                    opacity: 1, 
+                    scale: 1, 
+                    y: 0,
+                    transition: {
+                      duration: 0.6,
+                      delay: index * 0.1,
+                      ease: [0.25, 0.46, 0.45, 0.94]
+                    }
+                  }}
                 >
-                   <div className="group bg-white/80 backdrop-blur-sm rounded-lg xs:rounded-xl shadow-xl border border-white/50 overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 h-[26rem] sm:h-[30rem] lg:h-[32rem] flex flex-col">
-                    <div className="h-48 xs:h-56 sm:h-64 overflow-hidden flex-shrink-0">
+                   <motion.div 
+                     className="group bg-white/80 backdrop-blur-sm rounded-lg xs:rounded-xl shadow-xl border border-white/50 overflow-hidden hover:shadow-2xl h-[26rem] sm:h-[30rem] lg:h-[32rem] flex flex-col"
+                     whileHover={{ 
+                       y: -8, 
+                       scale: 1.02,
+                       rotateY: 3,
+                       transition: {
+                         type: "spring",
+                         stiffness: 400,
+                         damping: 20,
+                         duration: 0.4
+                       }
+                     }}
+                   >
+                    <motion.div 
+                      className="h-48 xs:h-56 sm:h-64 overflow-hidden flex-shrink-0"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.6, ease: "easeOut" }}
+                    >
                 <img 
                   src={event.image} 
                   alt={event.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover"
                 />
-              </div>
+              </motion.div>
                     <div className="p-4 xs:p-5 sm:p-6 flex flex-col flex-grow">
                 <div className="flex flex-col xs:flex-row xs:items-center xs:justify-between mb-3 gap-2">
                   <span className="px-2 xs:px-3 py-1 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 text-primary-700 rounded-full text-xs xs:text-sm font-medium border border-primary-200/50 w-fit">
@@ -344,10 +459,10 @@ const Events = () => {
                 </div>
                       <p className="text-gray-600 leading-relaxed text-xs flex-grow">{event.description}</p>
                      </div>
-                   </div>
-                 </div>
+                 </motion.div>
+               </motion.div>
                ))}
-            </div>
+            </motion.div>
             
              {/* Event Indicators */}
              <div className="flex justify-center mt-6 space-x-2">
@@ -368,7 +483,7 @@ const Events = () => {
         </div>
 
         {/* Working Hours */}
-        <div className="text-center mb-12 xs:mb-14 sm:mb-16">
+        <div className="text-center mb-8 xs:mb-10 sm:mb-12">
           <h3 className="text-xl xs:text-2xl sm:text-3xl font-bold text-gray-900 mb-3 xs:mb-4 px-2">Church Working Hours</h3>
           <p className="text-base xs:text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto mb-6 xs:mb-8 leading-relaxed px-4">
             We're open throughout the week to serve our church and provide spiritual guidance.
