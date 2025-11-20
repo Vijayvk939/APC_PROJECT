@@ -47,7 +47,7 @@ const VideoSection = () => {
       description: "A powerful and heart-touching testimony of healing from Corona, sharing a living witness of God's miraculous intervention.",
       duration: "Full Testimony",
       type: "Testimony",
-      views: "18.9K views",
+      views: "50.9K views",
       likes: "200+ likes",
       thumbnail: "https://img.youtube.com/vi/3hVNJ0Vm6uM/maxresdefault.jpg",
       category: "Testimony",
