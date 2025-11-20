@@ -104,8 +104,8 @@ const Leadership = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-0 relative z-10">
               {/* Enhanced Pastor Image */}
               <div className="relative md:col-span-1 lg:col-span-1">
-                <div className="lg:h-[600px] h-64 xs:h-72 sm:h-80 md:h-80 lg:h-[600px] flex items-center justify-center p-4 xs:p-5 sm:p-6">
-                  <div className="relative w-full h-full lg:h-full aspect-square lg:aspect-auto">
+                <div className="h-64 xs:h-72 sm:h-96 md:h-[420px] lg:h-[640px] xl:h-[680px] flex items-center justify-center p-4 xs:p-5 sm:p-6">
+                  <div className="relative w-full h-full">
                     <img 
                       src={pastorInfo.image}
                       alt={pastorInfo.name}

@@ -13,43 +13,63 @@ const VideoSection = () => {
 
   const videos = [
     {
-      id: "PR2HWPsBBMY",
-      title: "Yesayya Nee Krupa",
-      subtitle: "Official Full Song | Bro.Moses",
-      description: "Experience this beautiful worship song that touches hearts and uplifts spirits with its powerful message of God's grace.",
-      duration: "Full Song",
-      type: "Worship Song",
-      views: "12.5K views",
-      likes: "150+ likes",
-      thumbnail: "https://img.youtube.com/vi/PR2HWPsBBMY/maxresdefault.jpg",
-      category: "Worship",
-      color: "from-pink-500 to-rose-600"
-    },
-    {
       id: "5pDkNN5uJuA",
       title: "Powerful Message",
       subtitle: "Pastor Samuel Prasad",
-      description: "Join us for this inspiring message that will strengthen your faith and transform your spiritual journey.",
+      description: "A bold prophetic word packed with practical insight for everyday discipleship.",
       duration: "45:32",
       type: "Sermon",
       views: "10.5K views",
       likes: "120+ likes",
       thumbnail: "https://img.youtube.com/vi/5pDkNN5uJuA/maxresdefault.jpg",
       category: "Teaching",
-      color: "from-blue-500 to-indigo-600"
+      color: "from-blue-500 via-indigo-500 to-purple-500",
+      accent: "from-blue-200/60 to-cyan-200/60"
+    },
+    {
+      id: "PR2HWPsBBMY",
+      title: "Yesayya Nee Krupa",
+      subtitle: "Official Full Song • Bro. Moses",
+      description: "A cinematic worship experience layered with strings, choir, and a heartfelt declaration of God's endless grace.",
+      duration: "Full Song",
+      type: "Worship Song",
+      views: "12.5K views",
+      likes: "150+ likes",
+      thumbnail: "https://img.youtube.com/vi/PR2HWPsBBMY/maxresdefault.jpg",
+      category: "Premiere",
+      color: "from-pink-500 via-rose-500 to-red-500",
+      accent: "from-rose-200/60 to-amber-200/60"
+    },
+    {
+      id: "3hVNJ0Vm6uM",
+      title: "కరోనా నుండి స్వస్థత | సజీవ సాక్ష్యం | Carona heart touching testimony",
+      subtitle: "Pastor M. Prasad | APC",
+      description: "A powerful and heart-touching testimony of healing from Corona, sharing a living witness of God's miraculous intervention.",
+      duration: "Full Testimony",
+      type: "Testimony",
+      views: "18.9K views",
+      likes: "200+ likes",
+      thumbnail: "https://img.youtube.com/vi/3hVNJ0Vm6uM/maxresdefault.jpg",
+      category: "Testimony",
+      color: "from-amber-500 via-orange-500 to-rose-500",
+      accent: "from-amber-200/60 to-pink-200/60"
     },
   ];
 
   return (
-    <section className="py-8 md:py-12 lg:py-16 bg-gradient-to-br from-slate-900 via-primary-900 to-secondary-900 relative overflow-hidden">
-      {/* Enhanced Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 via-secondary-500/3 to-accent-500/5"></div>
-      
+    <section className="py-12 md:py-16 lg:py-24 bg-slate-950 relative overflow-hidden">
+      {/* Background lighting */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-900 via-slate-950 to-secondary-950" />
+        <div className="absolute -top-20 -left-16 w-72 h-72 bg-primary-500/30 blur-[140px]" />
+        <div className="absolute -bottom-32 right-0 w-[28rem] h-[28rem] bg-secondary-500/20 blur-[180px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.15),_transparent_50%)] pointer-events-none" />
+      </div>
 
-      <div className="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Enhanced Section Header */}
+      <div className="max-w-6xl lg:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header */}
         <motion.div 
-          className="text-center mb-8 xs:mb-10 sm:mb-12"
+          className="text-center mb-12 sm:mb-16 space-y-4"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
@@ -67,7 +87,7 @@ const VideoSection = () => {
           </motion.div>
           
           <motion.h2 
-            className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 xs:mb-6 leading-tight px-2"
+            className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight px-2 tracking-tight"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -102,150 +122,115 @@ const VideoSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.5 }}
           >
-            Experience powerful messages and glorious songs that transform lives and strengthen faith. 
-            Join us on a spiritual journey of growth and inspiration.
+            Dive into cinematic sermons, live worship nights, and faith-filled originals produced right here at Agape Pentecostal Church.
           </motion.p>
         </motion.div>
 
-        {/* Modern Video Grid */}
+        {/* Elevated Video Grid */}
         <motion.div 
-          className="grid grid-cols-1 lg:grid-cols-2 gap-4 xs:gap-6 sm:gap-8 mb-8 xs:mb-10 sm:mb-12"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 auto-rows-[minmax(200px,_auto)] mb-14"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.6 }}
         >
-          {videos.map((video, index) => (
-            <motion.div 
-              key={index} 
-              className="group relative"
-              initial={{ opacity: 0, y: 80, scale: 0.85, rotateY: -20 }}
-              whileInView={{ 
-                opacity: 1, 
-                y: 0, 
-                scale: 1,
-                rotateY: 0,
-                transition: {
-                  duration: 0.9,
-                  delay: index * 0.15,
-                  ease: [0.25, 0.46, 0.45, 0.94],
-                  type: "spring",
-                  stiffness: 100,
-                  damping: 15
-                }
-              }}
-              viewport={{ once: true }}
-              whileHover={{ 
-                y: -12, 
-                scale: 1.03,
-                rotateY: 3,
-                transition: {
-                  type: "spring",
-                  stiffness: 400,
-                  damping: 20,
-                  duration: 0.4
-                }
-              }}
-            >
-              <div className="relative bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-xl xs:rounded-2xl p-1 shadow-xl border border-white/10">
-                <div className="relative rounded-lg xs:rounded-xl overflow-hidden bg-black">
+          {videos.map((video, index) => {
+            const isFeatured = index === 0;
+
+            return (
+              <motion.article
+                key={video.id}
+                className={`group relative flex flex-col rounded-3xl overflow-hidden border border-white/10 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl shadow-2xl shadow-black/40 h-full ${isFeatured ? 'md:col-span-2 lg:col-span-2 lg:row-span-2' : ''}`}
+                initial={{ opacity: 0, y: 60, scale: 0.9 }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                  transition: {
+                    duration: 0.9,
+                    delay: index * 0.1,
+                    ease: [0.16, 1, 0.3, 1]
+                  }
+                }}
+                viewport={{ once: true }}
+                whileHover={{ y: -10, rotateX: 1, rotateY: -1 }}
+              >
+                <div className="relative overflow-hidden h-full flex flex-col">
                   {!isPlaying || activeVideo !== index ? (
                     <a 
                       href={`https://www.youtube.com/watch?v=${video.id}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="relative block cursor-pointer"
+                      className="relative block h-full flex flex-col"
                       onMouseEnter={() => setIsHovered(true)} 
                       onMouseLeave={() => setIsHovered(false)}
                     >
                       <img
                         src={video.thumbnail}
                         alt={video.title}
-                        className="w-full h-48 xs:h-56 sm:h-64 object-cover transition-transform duration-1000 group-hover:scale-110"
+                        className="w-full h-full object-cover transition duration-[1800ms] group-hover:scale-105"
                       />
-                      
-                      {/* Enhanced Play Button Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex items-center justify-center">
-                        <motion.div 
-                        className={`relative w-16 h-16 xs:w-18 xs:h-18 sm:w-20 sm:h-20 bg-gradient-to-br ${video.color} rounded-full flex items-center justify-center shadow-xl border-4 border-white/20`}
-                        whileHover={{ 
-                          scale: 1.2,
-                          rotate: [0, -10, 10, -10, 0],
-                          borderColor: "rgba(255, 255, 255, 0.6)",
-                          transition: { duration: 0.5 }
-                        }}
+
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+
+                      {/* category + label */}
+                      <div className="absolute top-4 left-4 flex items-center gap-2">
+                        <span className={`px-3 py-1 rounded-full text-xs font-semibold text-black bg-gradient-to-r ${video.accent} backdrop-blur`}>{video.category}</span>
+                        <span className="px-3 py-1 rounded-full text-[11px] uppercase tracking-wide text-white/80 border border-white/20">HD</span>
+                      </div>
+
+                      {/* Play button */}
+                      <motion.div 
+                        className="absolute inset-0 flex items-center justify-center"
                         animate={{
                           scale: isHovered ? [1, 1.1, 1] : 1,
                         }}
                         transition={{
-                          scale: {
-                            duration: 1.5,
-                            repeat: isHovered ? Infinity : 0,
-                            ease: "easeInOut"
-                          }
+                          duration: 1.8,
+                          repeat: isHovered ? Infinity : 0,
+                          ease: "easeInOut"
                         }}
                       >
-                          <Play className="w-8 h-8 xs:w-9 xs:h-9 sm:w-10 sm:h-10 text-white ml-1" />
+                        <div className={`relative w-20 h-20 ${isFeatured ? 'sm:w-24 sm:h-24' : ''}`}>
+                          <div className={`absolute inset-0 rounded-full bg-gradient-to-br ${video.color} opacity-90 blur-2xl`} />
                           <motion.div 
-                            className="absolute inset-0 w-16 h-16 xs:w-18 xs:h-18 sm:w-20 sm:h-20 border-4 border-white/40 rounded-full"
-                            animate={{
-                              scale: [1, 1.5, 1.5],
-                              opacity: [0.75, 0, 0],
-                            }}
-                            transition={{
-                              duration: 2,
-                              repeat: Infinity,
-                              ease: "easeOut"
-                            }}
-                          />
-                        </motion.div>
-                      </div>
-                      
-                      {/* Category Badge */}
-                      <div className="absolute top-2 xs:top-3 right-2 xs:right-3">
-                        <span className="inline-flex items-center px-2 py-1 bg-gradient-to-r from-primary-500/90 to-secondary-500/90 backdrop-blur-sm rounded-full text-xs font-semibold text-white border border-white/20">
-                          {video.category}
-                        </span>
-                      </div>
-                      
-                      {/* Video Info Overlay */}
-                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/95 via-black/80 to-transparent p-4 xs:p-5 sm:p-6">
-                        <div className="mb-2 xs:mb-3">
-                          <h3 className="text-lg xs:text-xl font-bold text-white mb-1 xs:mb-2 leading-tight">
+                            className="relative w-full h-full rounded-full bg-black/60 border border-white/30 flex items-center justify-center"
+                            whileHover={{ scale: 1.08 }}
+                          >
+                            <Play className="w-8 h-8 text-white ml-1" />
+                          </motion.div>
+                        </div>
+                      </motion.div>
+
+                      {/* featured metrics */}
+                      <div className={`absolute bottom-4 left-4 right-4 space-y-2 ${isFeatured ? 'lg:space-y-2.5' : ''}`}>
+                        <div>
+                          <p className="text-xs text-primary-200 font-semibold">{video.type}</p>
+                          <h3 className={`text-lg font-bold text-white leading-tight ${isFeatured ? 'sm:text-xl lg:text-2xl' : 'text-base'}`}>
                             {video.title}
                           </h3>
-                          <p className="text-sm xs:text-base text-primary-200 mb-1 xs:mb-2 font-medium">
-                            {video.subtitle}
-                          </p>
-                          <p className="text-gray-300 text-xs xs:text-sm leading-relaxed">
-                            {video.description}
-                          </p>
+                          <p className="text-xs text-slate-200">{video.subtitle}</p>
                         </div>
-                        
-                        {/* Video Stats */}
-                        <div className="flex flex-col xs:flex-row xs:items-center xs:justify-between gap-2 xs:gap-0">
-                          <div className="flex items-center space-x-2 xs:space-x-3 text-gray-300 text-xs">
-                            <div className="flex items-center bg-white/10 backdrop-blur-sm px-2 xs:px-3 py-1 rounded-full">
-                              <Clock className="w-3 h-3 mr-1.5 xs:mr-2 text-primary-300" />
-                              <span className="truncate">{video.duration}</span>
-                            </div>
-                            <div className="flex items-center bg-white/10 backdrop-blur-sm px-2 xs:px-3 py-1 rounded-full">
-                              <Eye className="w-3 h-3 mr-1.5 xs:mr-2 text-secondary-300" />
-                              <span className="truncate">{video.views}</span>
-                            </div>
-                          </div>
-                          
-                          <div className="flex items-center space-x-2">
-                            <div className="flex items-center bg-gradient-to-r from-accent-500/20 to-primary-500/20 backdrop-blur-sm px-2 xs:px-3 py-1 rounded-full border border-accent-300/30">
-                              <Heart className="w-3 h-3 mr-1.5 xs:mr-2 text-accent-300" />
-                              <span className="text-accent-200 text-xs">{video.likes}</span>
-                            </div>
-                          </div>
+
+                        <p className={`text-gray-200/90 ${isFeatured ? 'text-sm' : 'text-xs'} line-clamp-2`}>
+                          {video.description}
+                        </p>
+
+                        <div className="flex flex-wrap gap-2 text-xs text-white/90">
+                          <span className="flex items-center gap-1.5 bg-white/10 px-3 py-1 rounded-full">
+                            <Clock className="w-3 h-3" /> {video.duration}
+                          </span>
+                          <span className="flex items-center gap-1.5 bg-white/10 px-3 py-1 rounded-full">
+                            <Eye className="w-3 h-3" /> {video.views}
+                          </span>
+                          <span className="flex items-center gap-1.5 bg-white/10 px-3 py-1 rounded-full">
+                            <Heart className="w-3 h-3 text-rose-300" /> {video.likes}
+                          </span>
                         </div>
                       </div>
                     </a>
                   ) : (
-                    <div className="relative w-full h-48 xs:h-56 sm:h-64">
+                    <div className="relative w-full h-full">
                       <iframe
                         src={`https://www.youtube.com/embed/${video.id}?autoplay=1&rel=0&modestbranding=1&showinfo=0`}
                         title={video.title}
@@ -255,19 +240,18 @@ const VideoSection = () => {
                         allowFullScreen
                       ></iframe>
                       
-                      {/* Enhanced Close Button */}
                       <button
                         onClick={handleCloseVideo}
-                        className="absolute top-2 xs:top-3 right-2 xs:right-3 w-7 h-7 xs:w-8 xs:h-8 bg-black/80 hover:bg-black text-white rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 backdrop-blur-md border border-white/20 shadow-xl"
+                        className="absolute top-4 right-4 w-8 h-8 bg-black/70 hover:bg-black text-white rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 backdrop-blur border border-white/30 shadow-xl"
                       >
-                        <Cross className="w-3 h-3 xs:w-4 xs:h-4" />
+                        <Cross className="w-4 h-4" />
                       </button>
                     </div>
                   )}
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.article>
+            );
+          })}
         </motion.div>
 
         {/* Enhanced Call to Action Section */}
@@ -279,7 +263,7 @@ const VideoSection = () => {
           transition={{ duration: 0.8 }}
         >
           <motion.div 
-            className="bg-gradient-to-br from-white/10 via-white/5 to-white/10 backdrop-blur-xl rounded-xl xs:rounded-2xl p-4 xs:p-5 sm:p-6 border border-white/20 shadow-xl"
+            className="bg-gradient-to-br from-white/10 via-white/5 to-white/10 backdrop-blur-xl rounded-3xl p-6 sm:p-8 border border-white/10 shadow-2xl overflow-hidden"
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.3 }}
           >
