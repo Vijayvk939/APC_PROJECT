@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Play, Cross, Heart, Youtube, Clock, Eye, ArrowRight, Sparkles, Zap } from 'lucide-react';
+import { videos } from '@/data/videos';
 
 const VideoSection = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -11,53 +12,8 @@ const VideoSection = () => {
     setIsPlaying(false);
   };
 
-  const videos = [
-    {
-      id: "5pDkNN5uJuA",
-      title: "Powerful Message",
-      subtitle: "Pastor Samuel Prasad",
-      description: "A bold prophetic word packed with practical insight for everyday discipleship.",
-      duration: "45:32",
-      type: "Sermon",
-      views: "10.5K views",
-      likes: "120+ likes",
-      thumbnail: "https://img.youtube.com/vi/5pDkNN5uJuA/maxresdefault.jpg",
-      category: "Teaching",
-      color: "from-blue-500 via-indigo-500 to-purple-500",
-      accent: "from-blue-200/60 to-cyan-200/60"
-    },
-    {
-      id: "PR2HWPsBBMY",
-      title: "Yesayya Nee Krupa",
-      subtitle: "Official Full Song • Bro. Moses",
-      description: "A cinematic worship experience layered with strings, choir, and a heartfelt declaration of God's endless grace.",
-      duration: "Full Song",
-      type: "Worship Song",
-      views: "12.5K views",
-      likes: "150+ likes",
-      thumbnail: "https://img.youtube.com/vi/PR2HWPsBBMY/maxresdefault.jpg",
-      category: "Premiere",
-      color: "from-pink-500 via-rose-500 to-red-500",
-      accent: "from-rose-200/60 to-amber-200/60"
-    },
-    {
-      id: "3hVNJ0Vm6uM",
-      title: "కరోనా నుండి స్వస్థత | సజీవ సాక్ష్యం | Carona heart touching testimony",
-      subtitle: "Pastor M. Prasad | APC",
-      description: "A powerful and heart-touching testimony of healing from Corona, sharing a living witness of God's miraculous intervention.",
-      duration: "Full Testimony",
-      type: "Testimony",
-      views: "50.9K views",
-      likes: "200+ likes",
-      thumbnail: "https://img.youtube.com/vi/3hVNJ0Vm6uM/maxresdefault.jpg",
-      category: "Testimony",
-      color: "from-amber-500 via-orange-500 to-rose-500",
-      accent: "from-amber-200/60 to-pink-200/60"
-    },
-  ];
-
   return (
-    <section className="py-12 md:py-16 lg:py-24 bg-slate-950 relative overflow-hidden">
+    <section className="pt-8 md:pt-12 lg:pt-16 pb-4 md:pb-6 lg:pb-8 bg-slate-950 relative overflow-hidden">
       {/* Background lighting */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-primary-900 via-slate-950 to-secondary-950" />
@@ -205,16 +161,20 @@ const VideoSection = () => {
                       {/* featured metrics */}
                       <div className={`absolute bottom-4 left-4 right-4 space-y-2 ${isFeatured ? 'lg:space-y-2.5' : ''}`}>
                         <div>
-                          <p className="text-xs text-primary-200 font-semibold">{video.type}</p>
+                          {index === 0 && (
+                            <p className="text-xs text-primary-200 font-semibold">{video.type}</p>
+                          )}
                           <h3 className={`text-lg font-bold text-white leading-tight ${isFeatured ? 'sm:text-xl lg:text-2xl' : 'text-base'}`}>
                             {video.title}
                           </h3>
                           <p className="text-xs text-slate-200">{video.subtitle}</p>
                         </div>
 
-                        <p className={`text-gray-200/90 ${isFeatured ? 'text-sm' : 'text-xs'} line-clamp-2`}>
-                          {video.description}
-                        </p>
+                        {index === 0 && (
+                          <p className={`text-gray-200/90 ${isFeatured ? 'text-sm' : 'text-xs'} line-clamp-2`}>
+                            {video.description}
+                          </p>
+                        )}
 
                         <div className="flex flex-wrap gap-2 text-xs text-white/90">
                           <span className="flex items-center gap-1.5 bg-white/10 px-3 py-1 rounded-full">

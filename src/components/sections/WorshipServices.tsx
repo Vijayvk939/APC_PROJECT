@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Church, Users, Clock, MapPin, ArrowRight, Play } from 'lucide-react';
+import { Church, Users, Clock, MapPin, ArrowRight, Play, Phone } from 'lucide-react';
 
 const WorshipServices = () => {
   const containerVariants = {
@@ -81,7 +81,7 @@ const WorshipServices = () => {
 
 
   return (
-    <section id="services" className="py-8 md:py-12 lg:py-16 bg-gradient-to-br from-slate-50 via-primary-50 to-secondary-50 relative overflow-hidden">
+    <section id="services" className="pt-8 md:pt-12 lg:pt-16 pb-4 md:pb-6 lg:pb-8 bg-gradient-to-br from-slate-50 via-primary-50 to-secondary-50 relative overflow-hidden">
       {/* Enhanced Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary-50/30 via-secondary-50/20 to-accent-50/30"></div>
       
@@ -243,7 +243,7 @@ const WorshipServices = () => {
                 Experience the transformative power of worship and the Word of God in our welcoming church
               </p>
               
-              <div className="flex flex-row gap-2 xs:gap-3 justify-center items-center px-4 max-w-md mx-auto">
+              <div className="flex flex-row gap-2 xs:gap-3 justify-center items-center px-4 max-w-2xl mx-auto flex-wrap">
                 <a 
                   href="https://maps.app.goo.gl/FdKWAgfJd1mNDVDz8" 
                   target="_blank" 
@@ -263,6 +263,13 @@ const WorshipServices = () => {
                   <Play className="w-3 h-3 mr-1.5 flex-shrink-0" />
                   <span className="truncate">Watch Online</span>
                   <ArrowRight className="w-3 h-3 ml-1.5 group-hover:translate-x-1 transition-transform flex-shrink-0" />
+                </a>
+                <a 
+                  href="tel:+919390232344"
+                  className="group bg-white/20 backdrop-blur-sm border-2 border-white/50 text-white px-3 xs:px-4 py-2 xs:py-2.5 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-all duration-300 flex items-center justify-center text-xs xs:text-sm"
+                >
+                  <Phone className="w-3 h-3 mr-1.5 flex-shrink-0" />
+                  <span className="truncate">+91 9390232344</span>
                 </a>
               </div>
             </div>

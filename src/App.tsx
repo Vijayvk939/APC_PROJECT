@@ -1,14 +1,14 @@
 import React from 'react';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import WorshipServices from './components/WorshipServices';
-import Events from './components/Events';
-import Gallery from './components/Gallery';
-import VideoSection from './components/VideoSection';
-import About from './components/About';
-import Leadership from './components/Leadership';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
+import Header from './components/layout/Header';
+import Footer from './components/layout/Footer';
+import Hero from './components/sections/Hero';
+import WorshipServices from './components/sections/WorshipServices';
+import Events from './components/sections/Events';
+import Gallery from './components/sections/Gallery';
+import VideoSection from './components/sections/VideoSection';
+import About from './components/sections/About';
+import Leadership from './components/sections/Leadership';
+import Contact from './components/sections/Contact';
 
 function App() {
   // Add global error handling
