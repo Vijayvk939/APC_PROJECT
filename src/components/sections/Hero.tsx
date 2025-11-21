@@ -40,9 +40,9 @@ const Hero = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background Image - positioned to start below header */}
+      {/* Background Image */}
       <motion.div 
-        className="absolute top-20 xs:top-22 sm:top-24 md:top-28 lg:top-32 left-0 right-0 bottom-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: `url(${bannerImage})`,
           backgroundPosition: 'right top',
@@ -62,9 +62,9 @@ const Hero = () => {
       ></motion.div>
       
       {/* Responsive overlay for content readability */}
-      <div className="absolute top-20 xs:top-22 sm:top-24 md:top-28 lg:top-32 left-0 right-0 bottom-0 bg-gradient-to-r from-black/90 via-black/60 to-black/20 sm:from-black/80 sm:via-black/40 sm:to-transparent"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/20 sm:from-black/80 sm:via-black/40 sm:to-transparent"></div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 md:px-8 lg:px-8 w-full pt-20 xs:pt-22 sm:pt-24 md:pt-28 lg:pt-32">
+      <div className="relative z-10 max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 md:px-8 lg:px-8 w-full pt-24 sm:pt-28">
         <motion.div 
           className="flex items-center min-h-[calc(100vh-5rem)] xs:min-h-[calc(100vh-5.5rem)] sm:min-h-[calc(100vh-6rem)] md:min-h-[calc(100vh-7rem)] lg:min-h-[calc(100vh-8rem)] py-3 xs:py-4 sm:py-6 md:py-8 lg:py-12 xl:py-16"
           variants={containerVariants}

@@ -1,0 +1,25 @@
+{
+  "contactInfo": [
+    {
+      "icon": "Phone",
+      "title": "Phone",
+      "content": "+91 9390232344",
+      "description": "Call us anytime for questions or prayer requests",
+      "color": "from-primary-500 to-secondary-500",
+      "action": "Call Now",
+      "status": "Active",
+      "accentColor": "bg-purple-500"
+    },
+    {
+      "icon": "Mail",
+      "title": "Email",
+      "content": "agapepentecostalchurchapc@gmail.com",
+      "description": "Send us a message and we'll respond within 24 hours",
+      "color": "from-secondary-500 to-accent-500",
+      "action": "Send Email",
+      "status": "Active",
+      "accentColor": "bg-purple-500"
+    }
+  ]
+}
+

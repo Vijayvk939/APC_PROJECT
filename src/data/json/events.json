@@ -1,0 +1,103 @@
+{
+  "specialPrayerEvents": [
+    {
+      "imageUrl": "/images/Events/BVMP_CA.jpg",
+      "title": "APC(Bhavanipuram)",
+      "date": "April 13",
+      "time": "Special Service",
+      "location": "Bhavanipuram",
+      "description": "Celebrating the anniversary of our Bhavanipuram church with special worship and testimonies.",
+      "category": "Church Anniversary",
+      "themeColor": "222 47% 11%"
+    },
+    {
+      "imageUrl": "/images/Events/GLP_CA.jpg",
+      "title": "APC(Gollapudi)",
+      "date": "February 13",
+      "time": "Special Service",
+      "location": "Gollapudi",
+      "description": "Celebrating the anniversary of our Gollapudi church with special worship and testimonies.",
+      "category": "Church Anniversary",
+      "themeColor": "222 47% 11%"
+    },
+    {
+      "imageUrl": "/images/Events/21days_fastings.jpg",
+      "title": "21 Days Fasting Prayer",
+      "date": "July 14 - August 3",
+      "time": "Daily Prayer Times",
+      "location": "Main Sanctuary",
+      "description": "Intensive 21-day fasting prayer program for spiritual breakthrough and renewal.",
+      "category": "Fasting Prayer",
+      "themeColor": "222 47% 11%"
+    },
+    {
+      "imageUrl": "/images/Events/40DaysPrayers.jpg",
+      "title": "40 Days Family Growth & Safety Prayer",
+      "date": "September 16 - October 26",
+      "time": "Daily Prayer Times",
+      "location": "Main Sanctuary",
+      "description": "Extended prayer focus on family growth, safety, and spiritual protection.",
+      "category": "Family Prayer",
+      "themeColor": "222 47% 11%"
+    },
+    {
+      "imageUrl": "/images/Events/Semi_Christmas.jpg",
+      "title": "Family Semi-Christmas Prayers",
+      "date": "December 1-31",
+      "time": "Daily Prayer Times",
+      "location": "Main Sanctuary",
+      "description": "Month-long prayer focus leading up to Christmas, emphasizing family unity and Christ's birth.",
+      "category": "Christmas Prayer",
+      "themeColor": "222 47% 11%"
+    },
+    {
+      "imageUrl": "/images/Events/New-year_GM.jpg",
+      "title": "New Year Gospel Meeting",
+      "date": "January 1st",
+      "time": "Special Service",
+      "location": "Main Sanctuary",
+      "description": "Annual gospel meeting to start the new year with God's word and renewed commitment.",
+      "category": "Gospel Meeting",
+      "themeColor": "222 47% 11%"
+    }
+  ],
+  "regularPrograms": [
+    {
+      "icon": "Heart",
+      "title": "Friday Fasting Prayer",
+      "schedule": "Fridays 6:30 PM - 9:00 PM",
+      "description": "Weekly fasting prayer meeting focused on spiritual growth.",
+      "color": "from-primary-500 to-secondary-500",
+      "status": "Active",
+      "accentColor": "bg-purple-500"
+    },
+    {
+      "icon": "Users",
+      "title": "Women's Prayer Meeting",
+      "schedule": "Every Wednesday",
+      "description": "Dedicated prayer time for women to gather and support each other in faith.",
+      "color": "from-primary-500 to-secondary-500",
+      "status": "Active",
+      "accentColor": "bg-purple-500"
+    },
+    {
+      "icon": "BookOpen",
+      "title": "5 Hours Prayer",
+      "schedule": "2nd Tuesday Monthly",
+      "description": "Extended prayer session for deep intercession and spiritual breakthrough.",
+      "color": "from-primary-500 to-secondary-500",
+      "status": "Active",
+      "accentColor": "bg-purple-500"
+    },
+    {
+      "icon": "Heart",
+      "title": "Preparation Prayer (Holy Communion)",
+      "schedule": "Last Saturday Monthly",
+      "description": "Special prayer meeting to prepare hearts before Holy Communion service.",
+      "color": "from-primary-500 to-secondary-500",
+      "status": "Active",
+      "accentColor": "bg-purple-500"
+    }
+  ]
+}
+
