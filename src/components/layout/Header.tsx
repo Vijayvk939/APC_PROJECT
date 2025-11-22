@@ -7,9 +7,10 @@ import logoImage from '/images/AGP.png';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isPastHero, setIsPastHero] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [isVisible, setIsVisible] = useState(true);
+  const [isPastHero, setIsPastHero] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     let ticking = false;
@@ -19,14 +20,27 @@ const Header = () => {
         requestAnimationFrame(() => {
           try {
             if (window && window.scrollY !== undefined) {
-              setIsScrolled(window.scrollY > 20);
+              const currentScrollY = window.scrollY;
               
-              // Move to top when scrolling down
-              setIsPastHero(window.scrollY > 20);
+              // Detect scroll direction - hide on scroll down, show on scroll up
+              if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                setIsVisible(false);
+              } else if (currentScrollY < lastScrollY) {
+                setIsVisible(true);
+              }
+              
+              setLastScrollY(currentScrollY);
+              
+              // Check if past hero section (home section)
+              const homeSection = document.getElementById('home');
+              if (homeSection) {
+                const homeHeight = homeSection.offsetHeight;
+                setIsPastHero(currentScrollY > homeHeight * 0.8); // Past 80% of hero section
+              }
               
               // Update active section based on scroll position
               const sections = ['home', 'services', 'events', 'leadership', 'about', 'contact'];
-              const scrollPosition = window.scrollY + 120; // Reduced offset for minimal padding
+              const scrollPosition = currentScrollY + 120; // Reduced offset for minimal padding
               
               for (let i = sections.length - 1; i >= 0; i--) {
                 const section = document.getElementById(sections[i]);
@@ -50,7 +64,7 @@ const Header = () => {
       window.addEventListener('scroll', handleScroll, { passive: true });
       return () => window.removeEventListener('scroll', handleScroll);
     }
-  }, []);
+  }, [lastScrollY]);
 
   const scrollToSection = (sectionId: string) => {
     try {
@@ -77,11 +91,15 @@ const Header = () => {
   };
 
   return (
-    <header className={`fixed ${isPastHero ? 'top-0' : 'top-2 sm:top-3'} left-1/2 transform -translate-x-1/2 w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] md:w-[calc(100%-4rem)] lg:w-[calc(100%-8rem)] max-w-4xl z-50 transition-all duration-300 rounded-lg sm:rounded-xl ${
-      isScrolled 
-        ? 'bg-white/95 backdrop-blur-xl shadow-lg border border-white/40' 
-        : 'bg-white/90 backdrop-blur-lg shadow-md border border-white/50'
-    }`}>
+    <header 
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        isPastHero 
+          ? 'backdrop-blur-md bg-white/90' 
+          : 'backdrop-blur-md bg-transparent'
+      } ${
+        isVisible ? 'translate-y-0' : '-translate-y-full'
+      }`}
+    >
       {/* Main Navigation */}
       <div className="px-3 sm:px-4 md:px-6 lg:px-8">
         <div className="flex justify-between items-center h-14 sm:h-16">
@@ -96,8 +114,12 @@ const Header = () => {
               className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 lg:h-9 lg:w-9 xl:h-10 xl:w-10 flex-shrink-0"
             />
             <div className="block text-left min-w-0 flex-1 md:flex-none overflow-hidden">
-              <h1 className="text-[8px] xs:text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base font-semibold text-gray-900 text-left leading-tight truncate">AGAPE PENTECOSTAL CHURCH</h1>
-              <p className="text-[6px] xs:text-[7px] sm:text-[8px] md:text-[9px] lg:text-[10px] xl:text-xs text-gray-600 text-left truncate">Pastor Prasad Machavarapu</p>
+              <h1 className={`text-[8px] xs:text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base font-semibold text-left leading-tight truncate ${
+                isPastHero ? 'text-gray-900' : 'text-white'
+              }`}>AGAPE PENTECOSTAL CHURCH</h1>
+              <p className={`text-[6px] xs:text-[7px] sm:text-[8px] md:text-[9px] lg:text-[10px] xl:text-xs text-left truncate ${
+                isPastHero ? 'text-gray-700' : 'text-white'
+              }`}>Pastor Prasad Machavarapu</p>
             </div>
           </button>
 
@@ -108,7 +130,9 @@ const Header = () => {
               className={`font-medium text-[10px] md:text-xs lg:text-sm transition-all duration-300 whitespace-nowrap ${
                 activeSection === 'services' 
                   ? 'text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-secondary-500' 
-                  : 'text-gray-700 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
+                  : isPastHero 
+                    ? 'text-gray-700 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
+                    : 'text-white hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
               }`}
             >
               Services
@@ -118,7 +142,9 @@ const Header = () => {
               className={`font-medium text-[10px] md:text-xs lg:text-sm transition-all duration-300 whitespace-nowrap ${
                 activeSection === 'events' 
                   ? 'text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-secondary-500' 
-                  : 'text-gray-700 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
+                  : isPastHero 
+                    ? 'text-gray-700 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
+                    : 'text-white hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
               }`}
             >
               Events
@@ -128,7 +154,9 @@ const Header = () => {
               className={`font-medium text-[10px] md:text-xs lg:text-sm transition-all duration-300 whitespace-nowrap ${
                 activeSection === 'leadership' 
                   ? 'text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-secondary-500' 
-                  : 'text-gray-700 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
+                  : isPastHero 
+                    ? 'text-gray-700 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
+                    : 'text-white hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
               }`}
             >
               Leadership
@@ -138,7 +166,9 @@ const Header = () => {
               className={`font-medium text-[10px] md:text-xs lg:text-sm transition-all duration-300 whitespace-nowrap ${
                 activeSection === 'about' 
                   ? 'text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-secondary-500' 
-                  : 'text-gray-700 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
+                  : isPastHero 
+                    ? 'text-gray-700 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
+                    : 'text-white hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
               }`}
             >
               About Us
@@ -159,7 +189,11 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden text-gray-700 hover:text-blue-600 transition-colors p-2 -mr-2 touch-manipulation"
+            className={`md:hidden transition-colors p-2 -mr-2 touch-manipulation ${
+              isPastHero 
+                ? 'text-gray-700 hover:text-blue-600' 
+                : 'text-white hover:text-blue-300'
+            }`}
             aria-label="Toggle menu"
           >
             {isMenuOpen ? <X className="w-6 h-6 sm:w-7 sm:h-7" /> : <Menu className="w-6 h-6 sm:w-7 sm:h-7" />}
@@ -170,7 +204,9 @@ const Header = () => {
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div 
-              className="md:hidden py-2 border-t border-gray-200 bg-white pointer-events-auto overflow-hidden"
+              className={`md:hidden py-2 border-t pointer-events-auto overflow-hidden ${
+                isPastHero ? 'border-gray-200 bg-white/95' : 'border-white/20'
+              }`}
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
@@ -191,7 +227,9 @@ const Header = () => {
                   className={`text-left px-3 py-1.5 text-xs font-medium transition-all duration-300 touch-manipulation relative z-10 cursor-pointer ${
                     activeSection === 'services' 
                       ? 'text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-secondary-500' 
-                      : 'text-gray-700 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
+                      : isPastHero 
+                        ? 'text-gray-700 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
+                        : 'text-white hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
                   }`}
                 >
                   Services
@@ -205,7 +243,9 @@ const Header = () => {
                   className={`text-left px-3 py-1.5 text-xs font-medium transition-all duration-300 touch-manipulation relative z-10 cursor-pointer ${
                     activeSection === 'events' 
                       ? 'text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-secondary-500' 
-                      : 'text-gray-700 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
+                      : isPastHero 
+                        ? 'text-gray-700 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
+                        : 'text-white hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
                   }`}
                 >
                   Events
@@ -219,7 +259,9 @@ const Header = () => {
                   className={`text-left px-3 py-1.5 text-xs font-medium transition-all duration-300 touch-manipulation relative z-10 cursor-pointer ${
                     activeSection === 'leadership' 
                       ? 'text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-secondary-500' 
-                      : 'text-gray-700 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
+                      : isPastHero 
+                        ? 'text-gray-700 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
+                        : 'text-white hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
                   }`}
                 >
                   Leadership
@@ -233,12 +275,16 @@ const Header = () => {
                   className={`text-left px-3 py-1.5 text-xs font-medium transition-all duration-300 touch-manipulation relative z-10 cursor-pointer ${
                     activeSection === 'about' 
                       ? 'text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-secondary-500' 
-                      : 'text-gray-700 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
+                      : isPastHero 
+                        ? 'text-gray-700 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
+                        : 'text-white hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
                   }`}
                 >
                   About Us
                 </button>
-                <div className="flex flex-col pt-2 border-t border-gray-200 mt-1">
+                <div className={`flex flex-col pt-2 border-t mt-1 ${
+                  isPastHero ? 'border-gray-200' : 'border-white/20'
+                }`}>
                   <button 
                     onClick={(e) => {
                       e.preventDefault();
