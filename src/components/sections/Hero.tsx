@@ -122,7 +122,7 @@ const Hero = () => {
 
           {/* Subtitle with Enhanced Responsive Readability */}
           <motion.p 
-            className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-lg text-white/95 mb-3 xs:mb-4 sm:mb-6 max-w-3xl leading-relaxed drop-shadow-lg font-medium"
+            className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-lg text-white/80 mb-3 xs:mb-4 sm:mb-6 max-w-3xl leading-relaxed drop-shadow-lg font-medium"
             variants={itemVariants}
           >
             A place where love meets purpose, and faith transforms lives. 

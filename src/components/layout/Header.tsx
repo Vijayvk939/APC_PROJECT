@@ -115,10 +115,10 @@ const Header = () => {
             />
             <div className="block text-left min-w-0 flex-1 md:flex-none overflow-hidden">
               <h1 className={`text-[8px] xs:text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base font-semibold text-left leading-tight truncate ${
-                isPastHero ? 'text-gray-900' : 'text-white'
+                isPastHero ? 'text-gray-900' : 'text-white/80'
               }`}>AGAPE PENTECOSTAL CHURCH</h1>
               <p className={`text-[6px] xs:text-[7px] sm:text-[8px] md:text-[9px] lg:text-[10px] xl:text-xs text-left truncate ${
-                isPastHero ? 'text-gray-700' : 'text-white'
+                isPastHero ? 'text-gray-700' : 'text-white/80'
               }`}>Pastor Prasad Machavarapu</p>
             </div>
           </button>
@@ -132,7 +132,7 @@ const Header = () => {
                   ? 'text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-secondary-500' 
                   : isPastHero 
                     ? 'text-gray-700 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
-                    : 'text-white hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
+                    : 'text-white/80 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
               }`}
             >
               Services
@@ -144,7 +144,7 @@ const Header = () => {
                   ? 'text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-secondary-500' 
                   : isPastHero 
                     ? 'text-gray-700 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
-                    : 'text-white hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
+                    : 'text-white/80 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
               }`}
             >
               Events
@@ -156,7 +156,7 @@ const Header = () => {
                   ? 'text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-secondary-500' 
                   : isPastHero 
                     ? 'text-gray-700 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
-                    : 'text-white hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
+                    : 'text-white/80 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
               }`}
             >
               Leadership
@@ -168,7 +168,7 @@ const Header = () => {
                   ? 'text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-secondary-500' 
                   : isPastHero 
                     ? 'text-gray-700 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
-                    : 'text-white hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
+                    : 'text-white/80 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
               }`}
             >
               About Us
@@ -179,7 +179,11 @@ const Header = () => {
           <div className="hidden md:flex items-center ml-2 lg:ml-3 xl:ml-4">
             <button 
               onClick={() => scrollToSection('contact')}
-              className="px-2 md:px-3 lg:px-4 py-1.5 xl:py-2 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-lg font-semibold text-[10px] md:text-xs lg:text-sm hover:from-primary-700 hover:to-secondary-700 transition-all duration-200 flex items-center shadow-sm whitespace-nowrap"
+              className={`px-2 md:px-3 lg:px-4 py-1.5 xl:py-2 rounded-lg font-semibold text-[10px] md:text-xs lg:text-sm transition-all duration-200 flex items-center shadow-sm whitespace-nowrap ${
+                isPastHero 
+                  ? 'bg-gradient-to-r from-primary-600 to-secondary-600 text-white hover:from-primary-700 hover:to-secondary-700'
+                  : 'border border-white text-white hover:bg-white/10'
+              }`}
             >
               Contact Us
               <ArrowRight className="w-3 h-3 md:w-3.5 md:h-3.5 lg:w-4 lg:h-4 ml-1" />
@@ -291,7 +295,11 @@ const Header = () => {
                       e.stopPropagation();
                       scrollToSection('contact');
                     }}
-                    className="px-3 py-1.5 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-md font-semibold text-xs hover:from-primary-700 hover:to-secondary-700 transition-all duration-200 flex items-center justify-center shadow-sm touch-manipulation relative z-10 cursor-pointer"
+                    className={`px-3 py-1.5 rounded-md font-semibold text-xs transition-all duration-200 flex items-center justify-center shadow-sm touch-manipulation relative z-10 cursor-pointer ${
+                      isPastHero 
+                        ? 'bg-gradient-to-r from-primary-600 to-secondary-600 text-white hover:from-primary-700 hover:to-secondary-700'
+                        : 'border border-white text-white hover:bg-white/10'
+                    }`}
                   >
                     Contact Us
                     <ArrowRight className="w-3 h-3 ml-1" />

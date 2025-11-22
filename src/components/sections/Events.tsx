@@ -272,7 +272,7 @@ const Events = () => {
                 </div>
                 <div className="flex items-center gap-2 bg-gradient-to-r from-secondary-50 to-accent-50 px-3 xs:px-4 py-2 rounded-lg border border-secondary-200/50">
                   <Clock className="w-4 h-4 text-secondary-600" />
-                  <p className="text-secondary-600 font-bold text-sm xs:text-base">9:00 AM - 9:00 PM</p>
+                  <p className="text-secondary-600 font-bold text-sm xs:text-base">6:30 PM - 9:00 PM</p>
                 </div>
               </div>
             </motion.div>

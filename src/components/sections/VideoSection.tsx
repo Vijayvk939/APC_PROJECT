@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Play, Cross, Heart, Youtube, Clock, Eye, ArrowRight, Sparkles, Zap } from 'lucide-react';
 import { videos } from '@/data/videos';
@@ -7,6 +7,11 @@ const VideoSection = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [activeVideo] = useState(0);
+
+  // Auto-play first video when component mounts
+  useEffect(() => {
+    setIsPlaying(true);
+  }, []);
 
   const handleCloseVideo = () => {
     setIsPlaying(false);
@@ -170,12 +175,6 @@ const VideoSection = () => {
                           <p className="text-xs text-slate-200">{video.subtitle}</p>
                         </div>
 
-                        {index === 0 && (
-                          <p className={`text-gray-200/90 ${isFeatured ? 'text-sm' : 'text-xs'} line-clamp-2`}>
-                            {video.description}
-                          </p>
-                        )}
-
                         <div className="flex flex-wrap gap-2 text-xs text-white/90">
                           <span className="flex items-center gap-1.5 bg-white/10 px-3 py-1 rounded-full">
                             <Clock className="w-3 h-3" /> {video.duration}
@@ -192,7 +191,7 @@ const VideoSection = () => {
                   ) : (
                     <div className="relative w-full h-full">
                       <iframe
-                        src={`https://www.youtube.com/embed/${video.id}?autoplay=1&rel=0&modestbranding=1&showinfo=0`}
+                        src={`https://www.youtube.com/embed/${video.id}?autoplay=1&mute=1&rel=0&modestbranding=1&showinfo=0`}
                         title={video.title}
                         className="w-full h-full"
                         frameBorder="0"
