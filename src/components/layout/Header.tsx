@@ -111,13 +111,13 @@ const Header = () => {
             <img 
               src={logoImage} 
               alt="Agape Pentecostal Church Logo" 
-              className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 lg:h-9 lg:w-9 xl:h-10 xl:w-10 flex-shrink-0"
+              className="h-9 w-9 sm:h-10 sm:w-10 md:h-8 md:w-8 lg:h-9 lg:w-9 xl:h-10 xl:w-10 flex-shrink-0"
             />
             <div className="block text-left min-w-0 flex-1 md:flex-none overflow-hidden">
-              <h1 className={`text-[8px] xs:text-[9px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base font-semibold text-left leading-tight truncate ${
+              <h1 className={`text-xs xs:text-sm sm:text-sm md:text-xs lg:text-sm xl:text-base font-semibold text-left leading-tight truncate ${
                 isPastHero ? 'text-gray-900' : 'text-white/80'
               }`}>AGAPE PENTECOSTAL CHURCH</h1>
-              <p className={`text-[6px] xs:text-[7px] sm:text-[8px] md:text-[9px] lg:text-[10px] xl:text-xs text-left truncate ${
+              <p className={`text-[9px] xs:text-[10px] sm:text-xs md:text-[9px] lg:text-[10px] xl:text-xs text-left truncate ${
                 isPastHero ? 'text-gray-700' : 'text-white/80'
               }`}>Pastor Prasad Machavarapu</p>
             </div>
