@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Sparkles } from 'lucide-react';
 
 // Import video
 import bgVideo from '/images/APC-BG.mp4';
@@ -39,9 +40,15 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <span className="block text-white/90 text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light mb-1 sm:mb-2 tracking-wide">
-                Welcome to
-              </span>
+            <motion.div
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/90 text-xs sm:text-sm uppercase tracking-[0.4em] font-thin"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <Sparkles className="w-4 h-4" />
+              Welcome to Agape
+            </motion.div>
               <motion.span 
                 className="block bg-gradient-to-r from-primary-400 via-white to-secondary-400 bg-clip-text text-transparent drop-shadow-2xl relative z-50 overflow-visible"
                 initial={{ opacity: 0, scale: 0.95 }}
