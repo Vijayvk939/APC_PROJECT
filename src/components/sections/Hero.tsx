@@ -1,10 +1,13 @@
 import { motion } from 'framer-motion';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, Download, Library } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 // Import video
-import bgVideo from '/images/APC-BG.mp4';
+import bgVideo from '/images/APC_DASHBOARD-BG.mp4';
 
 const Hero = () => {
+  const navigate = useNavigate();
+
   return (
     <section id="home" className="relative h-[100vh] flex items-center overflow-hidden">
       {/* Background Video */}
@@ -72,6 +75,23 @@ const Hero = () => {
                   "Experience Powerful Messages and Glorious Songs. Join our church where faith transforms lives through God's unconditional love and divine purpose."
                 </p>
               </div>
+            </motion.div>
+
+            {/* Get Books CTA Button */}
+            <motion.div 
+              className="mt-3 sm:mt-4 md:mt-5 flex justify-center px-2"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+            >
+              <button
+                onClick={() => navigate('/books')}
+                className="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-xl font-semibold text-xs sm:text-sm md:text-base transition-all duration-200 flex items-center justify-center gap-1.5 sm:gap-2 shadow-2xl backdrop-blur-xl bg-white/15 text-white hover:bg-white/25 hover:text-white hover:scale-105 active:scale-95 border border-white/40"
+              >
+                <Library className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
+                <span>Get Books</span>
+                <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
+              </button>
             </motion.div>
           </motion.div>
         </div>

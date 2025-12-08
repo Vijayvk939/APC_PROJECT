@@ -6,7 +6,7 @@
       "date": "April 13",
       "time": "Special Service",
       "location": "Bhavanipuram",
-      "description": "Celebrating the anniversary of our Bhavanipuram church with special worship and testimonies.",
+      "description": "Celebrating our Bhavanipuram church anniversary with worship and testimonies.",
       "category": "Church Anniversary",
       "themeColor": "222 47% 11%"
     },
@@ -16,7 +16,7 @@
       "date": "February 13",
       "time": "Special Service",
       "location": "Gollapudi",
-      "description": "Celebrating the anniversary of our Gollapudi church with special worship and testimonies.",
+      "description": "Celebrating our Gollapudi church anniversary with worship and testimonies.",
       "category": "Church Anniversary",
       "themeColor": "222 47% 11%"
     },
@@ -26,7 +26,7 @@
       "date": "July 14 - August 3",
       "time": "Daily Prayer Times",
       "location": "Main Sanctuary",
-      "description": "Intensive 21-day fasting prayer program for spiritual breakthrough and renewal.",
+      "description": "21-day fasting prayer journey for spiritual breakthrough and renewal.",
       "category": "Fasting Prayer",
       "themeColor": "222 47% 11%"
     },
@@ -36,7 +36,7 @@
       "date": "September 16 - October 26",
       "time": "Daily Prayer Times",
       "location": "Main Sanctuary",
-      "description": "Extended prayer focus on family growth, safety, and spiritual protection.",
+      "description": "Prayer focus on family growth, safety, and spiritual covering.",
       "category": "Family Prayer",
       "themeColor": "222 47% 11%"
     },
@@ -46,7 +46,7 @@
       "date": "December 1-31",
       "time": "Daily Prayer Times",
       "location": "Main Sanctuary",
-      "description": "Month-long prayer focus leading up to Christmas, emphasizing family unity and Christ's birth.",
+      "description": "Month-long family prayer journey leading up to Christmas.",
       "category": "Christmas Prayer",
       "themeColor": "222 47% 11%"
     },
@@ -56,7 +56,7 @@
       "date": "January 1st",
       "time": "Special Service",
       "location": "Main Sanctuary",
-      "description": "Annual gospel meeting to start the new year with God's word and renewed commitment.",
+      "description": "Start the new year with a gospel meeting of renewal and commitment.",
       "category": "Gospel Meeting",
       "themeColor": "222 47% 11%"
     }
@@ -66,7 +66,7 @@
       "icon": "Heart",
       "title": "Friday Fasting Prayer",
       "schedule": "Fridays 6:30 PM - 9:00 PM",
-      "description": "Weekly fasting prayer meeting focused on spiritual growth.",
+      "description": "Weekly fasting prayer gathering focused on deep spiritual growth.",
       "color": "from-primary-500 to-secondary-500",
       "status": "Active",
       "accentColor": "bg-purple-500"
@@ -75,7 +75,7 @@
       "icon": "Users",
       "title": "Women's Prayer Meeting",
       "schedule": "Every Wednesday",
-      "description": "Dedicated prayer time for women to gather and support each other in faith.",
+      "description": "Midweek prayer circle where women gather and uplift each other.",
       "color": "from-primary-500 to-secondary-500",
       "status": "Active",
       "accentColor": "bg-purple-500"
@@ -84,16 +84,16 @@
       "icon": "BookOpen",
       "title": "5 Hours Prayer",
       "schedule": "2nd Tuesday Monthly",
-      "description": "Extended prayer session for deep intercession and spiritual breakthrough.",
+      "description": "Monthly five-hour intercession set for spiritual breakthrough.",
       "color": "from-primary-500 to-secondary-500",
       "status": "Active",
       "accentColor": "bg-purple-500"
     },
     {
       "icon": "Heart",
-      "title": "Preparation Prayer (Holy Communion)",
+      "title": "Preparation Prayer (Communion)",
       "schedule": "Last Saturday Monthly",
-      "description": "Special prayer meeting to prepare hearts before Holy Communion service.",
+      "description": "Monthly prayer time to prepare hearts for Holy Communion.",
       "color": "from-primary-500 to-secondary-500",
       "status": "Active",
       "accentColor": "bg-purple-500"

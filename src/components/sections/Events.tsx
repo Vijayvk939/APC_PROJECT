@@ -54,8 +54,7 @@ const Events = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            Join us for powerful prayer meetings and special events designed to strengthen your faith, 
-            build relationships, and experience spiritual breakthrough.
+            Join powerful prayer gatherings that strengthen faith, relationships, and spiritual breakthrough.
           </motion.p>
         </motion.div>
 
@@ -63,7 +62,7 @@ const Events = () => {
         <div className="text-center mb-4 xs:mb-6 sm:mb-8">
           <h3 className="text-xl xs:text-2xl sm:text-3xl font-bold text-gray-900 mb-3 xs:mb-4 px-2">Regular Prayer Programs</h3>
           <p className="text-base xs:text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed px-4">
-            Consistent prayer opportunities to grow spiritually and connect with your church family throughout the week.
+            Weekly rhythms that fuel faith and keep you close to your church family.
           </p>
         </div>
 
@@ -174,7 +173,7 @@ const Events = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
-                Extended prayer programs and special events for deeper spiritual growth and breakthrough.
+                Discover extended prayer gatherings and breakthrough-focused events.
               </motion.p>
             </motion.div>
           </div>
@@ -205,7 +204,7 @@ const Events = () => {
         <div className="text-center pt-8 xs:pt-10 sm:pt-12 mb-8 xs:mb-10 sm:mb-12">
           <h3 className="text-xl xs:text-2xl sm:text-3xl font-bold text-gray-900 mb-3 xs:mb-4 px-2">Church Working Hours</h3>
           <p className="text-base xs:text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto mb-6 xs:mb-8 leading-relaxed px-4">
-            We're open throughout the week to serve our church and provide spiritual guidance.
+            We're open all week to serve the church and offer spiritual guidance.
           </p>
           <div className="flex flex-wrap justify-center gap-3 xs:gap-4 sm:gap-5 md:gap-6 max-w-7xl mx-auto">
             {/* Monday - Thursday */}

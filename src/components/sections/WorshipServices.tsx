@@ -35,7 +35,6 @@ const WorshipServices = () => {
       subtitle: "Bhavanipuram",
       time: "8:30 AM - 11:00 AM",
       location: "Bhavanipuram",
-      description: "Our main worship service featuring powerful messages, glorious songs, and church fellowship.",
       highlights: ["Live Worship", "Church Fellowship", "Inspiring Sermons", "Communion Service"],
       color: "from-primary-500 to-secondary-600",
       accentColor: "bg-primary-500",
@@ -47,7 +46,6 @@ const WorshipServices = () => {
       subtitle: "Bhavanipuram",
       time: "9:00 AM - 11:00 AM",
       location: "Bhavanipuram",
-      description: "Children's ministry and Sunday School program running alongside the main service.",
       highlights: ["Bible Stories", "Worship Songs", "Arts & Crafts", "Prayer Time"],
       color: "from-secondary-500 to-accent-600",
       accentColor: "bg-secondary-500",
@@ -59,7 +57,6 @@ const WorshipServices = () => {
       subtitle: "Gollapudi",
       time: "6:30 PM - 8:30 PM",
       location: "Gollapudi",
-      description: "Evening worship service with inspiring messages and church fellowship.",
       highlights: ["Evening Worship", "Inspiring Sermons", "Church Fellowship", "Prayer Ministry"],
       color: "from-accent-500 to-primary-600",
       accentColor: "bg-accent-500",
@@ -71,7 +68,6 @@ const WorshipServices = () => {
       subtitle: "Gollapudi",
       time: "7:30 PM - 8:30 PM",
       location: "Gollapudi",
-      description: "Evening Sunday School program for children during the second service.",
       highlights: ["Evening Bible Study", "Children's Worship", "Interactive Learning", "Family Time"],
       color: "from-primary-500 to-accent-600",
       accentColor: "bg-primary-500",
@@ -130,8 +126,7 @@ const WorshipServices = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            Experience the transformative power of worship through inspiring messages, 
-            glorious songs, and meaningful fellowship in our vibrant church.
+            Experience inspiring messages, glorious songs, and meaningful fellowship in our vibrant church.
           </motion.p>
         </motion.div>
 
@@ -204,7 +199,7 @@ const WorshipServices = () => {
                 </div>
               </div>
               
-              <p className="text-gray-600 mb-3 xs:mb-4 leading-relaxed text-sm xs:text-base lg:text-lg flex-grow">{service.description}</p>
+              <div className="mb-3 xs:mb-4 flex-grow"></div>
               
               {/* Highlights - Responsive Grid Layout */}
               <div className="grid grid-cols-1 xs:grid-cols-2 gap-1.5 xs:gap-2">
@@ -240,7 +235,7 @@ const WorshipServices = () => {
             <div className="relative z-10">
               <h3 className="text-lg xs:text-xl sm:text-2xl font-bold mb-2 xs:mb-3 px-2">Join Us This Sunday</h3>
               <p className="text-sm xs:text-base sm:text-lg mb-4 xs:mb-5 sm:mb-6 opacity-90 max-w-xl mx-auto leading-relaxed px-4">
-                Experience the transformative power of worship and the Word of God in our welcoming church
+                Experience the power of worship and the Word in our welcoming church.
               </p>
               
               <div className="flex flex-row gap-2 xs:gap-3 justify-center items-center px-4 max-w-2xl mx-auto flex-wrap">

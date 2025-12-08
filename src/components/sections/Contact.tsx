@@ -53,8 +53,7 @@ const Contact = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            We'd love to hear from you! Whether you have questions, need prayer, or want to get involved, 
-            we're here to connect and support you on your faith journey.
+            Questions, prayer, or getting involved? We’re here—reach out anytime.
           </motion.p>
         </motion.div>
 

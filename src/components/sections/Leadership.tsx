@@ -82,9 +82,7 @@ const Leadership = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            Meet the dedicated servants who guide our church family with wisdom, 
-            compassion, and a heart for God's people. Experience the transformative 
-            leadership that shapes our spiritual church.
+            Meet the compassionate leaders guiding our church family with wisdom and a heart for God.
           </motion.p>
         </motion.div>
       </div>
