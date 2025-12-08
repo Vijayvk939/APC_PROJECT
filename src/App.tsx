@@ -1,14 +1,9 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
-import Hero from './components/sections/Hero';
-import WorshipServices from './components/sections/WorshipServices';
-import Events from './components/sections/Events';
-import Gallery from './components/sections/Gallery';
-import VideoSection from './components/sections/VideoSection';
-import About from './components/sections/About';
-import Leadership from './components/sections/Leadership';
-import Contact from './components/sections/Contact';
+import Home from './pages/Home';
+import Books from './pages/Books';
 
 function App() {
   // Add global error handling
@@ -33,18 +28,18 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen">
-      <Header />
-      <Hero />
-      <WorshipServices />
-      <Events />
-      <VideoSection />
-      <Leadership />
-      <Gallery />
-      <About /> 
-      <Contact />
-      <Footer />
-    </div>
+    <Router>
+      <div className="min-h-screen flex flex-col">
+        <Header />
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/books" element={<Books />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

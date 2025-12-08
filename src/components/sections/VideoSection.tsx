@@ -83,7 +83,7 @@ const VideoSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.5 }}
           >
-            Dive into cinematic sermons, live worship nights, and faith-filled originals produced right here at Agape Pentecostal Church.
+            Dive into cinematic sermons, live worship nights, and Agape-produced faith originals.
           </motion.p>
         </motion.div>
 

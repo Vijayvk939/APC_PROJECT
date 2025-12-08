@@ -107,8 +107,7 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            For over two decades, Agape Pentecostal Church has been a beacon of hope, 
-            love, and spiritual growth in our church.
+            For two years, Agape Pentecostal Church has been a beacon of hope, love, and spiritual growth.
           </motion.p>
         </motion.div>
 
@@ -116,7 +115,12 @@ const About = () => {
           {/* Left Content */}
           <div className="space-y-6 xs:space-y-7 sm:space-y-8">
             <div className="bg-white/80 backdrop-blur-sm rounded-xl xs:rounded-2xl p-4 xs:p-5 sm:p-6 md:p-8 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-              <h3 className="text-base xs:text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 xs:mb-4">Our Story</h3>
+              <h3 className="text-base xs:text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 xs:mb-4 inline-flex items-center gap-2">
+                <span className="inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-primary-500/15 to-secondary-500/15 border border-primary-100">
+                  <BookOpen className="w-5 h-5 text-primary-600" />
+                </span>
+                Our Story
+              </h3>
               <p className="text-gray-600 leading-relaxed mb-3 xs:mb-4 text-sm xs:text-base">
                 Founded in 2006, Agape Pentecostal Church began as a small gathering of believers 
                 with a big vision: to create a place where God's love could transform lives and 
@@ -133,7 +137,12 @@ const About = () => {
             <div className="bg-gradient-to-br from-primary-800 via-secondary-800 to-accent-800 rounded-xl xs:rounded-2xl p-4 xs:p-5 sm:p-6 md:p-8 text-white relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/10"></div>
               <div className="relative z-10">
-                <h3 className="text-base xs:text-lg sm:text-xl md:text-2xl font-bold mb-3 xs:mb-4">Our Mission</h3>
+                <h3 className="text-base xs:text-lg sm:text-xl md:text-2xl font-bold mb-3 xs:mb-4 inline-flex items-center gap-2">
+                  <span className="inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/15 border border-white/20">
+                    <Heart className="w-5 h-5 text-white" />
+                  </span>
+                  Our Mission
+                </h3>
                 <p className="leading-relaxed text-sm xs:text-base sm:text-lg">
                   To create a welcoming church where people can encounter God's love, 
                   grow in their faith, and discover their purpose through meaningful 
@@ -143,8 +152,10 @@ const About = () => {
             </div>
 
             <div className="bg-white/80 backdrop-blur-sm rounded-xl xs:rounded-2xl p-4 xs:p-5 sm:p-6 md:p-8 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-              <h3 className="text-base xs:text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 xs:mb-4 flex items-center">
-                <MapPin className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6 text-primary-600 mr-2 xs:mr-3" />
+              <h3 className="text-base xs:text-lg sm:text-xl md:text-2xlf font-bold text-gray-900 mb-3 xs:mb-4 inline-flex items-center gap-2">
+                <span className="inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-primary-500/15 to-secondary-500/15 border border-primary-100">
+                  <MapPin className="w-5 h-5 text-primary-600" />
+                </span>
                 Our Location
               </h3>
               <div className="space-y-3 xs:space-y-4">

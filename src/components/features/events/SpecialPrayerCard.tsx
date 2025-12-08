@@ -50,10 +50,11 @@ const SpecialPrayerCard = React.forwardRef<HTMLDivElement, SpecialPrayerCardProp
           {/* Background Image with Parallax Zoom */}
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat
-                       transition-transform duration-500 ease-in-out group-hover:scale-[1.05]"
+                       transition-all duration-500 ease-in-out group-hover:scale-[1.05]"
             style={{ 
               backgroundImage: `url(${imageUrl})`,
-              transformOrigin: 'center center'
+              transformOrigin: 'center center',
+              filter: isActive ? 'grayscale(0%)' : 'grayscale(100%)',
             }}
           />
 
