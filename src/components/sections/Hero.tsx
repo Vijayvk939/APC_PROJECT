@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion';
-import { Sparkles, Download, Library } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Sparkles } from 'lucide-react';
+// import { useNavigate } from 'react-router-dom';
 
 // Import video
 import bgVideo from '/images/APC_DASHBOARD-BG.mp4';
 
 const Hero = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   return (
     <section id="home" className="relative h-[100vh] flex items-center overflow-hidden">
@@ -78,7 +78,7 @@ const Hero = () => {
             </motion.div>
 
             {/* Get Books CTA Button */}
-            <motion.div 
+            {/* <motion.div 
               className="mt-3 sm:mt-4 md:mt-5 flex justify-center px-2"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -92,7 +92,7 @@ const Hero = () => {
                 <span>Get Books</span>
                 <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
               </button>
-            </motion.div>
+            </motion.div> */}
           </motion.div>
         </div>
       </div>
