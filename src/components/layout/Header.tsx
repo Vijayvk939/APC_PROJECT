@@ -216,7 +216,7 @@ const Header = () => {
           </nav>
 
           {/* CTA Button */}
-          <div className="hidden md:flex items-center ml-2 lg:ml-3 xl:ml-4">
+          {/* <div className="hidden md:flex items-center ml-2 lg:ml-3 xl:ml-4">
             <button
               onClick={() => {
                 setIsMenuOpen(false);
@@ -231,7 +231,7 @@ const Header = () => {
               Get Books
               <ArrowRight className="w-3 h-3 md:w-3.5 md:h-3.5 lg:w-4 lg:h-4" />
             </button>
-          </div>
+          </div> */}
 
           {/* Mobile Menu Button */}
           <button
