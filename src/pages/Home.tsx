@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import Hero from '../components/sections/Hero';
 import WorshipServices from '../components/sections/WorshipServices';
 import Events from '../components/sections/Events';
@@ -9,16 +10,21 @@ import Contact from '../components/sections/Contact';
 
 const Home = () => {
   return (
-    <main>
-      <Hero />
-      <WorshipServices />
-      <Events />
-      <VideoSection />
-      <Leadership />
-      <Gallery />
-      <About /> 
-      <Contact />
-    </main>
+    <>
+      <Helmet>
+        <link rel="canonical" href="https://agapepentecostalchurch.com/" />
+      </Helmet>
+      <main>
+        <Hero />
+        <WorshipServices />
+        <Events />
+        <VideoSection />
+        <Leadership />
+        <Gallery />
+        <About /> 
+        <Contact />
+      </main>
+    </>
   );
 };
 
