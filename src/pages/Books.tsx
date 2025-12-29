@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Book, Download, Library, ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 interface BookData {
     id: string;
@@ -89,7 +90,11 @@ const Books = () => {
     };
 
     return (
-        <div className="pt-24 pb-16 min-h-screen bg-gradient-to-b from-primary-50 via-white to-secondary-50">
+        <>
+            <Helmet>
+                <link rel="canonical" href="https://agapepentecostalchurch.com/books" />
+            </Helmet>
+            <div className="pt-24 pb-16 min-h-screen bg-gradient-to-b from-primary-50 via-white to-secondary-50">
             <div className="container mx-auto px-4">
                 {isToastVisible && (
                     <div className="fixed top-24 right-6 z-50">
@@ -200,6 +205,7 @@ const Books = () => {
                 </motion.div>
             </div>
         </div>
+        </>
     );
 };
 
