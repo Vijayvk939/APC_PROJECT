@@ -7,6 +7,15 @@ import Home from './pages/Home';
 import Books from './pages/Books';
 
 function App() {
+  // Redirect vercel.app domains to production domain (client-side backup)
+  React.useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.hostname.includes('vercel.app')) {
+      const newUrl = 'https://www.agapepentecostalchurch.com' + window.location.pathname + window.location.search;
+      window.location.replace(newUrl);
+      return;
+    }
+  }, []);
+
   // Add global error handling
   React.useEffect(() => {
     const handleUnhandledRejection = (event: PromiseRejectionEvent) => {

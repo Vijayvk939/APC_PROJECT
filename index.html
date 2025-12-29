@@ -6,9 +6,17 @@
     <title>Agape Pentecostal Church</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="apple-touch-icon" href="/favicon.ico"> 
+    <link rel="apple-touch-icon" href="/favicon.ico">
+    <link rel="canonical" href="https://www.agapepentecostalchurch.com/" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7039319556421693"
      crossorigin="anonymous"></script>
+    <script>
+        // Immediate redirect for vercel.app domains (before React loads)
+        if (window.location.hostname.includes('vercel.app')) {
+            window.location.replace('https://www.agapepentecostalchurch.com' + window.location.pathname + window.location.search);
+        }
+    </script>
 </head>
 <body>
     <div id="root"></div>

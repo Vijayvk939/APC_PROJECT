@@ -92,7 +92,10 @@ const Books = () => {
     return (
         <>
             <Helmet>
-                <link rel="canonical" href="https://agapepentecostalchurch.com/books" />
+                <link rel="canonical" href="https://www.agapepentecostalchurch.com/books" />
+                {typeof window !== 'undefined' && window.location.hostname.includes('vercel.app') && (
+                  <meta name="robots" content="noindex, nofollow" />
+                )}
             </Helmet>
             <div className="pt-24 pb-16 min-h-screen bg-gradient-to-b from-primary-50 via-white to-secondary-50">
             <div className="container mx-auto px-4">

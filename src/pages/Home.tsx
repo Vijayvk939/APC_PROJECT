@@ -12,7 +12,10 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <link rel="canonical" href="https://agapepentecostalchurch.com/" />
+        <link rel="canonical" href="https://www.agapepentecostalchurch.com/" />
+        {typeof window !== 'undefined' && window.location.hostname.includes('vercel.app') && (
+          <meta name="robots" content="noindex, nofollow" />
+        )}
       </Helmet>
       <main>
         <Hero />

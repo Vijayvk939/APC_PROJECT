@@ -5,11 +5,12 @@
       "has": [
         {
           "type": "host",
-          "value": "(?<host>.*\\.vercel\\.app)"
+          "value": "(.*\\.vercel\\.app)"
         }
       ],
-      "destination": "https://agapepentecostalchurch.com/$1",
-      "permanent": true
+      "destination": "https://www.agapepentecostalchurch.com/$1",
+      "permanent": true,
+      "statusCode": 301
     }
   ],
   "rewrites": [
@@ -18,10 +19,27 @@
       "has": [
         {
           "type": "host",
-          "value": "(?<host>.*\\.vercel\\.app)"
+          "value": "(.*\\.vercel\\.app)"
         }
       ],
       "destination": "/robots-vercel.txt"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "(.*\\.vercel\\.app)"
+        }
+      ],
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
     }
   ]
 }
