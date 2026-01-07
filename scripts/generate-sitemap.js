@@ -1,7 +1,6 @@
 import { SitemapStream, streamToPromise } from 'sitemap';
-import { createWriteStream } from 'fs';
+import { writeFileSync } from 'fs';
 import { resolve } from 'path';
-import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
@@ -40,11 +39,9 @@ const routes = [
 ];
 
 async function generateSitemap() {
+  // Generate sitemap XML content
   const sitemap = new SitemapStream({ hostname: config.siteUrl });
-  const writeStream = createWriteStream(resolve('./public/sitemap.xml'));
-
-  sitemap.pipe(writeStream);
-
+  
   routes.forEach((route) => {
     sitemap.write({
       url: route.url,
@@ -56,9 +53,17 @@ async function generateSitemap() {
 
   sitemap.end();
 
-  await streamToPromise(sitemap);
+  // streamToPromise returns the XML string
+  const sitemapXml = await streamToPromise(sitemap);
 
-  console.log('✅ Sitemap generated successfully at public/sitemap.xml');
+  // Write to dist folder (for deployment) and public folder (for next build)
+  const distPath = resolve('./dist/sitemap.xml');
+  const publicPath = resolve('./public/sitemap.xml');
+  
+  writeFileSync(distPath, sitemapXml);
+  writeFileSync(publicPath, sitemapXml);
+
+  console.log('✅ Sitemap generated successfully at dist/sitemap.xml and public/sitemap.xml');
 
   // Generate robots.txt if enabled
   if (config.generateRobotsTxt) {
@@ -68,10 +73,10 @@ Allow: /
 Sitemap: ${config.siteUrl}/sitemap.xml
 `;
 
-    const robotsWriteStream = createWriteStream(resolve('./public/robots.txt'));
-    robotsWriteStream.write(robotsTxt);
-    robotsWriteStream.end();
-    console.log('✅ robots.txt generated successfully at public/robots.txt');
+    writeFileSync(resolve('./dist/robots.txt'), robotsTxt);
+    writeFileSync(resolve('./public/robots.txt'), robotsTxt);
+    
+    console.log('✅ robots.txt generated successfully at dist/robots.txt and public/robots.txt');
   }
 }
 
