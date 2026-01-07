@@ -1,5 +1,5 @@
 import { SitemapStream, streamToPromise } from 'sitemap';
-import { writeFileSync } from 'fs';
+import { writeFileSync, existsSync } from 'fs';
 import { resolve } from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -56,14 +56,26 @@ async function generateSitemap() {
   // streamToPromise returns the XML string
   const sitemapXml = await streamToPromise(sitemap);
 
-  // Write to dist folder (for deployment) and public folder (for next build)
-  const distPath = resolve('./dist/sitemap.xml');
+  // Write to public folder (Vite will copy it to dist during build)
+  // Also write to dist if it exists (for postbuild step)
   const publicPath = resolve('./public/sitemap.xml');
+  const distPath = resolve('./dist/sitemap.xml');
   
-  writeFileSync(distPath, sitemapXml);
   writeFileSync(publicPath, sitemapXml);
-
-  console.log('✅ Sitemap generated successfully at dist/sitemap.xml and public/sitemap.xml');
+  
+  // Only write to dist if dist folder exists (postbuild scenario)
+  try {
+    const { existsSync } = await import('fs');
+    if (existsSync(resolve('./dist'))) {
+      writeFileSync(distPath, sitemapXml);
+      console.log('✅ Sitemap generated successfully at public/sitemap.xml and dist/sitemap.xml');
+    } else {
+      console.log('✅ Sitemap generated successfully at public/sitemap.xml (will be copied to dist during build)');
+    }
+  } catch {
+    writeFileSync(publicPath, sitemapXml);
+    console.log('✅ Sitemap generated successfully at public/sitemap.xml');
+  }
 
   // Generate robots.txt if enabled
   if (config.generateRobotsTxt) {
@@ -73,10 +85,15 @@ Allow: /
 Sitemap: ${config.siteUrl}/sitemap.xml
 `;
 
-    writeFileSync(resolve('./dist/robots.txt'), robotsTxt);
     writeFileSync(resolve('./public/robots.txt'), robotsTxt);
     
-    console.log('✅ robots.txt generated successfully at dist/robots.txt and public/robots.txt');
+    // Only write to dist if dist folder exists (postbuild scenario)
+    if (existsSync(resolve('./dist'))) {
+      writeFileSync(resolve('./dist/robots.txt'), robotsTxt);
+      console.log('✅ robots.txt generated successfully at public/robots.txt and dist/robots.txt');
+    } else {
+      console.log('✅ robots.txt generated successfully at public/robots.txt (will be copied to dist during build)');
+    }
   }
 }
 
