@@ -1,4 +1,6 @@
 {
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
   "redirects": [
     {
       "source": "/(.*)",
@@ -23,6 +25,10 @@
         }
       ],
       "destination": "/robots-vercel.txt"
+    },
+    {
+      "source": "/((?!api|_next|assets|images|favicon.ico|robots.txt|sitemap.xml).*)",
+      "destination": "/index.html"
     }
   ],
   "headers": [
