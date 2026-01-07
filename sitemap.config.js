@@ -1,5 +1,5 @@
 export default {
-  siteUrl: 'https://www.agapepentecostalchurch.com',
+  siteUrl: 'https://agapepentecostalchurch.com',
   generateRobotsTxt: true,
 };
 

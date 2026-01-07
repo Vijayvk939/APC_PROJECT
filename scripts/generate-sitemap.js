@@ -18,7 +18,7 @@ try {
   console.warn('⚠️  Could not load sitemap.config.js, using default config:', error.message);
   // Fallback to default config
   config = {
-    siteUrl: 'https://www.agapepentecostalchurch.com',
+    siteUrl: 'https://agapepentecostalchurch.com',
     generateRobotsTxt: true,
   };
 }
