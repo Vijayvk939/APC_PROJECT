@@ -1,0 +1,65 @@
+import { useEffect, useRef, useState } from "react"
+
+interface ScrollBlurTextProps {
+  text: string
+  className?: string
+  startBlur?: number // Initial blur value in pixels.
+  endBlur?: number // Final blur value in pixels.
+}
+
+// Component that de-blurs and fades in words sequentially as they scroll into view.
+export function ScrollBlurText({ text, className = "", startBlur = 80, endBlur = 0 }: ScrollBlurTextProps) {
+  const containerRef = useRef<HTMLHeadingElement>(null)
+  const [wordProgress, setWordProgress] = useState<number[]>([])
+
+  const words = text.split(" ")
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!containerRef.current) return
+
+      const rect = containerRef.current.getBoundingClientRect()
+      const windowHeight = window.innerHeight
+
+      // Calculate the scroll progress based on element's position in the viewport.
+      const scrollProgress = Math.max(0, Math.min(1, (windowHeight - rect.top) / (windowHeight * 0.6)))
+
+      const newProgress = words.map((_, index) => {
+        const wordDelay = index * 0.2 // Delay stagger for each word.
+        const wordProgress = Math.max(0, Math.min(1, (scrollProgress - wordDelay) / 0.3))
+        return wordProgress
+      })
+
+      setWordProgress(newProgress)
+    }
+
+    handleScroll() // Run initial position check.
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [words.length])
+
+  return (
+    <h2 ref={containerRef} className={className}>
+      {words.map((word, index) => {
+        const progress = wordProgress[index] || 0
+        const blur = startBlur - (startBlur - endBlur) * progress
+        const opacity = progress
+
+        return (
+          <span
+            key={index}
+            style={{
+              filter: `blur(${blur}px)`,
+              opacity,
+              display: "inline-block",
+              transition: "filter 0.3s ease-out, opacity 0.3s ease-out",
+            }}
+          >
+            {word}
+            {index < words.length - 1 ? "\u00A0" : ""}
+          </span>
+        )
+      })}
+    </h2>
+  )
+}

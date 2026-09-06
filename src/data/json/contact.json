@@ -8,7 +8,7 @@
       "color": "from-primary-500 to-secondary-500",
       "action": "Call Now",
       "status": "Active",
-      "accentColor": "bg-purple-500"
+      "accentColor": "bg-rose-700"
     },
     {
       "icon": "Mail",
@@ -18,7 +18,7 @@
       "color": "from-secondary-500 to-accent-500",
       "action": "Send Email",
       "status": "Active",
-      "accentColor": "bg-purple-500"
+      "accentColor": "bg-rose-700"
     }
   ]
 }

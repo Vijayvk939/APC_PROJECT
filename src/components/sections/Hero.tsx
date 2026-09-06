@@ -1,103 +1,158 @@
-import { motion } from 'framer-motion';
-import { Sparkles } from 'lucide-react';
-// import { useNavigate } from 'react-router-dom';
+import { useEffect, useRef, useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { Button } from "@/components/ui/button"
+import { ArrowRight, BookOpen } from "lucide-react"
 
-// Import video
-import bgVideo from '/images/APC_DASHBOARD-BG.mp4';
+import bgVideo from "/images/APC_DASHBOARD-BG.mp4"
+import bgPastorImg from "/images/Prasad_DAS_Banner.jpg"
 
-const Hero = () => {
-  // const navigate = useNavigate();
+export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const videoContainerRef = useRef<HTMLDivElement>(null)
+  const [scrollProgress, setScrollProgress] = useState(0)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-fade-up")
+          }
+        })
+      },
+      { threshold: 0.1 },
+    )
+
+    const elements = sectionRef.current?.querySelectorAll(".reveal")
+    elements?.forEach((el) => observer.observe(el))
+
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return
+      const scrollY = window.scrollY
+      const sectionHeight = sectionRef.current.offsetHeight
+      const progress = Math.min(scrollY / (sectionHeight * 0.5), 1)
+      setScrollProgress(progress)
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    handleScroll()
+
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  const scale = 1 - scrollProgress * 0.05
+  const borderRadius = scrollProgress * 24
 
   return (
-    <section id="home" className="relative h-[100vh] flex items-center overflow-hidden">
-      {/* Background Video */}
-      <div className="absolute inset-0 w-full h-full">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover scale-105"
-        >
-          <source src={bgVideo} type="video/mp4" />
-        </video>
-      </div>
-      
-      {/* Modern gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/60"></div>
-      <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 via-transparent to-secondary-500/15"></div>
-
-      {/* Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 md:px-8 w-full pt-32 sm:pt-48 md:pt-64 lg:pt-80">
-        <div className="flex items-center justify-center min-h-screen py-8 sm:py-12">
-          <motion.div 
-            className="w-full text-center"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+    <section
+      ref={sectionRef}
+      id="home"
+      className="relative min-h-screen flex items-center overflow-hidden bg-background"
+    >
+      {/* Background Container with Video & Radiant Glow Overlay (LLC Shrinking Style) */}
+      <div
+        ref={videoContainerRef}
+        className="absolute inset-0 w-full h-full overflow-hidden transition-all duration-75 ease-out"
+        style={{
+          transform: `scale(${scale})`,
+          borderRadius: `${borderRadius}px`,
+        }}
+      >
+        {/* Background Video of Pastor Preaching */}
+        <div className="absolute inset-0 w-full h-full">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster={bgPastorImg}
+            className="w-full h-full object-cover object-center"
           >
-            {/* Main Heading */}
-            <motion.h1 
-              className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-2 sm:mb-3 md:mb-4 leading-normal tracking-tight overflow-visible px-2"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-            <motion.div
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/90 text-xs sm:text-sm uppercase tracking-[0.4em] font-thin"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <Sparkles className="w-4 h-4" />
-              Welcome to Agape
-            </motion.div>
-              <motion.span 
-                className="block bg-gradient-to-r from-primary-400 via-white to-secondary-400 bg-clip-text text-transparent drop-shadow-2xl relative z-50 overflow-visible"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                style={{ lineHeight: '1.25' }}
-              >
-                Agape Pentecostal Church
-              </motion.span>
-            </motion.h1>
+            <source src={bgVideo} type="video/mp4" />
+          </video>
+        </div>
 
-            {/* Mission Statement with modern glassmorphism */}
-            <motion.div 
-              className="max-w-3xl mx-auto mt-4 sm:mt-6 md:mt-8 px-2"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              <div className="backdrop-blur-md bg-white/5 border border-white/10 rounded-xl sm:rounded-2xl px-4 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6 shadow-2xl">
-                <p className="text-xs xs:text-sm sm:text-base md:text-lg text-white/95 italic leading-relaxed font-light">
-                  "Experience Powerful Messages and Glorious Songs. Join our church where faith transforms lives through God's unconditional love and divine purpose."
-                </p>
-              </div>
-            </motion.div>
+        {/* Clean Vignette Overlay (Left to Right) */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/45 to-transparent pointer-events-none" />
+        
+        {/* Subtle Bottom Shade */}
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
+      </div>
 
-            {/* Get Books CTA Button */}
-            {/* <motion.div 
-              className="mt-3 sm:mt-4 md:mt-5 flex justify-center px-2"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
+      {/* Main Hero Content */}
+      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-8 sm:pt-24 sm:pb-10 lg:pt-24 lg:pb-10 w-full flex flex-col justify-between min-h-screen">
+        <div className="max-w-2xl lg:max-w-3xl my-auto py-6 sm:py-8">
+          {/* Eyebrow Badge */}
+          <div className="reveal opacity-0 inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-white text-xs font-mono uppercase tracking-[0.2em] mb-5">
+            <span className="text-[#B22222] font-sans font-bold">†</span>
+            <span>WELCOME TO AGAPE</span>
+          </div>
+
+          {/* Main Title Typography */}
+          <h1 className="reveal opacity-0 animation-delay-200 font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.05] text-white tracking-tight mb-4">
+            <span className="block text-white">Agape Pentecostal</span>
+            <span className="block text-[#B22222]">
+              Church
+            </span>
+          </h1>
+
+          {/* Accent Line Under Title */}
+          <div className="reveal opacity-0 animation-delay-300 h-[2.5px] w-14 bg-[#8B0000] rounded-full mb-6" />
+
+          {/* Minimalist Subtitle */}
+          <p className="reveal opacity-0 animation-delay-400 text-sm sm:text-base md:text-lg text-white/90 font-light max-w-3xl mb-8">
+            Experience powerful worship, faith, and community in Vijayawada.
+          </p>
+
+          {/* Action Buttons */}
+          <div className="reveal opacity-0 animation-delay-600 flex flex-col sm:flex-row gap-3.5 max-w-md sm:max-w-none">
+            <Button
+              size="lg"
+              className="bg-[#8B0000] hover:bg-[#6c0000] text-white rounded-full px-8 py-3.5 text-sm sm:text-base font-semibold shadow-sm flex items-center justify-center gap-2.5 transition-all group border border-white/10"
+              onClick={() => {
+                const servicesSection = document.getElementById("services")
+                servicesSection?.scrollIntoView({ behavior: "smooth" })
+              }}
             >
-              <button
-                onClick={() => navigate('/books')}
-                className="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-xl font-semibold text-xs sm:text-sm md:text-base transition-all duration-200 flex items-center justify-center gap-1.5 sm:gap-2 shadow-2xl backdrop-blur-xl bg-white/15 text-white hover:bg-white/25 hover:text-white hover:scale-105 active:scale-95 border border-white/40"
-              >
-                <Library className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
-                <span>Get Books</span>
-                <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
-              </button>
-            </motion.div> */}
-          </motion.div>
+              <span>Worship Services</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border border-white/30 bg-black/30 backdrop-blur-md hover:bg-white/15 text-white rounded-full px-8 py-3.5 text-sm sm:text-base font-semibold flex items-center justify-center gap-2 transition-all"
+              onClick={() => {
+                navigate("/books")
+                window.scrollTo(0, 0)
+              }}
+            >
+              <BookOpen className="w-4 h-4" />
+              <span>Get Books</span>
+            </Button>
+          </div>
+        </div>
+
+        {/* Hero Bottom Bar */}
+        <div className="pt-5 pb-2 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/15 text-white/70 text-[11px] sm:text-xs tracking-[0.2em] font-medium uppercase select-none">
+          <div className="flex items-center gap-2.5">
+            <span className="h-3.5 w-[2.5px] bg-[#8B0000] rounded-full inline-block" />
+            <span>PEOPLE • PURPOSE • A BRIGHTER TOMORROW</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1.5 opacity-90">
+              <span className="w-4 sm:w-6 h-[2px] bg-white/35 rounded-full inline-block" />
+              <span className="w-6 sm:w-8 h-[2.5px] bg-[#FF2D55] rounded-full shadow-[0_0_8px_rgba(255,45,85,0.8)] inline-block" />
+              <span className="w-4 sm:w-6 h-[2px] bg-white/35 rounded-full inline-block" />
+            </div>
+            <span>FAITH • LOVE • SERVICE</span>
+          </div>
         </div>
       </div>
     </section>
-  );
-};
-
-export default Hero;
+  )
+}

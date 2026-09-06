@@ -1,270 +1,191 @@
-import { motion } from 'framer-motion';
-import { Church, Users, Clock, MapPin, ArrowRight, Play, Phone } from 'lucide-react';
+import { useEffect, useRef } from "react"
+import { Church, Users, Clock, MapPin, ArrowRight, Play, Phone } from "lucide-react"
+import { ScrollBlurText } from "@/components/scroll-blur-text"
+import { Badge } from "@/components/ui/badge"
 
-const WorshipServices = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.12,
-        delayChildren: 0.1,
+const worshipServices = [
+  {
+    icon: Church,
+    title: "Sunday 1st Service",
+    subtitle: "Bhavanipuram",
+    time: "8:30 AM - 11:00 AM",
+    location: "Bhavanipuram",
+    highlights: ["Live Worship", "Church Fellowship", "Inspiring Sermons", "Communion Service"],
+    status: "Active"
+  },
+  {
+    icon: Users,
+    title: "Sunday School",
+    subtitle: "Bhavanipuram",
+    time: "9:00 AM - 11:00 AM",
+    location: "Bhavanipuram",
+    highlights: ["Bible Stories", "Worship Songs", "Arts & Crafts", "Prayer Time"],
+    status: "Active"
+  },
+  {
+    icon: Church,
+    title: "Sunday 2nd Service",
+    subtitle: "Gollapudi",
+    time: "6:30 PM - 8:30 PM",
+    location: "Gollapudi",
+    highlights: ["Evening Worship", "Inspiring Sermons", "Church Fellowship", "Prayer Ministry"],
+    status: "Active"
+  },
+  {
+    icon: Users,
+    title: "Sunday School",
+    subtitle: "Gollapudi",
+    time: "7:30 PM - 8:30 PM",
+    location: "Gollapudi",
+    highlights: ["Evening Bible Study", "Children's Worship", "Interactive Learning", "Family Time"],
+    status: "Active"
+  }
+]
+
+export default function WorshipServices() {
+  const sectionRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-fade-up")
+          }
+        })
       },
-    },
-  };
+      { threshold: 0.1 }
+    )
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 80, scale: 0.85, rotateY: -15 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      rotateY: 0,
-      transition: {
-        duration: 0.8,
-        type: "spring" as const,
-        stiffness: 100,
-        damping: 15,
-      },
-    },
-  };
-  const worshipServices = [
-    {
-      icon: Church,
-      title: "Sunday 1st Service",
-      subtitle: "Bhavanipuram",
-      time: "8:30 AM - 11:00 AM",
-      location: "Bhavanipuram",
-      highlights: ["Live Worship", "Church Fellowship", "Inspiring Sermons", "Communion Service"],
-      color: "from-primary-500 to-secondary-600",
-      accentColor: "bg-primary-500",
-      status: "Active"
-    },
-    {
-      icon: Users,
-      title: "Sunday School",
-      subtitle: "Bhavanipuram",
-      time: "9:00 AM - 11:00 AM",
-      location: "Bhavanipuram",
-      highlights: ["Bible Stories", "Worship Songs", "Arts & Crafts", "Prayer Time"],
-      color: "from-secondary-500 to-accent-600",
-      accentColor: "bg-secondary-500",
-      status: "Active"
-    },
-    {
-      icon: Church,
-      title: "Sunday 2nd Service",
-      subtitle: "Gollapudi",
-      time: "6:30 PM - 8:30 PM",
-      location: "Gollapudi",
-      highlights: ["Evening Worship", "Inspiring Sermons", "Church Fellowship", "Prayer Ministry"],
-      color: "from-accent-500 to-primary-600",
-      accentColor: "bg-accent-500",
-      status: "Active"
-    },
-    {
-      icon: Users,
-      title: "Sunday School",
-      subtitle: "Gollapudi",
-      time: "7:30 PM - 8:30 PM",
-      location: "Gollapudi",
-      highlights: ["Evening Bible Study", "Children's Worship", "Interactive Learning", "Family Time"],
-      color: "from-primary-500 to-accent-600",
-      accentColor: "bg-primary-500",
-      status: "Active"
-    }
-  ];
+    const elements = sectionRef.current?.querySelectorAll(".reveal")
+    elements?.forEach((el) => observer.observe(el))
 
+    return () => observer.disconnect()
+  }, [])
 
   return (
-    <section id="services" className="pt-8 md:pt-12 lg:pt-16 pb-4 md:pb-6 lg:pb-8 bg-gradient-to-br from-slate-50 via-primary-50 to-secondary-50 relative overflow-hidden">
-      {/* Enhanced Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary-50/30 via-secondary-50/20 to-accent-50/30"></div>
-      
+    <section ref={sectionRef} id="services" className="py-10 sm:py-14 lg:py-16 bg-muted/30 relative overflow-hidden">
+      {/* Background PNG Overlay */}
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+        <img
+          src="/images/Worship_ServicesPNG.png"
+          alt=""
+          className="w-full h-full object-cover opacity-90 dark:opacity-30 select-none pointer-events-none"
+        />
+      </div>
 
-      <div className="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Enhanced Section Header */}
-        <motion.div 
-          className="text-center mb-6 xs:mb-8 sm:mb-10"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
-        >
-          <motion.div 
-            className="inline-flex items-center px-3 xs:px-4 py-1.5 xs:py-2 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 rounded-full border border-primary-200/50 mb-4 xs:mb-6"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-          >
-            <Church className="w-3 h-3 xs:w-4 xs:h-4 text-primary-600 mr-1.5 xs:mr-2" />
-            <span className="text-xs xs:text-sm font-medium text-primary-700">Join Us Every Sunday</span>
-          </motion.div>
-          <motion.h2 
-            className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 xs:mb-6 leading-tight px-2"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600">
-              Worship Services
-            </span>
-          </motion.h2>
-          <motion.div 
-            className="w-24 xs:w-32 h-1 bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-500 mx-auto mb-6 xs:mb-8 rounded-full"
-            initial={{ width: 0 }}
-            whileInView={{ width: "auto" }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          ></motion.div>
-          <motion.p 
-            className="text-base xs:text-lg sm:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-4"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            Experience inspiring messages, glorious songs, and meaningful fellowship in our vibrant church.
-          </motion.p>
-        </motion.div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header */}
+        <div className="text-center mb-8 sm:mb-10 lg:mb-12">
+          <div className="reveal opacity-0 flex items-center justify-center gap-2 mb-4">
+            <Church className="w-5 h-5 text-primary" />
+            <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground font-medium">
+              Join Us Every Sunday
+            </p>
+          </div>
+          <ScrollBlurText
+            text="Worship Services"
+            className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-foreground text-balance mb-6"
+          />
+          <p className="reveal opacity-0 animation-delay-200 text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto">
+            Inspiring worship, powerful preaching, and warm fellowship every Sunday.
+          </p>
+          <div className="reveal opacity-0 animation-delay-300 w-16 h-0.5 bg-gradient-to-r from-primary via-accent to-secondary mx-auto mt-6" />
+        </div>
 
-        {/* Modern Worship Services Grid */}
-        <motion.div 
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 xs:gap-6 sm:gap-8 mb-6 xs:mb-8 sm:mb-10"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-        >
+        {/* Worship Services Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 mb-12">
           {worshipServices.map((service, index) => (
-            <motion.div 
-              key={index}
-              className="group relative bg-white/80 backdrop-blur-sm rounded-lg xs:rounded-xl p-4 xs:p-5 sm:p-6 shadow-xl border border-white/50 hover:shadow-2xl hover:bg-white/90 flex flex-col h-full overflow-hidden"
-              variants={cardVariants}
-              whileHover={{ 
-                y: -12, 
-                scale: 1.03,
-                rotateY: 2,
-                rotateX: 2,
-                transition: { 
-                  type: "spring", 
-                  stiffness: 400, 
-                  damping: 20,
-                  duration: 0.4
-                }
-              }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            <div
+              key={service.title + service.subtitle}
+              className={`reveal opacity-0 ${index === 0 ? "" : index === 1 ? "animation-delay-100" : index === 2 ? "animation-delay-200" : "animation-delay-300"} group bg-card/60 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-4.5 sm:p-5 border border-border/40 shadow-sm hover:shadow-md hover:border-primary/30 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between relative overflow-hidden`}
             >
-              {/* Animated gradient overlay on hover */}
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-br from-primary-500/0 via-secondary-500/0 to-accent-500/0 opacity-0 group-hover:opacity-10"
-                initial={false}
-                transition={{ duration: 0.5 }}
-              />
-              {/* Header Row with Icon and Status */}
-              <div className="flex items-start justify-between mb-3 xs:mb-4">
-                <motion.div 
-                  className={`w-12 h-12 xs:w-14 xs:h-14 bg-gradient-to-br ${service.color} rounded-lg flex items-center justify-center shadow-lg`}
-                  whileHover={{ 
-                    scale: 1.15, 
-                    rotate: [0, -10, 10, -10, 0],
-                    transition: { duration: 0.5 }
-                  }}
-                  transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                >
-                  <service.icon className="w-6 h-6 xs:w-7 xs:h-7 text-white" />
-                </motion.div>
-                <span className={`inline-flex items-center px-2 py-1 text-xs font-medium ${service.accentColor} text-white rounded-full`}>
-                  {service.status}
-                </span>
-              </div>
-              
-              {/* Service Title */}
-              <div className="mb-3 xs:mb-4">
-                <h3 className="text-lg xs:text-xl lg:text-2xl font-bold text-gray-900 mb-1 leading-tight">{service.title}</h3>
-                <p className="text-sm xs:text-base lg:text-lg font-medium text-gray-600">{service.subtitle}</p>
-              </div>
-
-              {/* Time and Location - Responsive Layout */}
-              <div className="grid grid-cols-1 xs:grid-cols-2 gap-2 xs:gap-3 mb-3 xs:mb-4">
-                <div className="flex items-center text-gray-700 bg-gray-50 rounded-md px-2 xs:px-3 py-1.5 xs:py-2">
-                  <Clock className="w-3 h-3 xs:w-4 xs:h-4 mr-1.5 xs:mr-2 text-primary-500 flex-shrink-0" />
-                  <span className="font-semibold text-xs xs:text-sm lg:text-base truncate">{service.time}</span>
-                </div>
-                <div className="flex items-center text-gray-700 bg-gray-50 rounded-md px-2 xs:px-3 py-1.5 xs:py-2">
-                  <MapPin className="w-3 h-3 xs:w-4 xs:h-4 mr-1.5 xs:mr-2 text-secondary-500 flex-shrink-0" />
-                  <span className="font-semibold text-xs xs:text-sm lg:text-base truncate">{service.location}</span>
-                </div>
-              </div>
-              
-              <div className="mb-3 xs:mb-4 flex-grow"></div>
-              
-              {/* Highlights - Responsive Grid Layout */}
-              <div className="grid grid-cols-1 xs:grid-cols-2 gap-1.5 xs:gap-2">
-                {service.highlights.map((highlight, highlightIndex) => (
-                  <div key={highlightIndex} className="flex items-center text-gray-700">
-                    <div className={`w-1.5 h-1.5 xs:w-2 xs:h-2 ${service.accentColor} mr-1.5 xs:mr-2 flex-shrink-0 rounded-full`}></div>
-                    <span className="text-xs xs:text-sm lg:text-base font-medium leading-tight">{highlight}</span>
+              <div className="relative z-10">
+                {/* Header Row */}
+                <div className="flex items-center justify-between mb-3">
+                  <div className="p-2.5 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors">
+                    <service.icon className="w-5 h-5 text-primary" />
                   </div>
-                ))}
+                  <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20 text-[11px] px-2.5 py-0.5">
+                    {service.status}
+                  </Badge>
+                </div>
+
+                {/* Title & Subtitle */}
+                <h3 className="font-serif text-lg sm:text-xl font-bold text-foreground mb-0.5 group-hover:text-primary transition-colors">
+                  {service.title}
+                </h3>
+                <p className="text-xs sm:text-sm font-medium text-muted-foreground mb-3">{service.subtitle}</p>
+
+                {/* Time & Location */}
+                <div className="space-y-1.5 mb-4">
+                  <div className="flex items-center text-xs text-muted-foreground bg-muted/50 rounded-lg p-2">
+                    <Clock className="w-3.5 h-3.5 mr-2 text-primary shrink-0" />
+                    <span className="font-medium truncate">{service.time}</span>
+                  </div>
+                  <div className="flex items-center text-xs text-muted-foreground bg-muted/50 rounded-lg p-2">
+                    <MapPin className="w-3.5 h-3.5 mr-2 text-secondary shrink-0" />
+                    <span className="font-medium truncate">{service.location}</span>
+                  </div>
+                </div>
+
+                {/* Highlights */}
+                <div className="space-y-1 pt-2 border-t border-border/30">
+                  {service.highlights.map((highlight, hIdx) => (
+                    <div key={hIdx} className="flex items-center text-[11px] sm:text-xs text-muted-foreground">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary mr-2 shrink-0" />
+                      <span>{highlight}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-
-              {/* Hover Effect Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-secondary-500/5 rounded-lg xs:rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
+        {/* Call to Action Banner */}
+        <div className="reveal opacity-0 animation-delay-400">
+          <div className="relative bg-gradient-to-r from-[#8B0000] via-[#700000] to-[#4A0E17] rounded-3xl p-8 sm:p-10 text-white shadow-xl overflow-hidden border border-white/20">
+            {/* Background Special-Prayers-Design.png Image Overlay */}
+            <img
+              src="/images/Special-Prayers-Design.png"
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover opacity-70 mix-blend-screen pointer-events-none select-none"
+            />
 
-        {/* Enhanced Call to Action */}
-        <div className="text-center">
-          <div className="relative bg-gradient-to-br from-primary-800 via-secondary-800 to-accent-800 rounded-xl xs:rounded-2xl p-4 xs:p-5 sm:p-6 text-white overflow-hidden">
-            {/* Background Pattern */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/10"></div>
-            
-            {/* Floating Icons - Responsive Sizing */}
-            <div className="absolute top-3 xs:top-4 right-3 xs:right-4 opacity-20">
-              <Church className="w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12" />
-            </div>
-            <div className="absolute bottom-3 xs:bottom-4 left-3 xs:left-4 opacity-20">
-              <Users className="w-6 h-6 xs:w-8 xs:h-8 sm:w-10 sm:h-10" />
-            </div>
-
-            <div className="relative z-10">
-              <h3 className="text-lg xs:text-xl sm:text-2xl font-bold mb-2 xs:mb-3 px-2">Join Us This Sunday</h3>
-              <p className="text-sm xs:text-base sm:text-lg mb-4 xs:mb-5 sm:mb-6 opacity-90 max-w-xl mx-auto leading-relaxed px-4">
-                Experience the power of worship and the Word in our welcoming church.
-              </p>
-              
-              <div className="flex flex-row gap-2 xs:gap-3 justify-center items-center px-4 max-w-2xl mx-auto flex-wrap">
-                <a 
-                  href="https://maps.app.goo.gl/FdKWAgfJd1mNDVDz8" 
-                  target="_blank" 
+            <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="text-center md:text-left">
+                <h3 className="font-serif text-2xl sm:text-3xl font-bold mb-2 text-white">Join Us This Sunday</h3>
+                <p className="text-sm sm:text-base text-white/90 max-w-xl">
+                  Experience worship and God's Word with our welcoming church family.
+                </p>
+              </div>
+              <div className="flex flex-wrap items-center justify-center gap-3 w-full md:w-auto">
+                <a
+                  href="https://maps.app.goo.gl/FdKWAgfJd1mNDVDz8"
+                  target="_blank"
                   rel="noopener noreferrer"
-                  className="group bg-white text-primary-600 px-3 xs:px-4 py-2 xs:py-2.5 rounded-lg font-semibold hover:bg-gray-50 transition-all duration-300 flex items-center justify-center shadow-lg hover:shadow-xl text-xs xs:text-sm"
+                  className="px-5 py-3 rounded-full bg-white text-[#8B0000] font-semibold text-sm hover:bg-white/90 transition-all flex items-center gap-2 shadow-md"
                 >
-                  <MapPin className="w-3 h-3 mr-1.5 flex-shrink-0" />
-                  <span className="truncate">Plan Visit</span>
-                  <ArrowRight className="w-3 h-3 ml-1.5 group-hover:translate-x-1 transition-transform flex-shrink-0" />
+                  <MapPin className="w-4 h-4 text-[#8B0000]" />
+                  <span>Plan Visit</span>
+                  <ArrowRight className="w-4 h-4 text-[#8B0000]" />
                 </a>
-                <a 
-                  href="https://www.youtube.com/@agapepentecostalchurch/streams" 
-                  target="_blank" 
+                <a
+                  href="https://www.youtube.com/@agapepentecostalchurch/streams"
+                  target="_blank"
                   rel="noopener noreferrer"
-                  className="group border-2 border-white text-white px-3 xs:px-4 py-2 xs:py-2.5 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-all duration-300 flex items-center justify-center text-xs xs:text-sm"
+                  className="px-5 py-3 rounded-full bg-white/15 backdrop-blur-md text-white font-medium text-sm hover:bg-white/25 transition-all border border-white/30 flex items-center gap-2"
                 >
-                  <Play className="w-3 h-3 mr-1.5 flex-shrink-0" />
-                  <span className="truncate">Watch Online</span>
-                  <ArrowRight className="w-3 h-3 ml-1.5 group-hover:translate-x-1 transition-transform flex-shrink-0" />
+                  <Play className="w-4 h-4" />
+                  <span>Watch Online</span>
                 </a>
-                <a 
+                <a
                   href="tel:+919390232344"
-                  className="group bg-white/20 backdrop-blur-sm border-2 border-white/50 text-white px-3 xs:px-4 py-2 xs:py-2.5 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-all duration-300 flex items-center justify-center text-xs xs:text-sm"
+                  className="px-5 py-3 rounded-full bg-white/15 backdrop-blur-md text-white font-medium text-sm hover:bg-white/25 transition-all border border-white/30 flex items-center gap-2"
                 >
-                  <Phone className="w-3 h-3 mr-1.5 flex-shrink-0" />
-                  <span className="truncate">+91 9390232344</span>
+                  <Phone className="w-4 h-4" />
+                  <span>+91 9390232344</span>
                 </a>
               </div>
             </div>
@@ -272,7 +193,5 @@ const WorshipServices = () => {
         </div>
       </div>
     </section>
-  );
-};
-
-export default WorshipServices;
+  )
+}

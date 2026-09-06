@@ -69,7 +69,7 @@
       "description": "Weekly fasting prayer gathering focused on deep spiritual growth.",
       "color": "from-primary-500 to-secondary-500",
       "status": "Active",
-      "accentColor": "bg-purple-500"
+      "accentColor": "bg-rose-700"
     },
     {
       "icon": "Users",
@@ -78,7 +78,7 @@
       "description": "Midweek prayer circle where women gather and uplift each other.",
       "color": "from-primary-500 to-secondary-500",
       "status": "Active",
-      "accentColor": "bg-purple-500"
+      "accentColor": "bg-rose-700"
     },
     {
       "icon": "BookOpen",
@@ -87,7 +87,7 @@
       "description": "Monthly five-hour intercession set for spiritual breakthrough.",
       "color": "from-primary-500 to-secondary-500",
       "status": "Active",
-      "accentColor": "bg-purple-500"
+      "accentColor": "bg-rose-700"
     },
     {
       "icon": "Heart",
@@ -96,7 +96,7 @@
       "description": "Monthly prayer time to prepare hearts for Holy Communion.",
       "color": "from-primary-500 to-secondary-500",
       "status": "Active",
-      "accentColor": "bg-purple-500"
+      "accentColor": "bg-rose-700"
     }
   ]
 }

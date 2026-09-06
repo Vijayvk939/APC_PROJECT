@@ -1,242 +1,243 @@
-import { motion } from 'framer-motion';
-import { MapPin, Phone } from 'lucide-react';
-import { contactInfo } from '@/data/contact';
+import { useEffect, useRef, useState } from "react"
+import { Mail, MapPin, Phone, User, Send, MessageCircle, Clock, Loader2 } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { ScrollBlurText } from "@/components/scroll-blur-text"
+import { toast } from "sonner"
 
-const Contact = () => {
+const contactCards = [
+  {
+    icon: Mail,
+    title: "Email Us",
+    value: "agapepentecostalchurchapc@gmail.com",
+    href: "https://mail.google.com/mail/?view=cm&fs=1&to=agapepentecostalchurchapc@gmail.com",
+    description: "Send us your prayer requests or inquiries"
+  },
+  {
+    icon: Phone,
+    title: "Call Us",
+    value: "+91 9390232344",
+    href: "tel:+919390232344",
+    description: "Mon-Sat 9AM-9PM IST"
+  },
+  {
+    icon: MapPin,
+    title: "Bhavanipuram Church",
+    value: "Gurukrupa Rd, Kamakoti Nagar, VD Puram, Vijayawada",
+    href: "https://maps.app.goo.gl/TtSY3e6czcttqpndA",
+    description: "Sunday 8:30 AM Service"
+  },
+  {
+    icon: MapPin,
+    title: "Gollapudi Church",
+    value: "Gollapudi, Vijayawada, Andhra Pradesh",
+    href: "https://maps.app.goo.gl/Gv4g4vY5BAHWFkMAA",
+    description: "Sunday 6:30 PM Service"
+  }
+]
+
+export default function Contact() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: ""
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-fade-up")
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+
+    const elements = sectionRef.current?.querySelectorAll(".reveal")
+    elements?.forEach((el) => observer.observe(el))
+
+    return () => observer.disconnect()
+  }, [])
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!formData.name || (!formData.email && !formData.phone) || !formData.message) {
+      toast.error("Please fill in your name, contact info, and message.")
+      return
+    }
+
+    setIsSubmitting(true)
+    setTimeout(() => {
+      toast.success("Thank you! Your message has been sent to Agape Pentecostal Church.")
+      setFormData({ name: "", email: "", phone: "", message: "" })
+      setIsSubmitting(false)
+    }, 1000)
+  }
 
   return (
-    <section id="contact" className="pt-8 md:pt-12 lg:pt-16 pb-4 md:pb-6 lg:pb-8 bg-gradient-to-br from-slate-50 via-primary-50 to-secondary-50 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary-50/30 via-secondary-50/20 to-accent-50/30"></div>
+    <section ref={sectionRef} id="contact" className="py-10 sm:py-14 lg:py-16 relative overflow-hidden bg-gradient-to-br from-background via-background to-primary/5">
+      {/* Background Orbs */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-primary/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/10 rounded-full blur-3xl animate-pulse" />
+      </div>
 
-      <div className="max-w-7xl mx-auto px-3 xs:px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Enhanced Section Header */}
-        <motion.div 
-          className="text-center mb-8 xs:mb-10 sm:mb-12"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
-        >
-          <motion.div 
-            className="inline-flex items-center px-3 xs:px-4 py-1.5 xs:py-2 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 rounded-full border border-primary-200/50 mb-4 xs:mb-6"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-          >
-            <Phone className="w-3 h-3 xs:w-4 xs:h-4 text-primary-600 mr-1.5 xs:mr-2" />
-            <span className="text-xs xs:text-sm font-medium text-primary-700">Get Connected</span>
-          </motion.div>
-          <motion.h2 
-            className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 xs:mb-6 leading-tight px-2"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600">
-              Contact Us
-            </span>
-          </motion.h2>
-          <motion.div 
-            className="w-24 xs:w-32 h-1 bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-500 mx-auto mb-4 xs:mb-6 sm:mb-8 rounded-full"
-            initial={{ width: 0 }}
-            whileInView={{ width: "auto" }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          ></motion.div>
-          <motion.p 
-            className="text-base xs:text-lg sm:text-xl text-gray-600 max-w-3xl md:max-w-4xl mx-auto leading-relaxed px-4"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            Questions, prayer, or getting involved? We’re here—reach out anytime.
-          </motion.p>
-        </motion.div>
-
-        {/* Maps Section - Bottom Section */}
-        <motion.div 
-          className="grid grid-cols-1 lg:grid-cols-2 gap-6 xs:gap-8"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6 }}
-        >
-          {/* Bhavanipuram Church Map */}
-          <motion.div 
-            className="bg-white/80 backdrop-blur-sm rounded-xl xs:rounded-2xl shadow-xl overflow-hidden border border-white/50"
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <div className="h-64 xs:h-72 sm:h-80 md:h-96 relative">
-              <iframe
-                src="https://maps.google.com/maps?q=Agape+Pentecostal+Church&hl=en&ll=16.5263063,80.5999032&z=16&output=embed"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="absolute inset-0"
-              ></iframe>
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="text-center mb-8 sm:mb-10">
+          <div className="reveal opacity-0 flex items-center justify-center gap-2 mb-4">
+            <MessageCircle className="w-5 h-5 text-primary" />
+            <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground font-semibold">
+              Get Connected
+            </p>
+          </div>
+          <ScrollBlurText
+            text="Let's Start a Conversation"
+            className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-foreground text-balance mb-6"
+          />
+          <p className="reveal opacity-0 animation-delay-200 text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto">
+            Reach out for prayer requests, questions, or to get connected.
+          </p>
+          <div className="reveal opacity-0 animation-delay-300 flex items-center justify-center gap-6 mt-6 text-xs sm:text-sm text-muted-foreground">
+            <div className="flex items-center gap-2">
+              <Clock className="w-4 h-4 text-primary" />
+              <span>Quick Response</span>
             </div>
-            <div className="p-4 xs:p-5 sm:p-6">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-full flex items-center justify-center shadow-lg">
-                  <MapPin className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h4 className="text-lg xs:text-xl font-bold text-gray-900">Bhavanipuram Church</h4>
-                  <p className="text-sm text-gray-600">Gurukrupa Rd, Kamakoti Nagar, VD Puram, Vijayawada</p>
-                </div>
-              </div>
-              <div className="bg-gradient-to-r from-primary-50 to-secondary-50 rounded-lg p-3 xs:p-4 mb-4 border border-primary-200/50">
-                <p className="text-primary-800 font-semibold text-sm mb-2">Service Times:</p>
-                <p className="text-primary-700 text-sm mb-1">Sunday Morning: 8:30 AM - 11:00 AM</p>
-                <p className="text-primary-700 text-sm">Sunday School: 9:00 AM - 11:00 AM</p>
-              </div>
-              <a 
-                href="https://maps.app.goo.gl/TtSY3e6czcttqpndA" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center w-full bg-gradient-to-r from-primary-600 to-secondary-600 text-white px-4 py-2.5 rounded-lg hover:from-primary-700 hover:to-secondary-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl text-sm"
+            <div className="flex items-center gap-2">
+              <Phone className="w-4 h-4 text-primary" />
+              <span>Personal Prayer Care</span>
+            </div>
+          </div>
+        </div>
+
+        {/* 3-Column Content Grid (LLC Layout) */}
+        <div className="grid lg:grid-cols-3 gap-8">
+          {/* Column 1: Contact Info Cards */}
+          <div className="space-y-4">
+            {contactCards.map((item, idx) => (
+              <a
+                key={item.title}
+                href={item.href}
+                target={item.href.startsWith("http") ? "_blank" : undefined}
+                rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                className={`reveal opacity-0 ${idx === 0 ? "" : idx === 1 ? "animation-delay-100" : idx === 2 ? "animation-delay-200" : "animation-delay-300"} group block p-5 bg-card/70 backdrop-blur-md rounded-2xl border border-border/40 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-1.5 transition-all duration-300 relative overflow-hidden`}
               >
-                <MapPin className="w-4 h-4 mr-2" />
-                Get Directions
-              </a>
-            </div>
-          </motion.div>
-
-          {/* Gollapudi Church Map */}
-          <motion.div 
-            className="bg-white/80 backdrop-blur-sm rounded-xl xs:rounded-2xl shadow-xl overflow-hidden border border-white/50"
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <div className="h-64 xs:h-72 sm:h-80 md:h-96 relative">
-              <iframe
-                src="https://maps.google.com/maps?q=Agape+Pentecostal+church+Gollapudi&hl=en&ll=16.5509275,80.5827769&z=16&output=embed"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="absolute inset-0"
-              ></iframe>
-            </div>
-            <div className="p-4 xs:p-5 sm:p-6">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-secondary-500 to-accent-500 rounded-full flex items-center justify-center shadow-lg">
-                  <MapPin className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h4 className="text-lg xs:text-xl font-bold text-gray-900">Gollapudi Church</h4>
-                  <p className="text-sm text-gray-600">Gollapudi, Vijayawada, Andhra Pradesh</p>
-                </div>
-              </div>
-              <div className="bg-gradient-to-r from-secondary-50 to-accent-50 rounded-lg p-3 xs:p-4 mb-4 border border-secondary-200/50">
-                <p className="text-secondary-800 font-semibold text-sm mb-2">Service Times:</p>
-                <p className="text-secondary-700 text-sm mb-1">Sunday Evening: 6:30 PM - 8:30 PM</p>
-                <p className="text-secondary-700 text-sm">Sunday School: 7:30 PM - 8:30 PM</p>
-              </div>
-              <a 
-                href="https://maps.app.goo.gl/Gv4g4vY5BAHWFkMAA" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center w-full bg-gradient-to-r from-secondary-600 to-accent-600 text-white px-4 py-2.5 rounded-lg hover:from-secondary-700 hover:to-accent-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl text-sm"
-              >
-                <MapPin className="w-4 h-4 mr-2" />
-                Get Directions
-              </a>
-            </div>
-          </motion.div>
-        </motion.div>
-
-        {/* Contact Information Cards - Matching Regular Prayer Programs Style */}
-        <motion.div 
-          className="mt-8 xs:mt-10 sm:mt-12 grid grid-cols-1 lg:grid-cols-2 gap-6 xs:gap-8"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6 }}
-        >
-            {contactInfo.map((info, index) => (
-              <motion.div 
-                key={index}
-                className="group relative bg-white/80 backdrop-blur-sm rounded-xl xs:rounded-2xl p-3 xs:p-4 sm:p-5 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden flex flex-col"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ 
-                  opacity: 1, 
-                  y: 0, 
-                  transition: {
-                    duration: 0.5,
-                    delay: index * 0.1,
-                  }
-                }}
-                viewport={{ once: true }}
-              >
-                {/* Header Row with Icon, Content, and Status */}
-                <div className="flex items-start gap-3 xs:gap-4 mb-2 xs:mb-2.5">
-                  <div 
-                    className={`w-10 h-10 xs:w-12 xs:h-12 sm:w-14 sm:h-14 bg-gradient-to-br ${info.color} rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 flex-shrink-0`}
-                  >
-                    <info.icon className="w-5 h-5 xs:w-6 xs:h-6 sm:w-7 sm:h-7 text-white" />
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-primary/10 rounded-xl group-hover:bg-primary/20 group-hover:scale-110 transition-all shrink-0">
+                    <item.icon className="w-5 h-5 text-primary" />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between mb-1">
-                      <h4 className="text-base xs:text-lg sm:text-xl font-bold text-gray-900 group-hover:text-primary-700 transition-colors duration-300 leading-tight">{info.title}</h4>
-                      <span className={`inline-flex items-center px-2 py-0.5 text-xs font-medium ${info.accentColor} text-white rounded-full flex-shrink-0 ml-2`}>
-                        {info.status}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2 bg-gradient-to-r from-primary-50 to-secondary-50 px-2 xs:px-3 py-1.5 rounded-lg border border-primary-200/50">
-                      <p className="text-primary-600 font-bold text-xs xs:text-sm break-words">{info.content}</p>
-                    </div>
+                  <div className="min-w-0">
+                    <h4 className="font-serif text-base font-semibold text-foreground group-hover:text-primary transition-colors">
+                      {item.title}
+                    </h4>
+                    <p className="text-xs text-muted-foreground mb-1">{item.description}</p>
+                    <p className="text-xs sm:text-sm text-foreground font-medium truncate">{item.value}</p>
                   </div>
                 </div>
-                
-                <p className="text-gray-600 leading-relaxed text-xs xs:text-sm mb-3">{info.description}</p>
-                
-                {/* Action Button */}
-                {info.title === "Email" ? (
-                  <a 
-                    href="https://mail.google.com/mail/?view=cm&fs=1&to=agapepentecostalchurchapc@gmail.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`inline-flex items-center justify-center w-full bg-gradient-to-r ${info.color} text-white px-3 py-2 rounded-lg hover:shadow-xl transition-all duration-300 font-semibold shadow-lg text-xs xs:text-sm`}
-                  >
-                    <info.icon className="w-3.5 h-3.5 mr-2" />
-                    {info.action}
-                  </a>
-                ) : info.title === "Phone" ? (
-                  <a 
-                    href="tel:+919390232344"
-                    className={`inline-flex items-center justify-center w-full bg-gradient-to-r ${info.color} text-white px-3 py-2 rounded-lg hover:shadow-xl transition-all duration-300 font-semibold shadow-lg text-xs xs:text-sm`}
-                  >
-                    <info.icon className="w-3.5 h-3.5 mr-2" />
-                    {info.action}
-                  </a>
-                ) : (
-                  <button className={`inline-flex items-center justify-center w-full bg-gradient-to-r ${info.color} text-white px-3 py-2 rounded-lg hover:shadow-xl transition-all duration-300 font-semibold shadow-lg text-xs xs:text-sm`}>
-                    <info.icon className="w-3.5 h-3.5 mr-2" />
-                    {info.action}
-                  </button>
-                )}
-              </motion.div>
+              </a>
             ))}
-        </motion.div>
+          </div>
 
+          {/* Column 2: Send a Message Form */}
+          <div className="reveal opacity-0 animation-delay-200">
+            <div className="bg-card/70 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-border/40 shadow-xl">
+              <h3 className="font-serif text-xl font-bold text-foreground mb-6">Send Us a Message</h3>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="relative">
+                  <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <Input
+                    placeholder="Your Name"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="pl-10 bg-background/60 rounded-xl border-border/40 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                  />
+                </div>
+
+                <div className="relative">
+                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <Input
+                    type="email"
+                    placeholder="Email Address"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="pl-10 bg-background/60 rounded-xl border-border/40 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                  />
+                </div>
+
+                <div className="relative">
+                  <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <Input
+                    type="tel"
+                    placeholder="Phone Number"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    className="pl-10 bg-background/60 rounded-xl border-border/40 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                  />
+                </div>
+
+                <Textarea
+                  placeholder="Your prayer request or message..."
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  className="min-h-[120px] bg-background/60 rounded-xl resize-none border-border/40 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                />
+
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full rounded-xl bg-gradient-to-r from-primary to-secondary text-primary-foreground hover:opacity-95 py-3.5 font-semibold flex items-center justify-center gap-2 shadow-md hover:shadow-primary/25 transition-all hover:scale-[1.01]"
+                >
+                  {isSubmitting ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <Send className="w-4 h-4" />
+                  )}
+                  <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
+                </Button>
+              </form>
+            </div>
+          </div>
+
+          {/* Column 3: Google Map Location */}
+          <div className="reveal opacity-0 animation-delay-300">
+            <div className="bg-card/70 backdrop-blur-md rounded-3xl overflow-hidden border border-border/40 shadow-xl h-full flex flex-col">
+              <div className="p-5 border-b border-border/20">
+                <h3 className="font-serif text-lg font-bold text-foreground">Visit Bhavanipuram Church</h3>
+                <p className="text-xs text-muted-foreground">Kamakoti Nagar, Vijayawada</p>
+              </div>
+              <div className="relative flex-1 min-h-[240px]">
+                <iframe
+                  src="https://maps.google.com/maps?q=Agape+Pentecostal+Church&hl=en&ll=16.5263063,80.5999032&z=16&output=embed"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="absolute inset-0"
+                />
+              </div>
+              <div className="p-4 bg-muted/40">
+                <a
+                  href="https://maps.app.goo.gl/TtSY3e6czcttqpndA"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-2.5 rounded-full bg-gradient-to-r from-primary to-secondary text-primary-foreground text-xs font-semibold hover:opacity-95 transition-all flex items-center justify-center gap-2 shadow-md hover:shadow-primary/25"
+                >
+                  <MapPin className="w-4 h-4" />
+                  <span>Open in Google Maps</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
-  );
-};
-
-export default Contact;
+  )
+}

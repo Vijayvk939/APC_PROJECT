@@ -1,370 +1,165 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ArrowRight, Library } from 'lucide-react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from "react"
+import { useNavigate, useLocation } from "react-router-dom"
+import { Menu, X, BookOpen, ChevronRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
-// Import images
-import logoImage from '/images/AGP.png';
+import logoImage from "/images/AGP.png"
 
-const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
-  const [isVisible, setIsVisible] = useState(true);
-  const [isPastHero, setIsPastHero] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
-
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  // Set active section based on path
-  useEffect(() => {
-    if (location.pathname === '/books') {
-      setActiveSection('books');
-      setIsPastHero(true);
-    } else {
-      // Reset to home or calculate based on scroll
-      if (window.scrollY < 100) {
-        setIsPastHero(false);
-        setActiveSection('home');
-      }
-    }
-  }, [location.pathname]);
+export default function Header() {
+  const [isOpen, setIsOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [scrollPercent, setScrollPercent] = useState(0)
+  const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
-    let ticking = false;
-
     const handleScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          try {
-            if (window && window.scrollY !== undefined) {
-              const currentScrollY = window.scrollY;
-
-              // Detect scroll direction - hide on scroll down, show on scroll up
-              if (currentScrollY > lastScrollY && currentScrollY > 100) {
-                setIsVisible(false);
-              } else if (currentScrollY < lastScrollY) {
-                setIsVisible(true);
-              }
-
-              setLastScrollY(currentScrollY);
-
-              // Check if past hero section (home section)
-              const homeSection = document.getElementById('home');
-              if (homeSection) {
-                const homeHeight = homeSection.offsetHeight;
-                setIsPastHero(currentScrollY > homeHeight * 0.8); // Past 80% of hero section
-              } else if (location.pathname !== '/') {
-                setIsPastHero(true);
-              }
-
-              // Update active section based on scroll position
-              const sections = ['home', 'services', 'events', 'leadership', 'about', 'contact'];
-              const scrollPosition = currentScrollY + 120; // Reduced offset for minimal padding
-
-              for (let i = sections.length - 1; i >= 0; i--) {
-                const section = document.getElementById(sections[i]);
-                if (section && section.offsetTop <= scrollPosition) {
-                  setActiveSection(sections[i]);
-                  break;
-                }
-              }
-            }
-          } catch (error) {
-            console.error('Error handling scroll:', error);
-          }
-
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    if (window) {
-      window.addEventListener('scroll', handleScroll, { passive: true });
-      return () => window.removeEventListener('scroll', handleScroll);
+      const scrollY = window.scrollY
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight
+      const percent = docHeight > 0 ? (scrollY / docHeight) * 100 : 0
+      setScrollPercent(percent)
+      setIsScrolled(scrollY > 20)
     }
-  }, [lastScrollY]);
 
-  const scrollToSection = (sectionId: string) => {
-    try {
-      // Close menu immediately for better UX
-      setIsMenuOpen(false);
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
-      if (location.pathname !== '/') {
-        navigate('/');
-        // Small delay to ensure navigation completes before scrolling
-        setTimeout(() => {
-          const element = document.getElementById(sectionId);
-          if (element) {
-            const headerHeight = window.innerWidth >= 640 ? 80 : 70;
-            const elementPosition = element.offsetTop - headerHeight;
-            window.scrollTo({
-              top: Math.max(0, elementPosition),
-              behavior: 'smooth'
-            });
-          }
-        }, 100);
-        return;
-      }
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, id: string) => {
+    e.preventDefault()
+    setIsOpen(false)
 
-      // Small delay to ensure menu closes before scrolling
+    if (location.pathname !== "/") {
+      navigate("/")
       setTimeout(() => {
-        const element = document.getElementById(sectionId);
-        if (element && window) {
-          // Responsive header height: 56px (h-14) on mobile, 64px (h-16) on larger screens
-          const headerHeight = window.innerWidth >= 640 ? 80 : 70;
-          const elementPosition = element.offsetTop - headerHeight;
-
-          window.scrollTo({
-            top: Math.max(0, elementPosition),
-            behavior: 'smooth'
-          });
+        const element = document.getElementById(id)
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" })
         }
-      }, 100);
-    } catch (error) {
-      console.error('Error scrolling to section:', error);
+      }, 150)
+    } else {
+      const element = document.getElementById(id)
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" })
+      }
     }
-  };
+  }
+
+  const navLinks = [
+    { id: "services", label: "Services" },
+    { id: "events", label: "Events" },
+    { id: "videos", label: "Sermons" },
+    { id: "leadership", label: "Leadership" },
+    { id: "gallery", label: "Gallery" },
+    { id: "about", label: "About" },
+    { id: "contact", label: "Contact" },
+  ]
 
   return (
-    <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isPastHero
-        ? 'backdrop-blur-md bg-white/90'
-        : 'backdrop-blur-md bg-transparent'
-        } ${isVisible ? 'translate-y-0' : '-translate-y-full'
+    <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+      {/* Minimal Top Scroll Progress Line */}
+      <div
+        className="h-[2px] bg-[#8B0000] fixed top-0 left-0 z-[60] transition-all duration-150 ease-out"
+        style={{ width: `${scrollPercent}%` }}
+      />
+
+      <nav
+        className={`w-full transition-all duration-300 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl border-b border-slate-200/50 dark:border-white/10 ${
+          isScrolled ? "py-2.5 shadow-sm" : "py-3.5"
         }`}
-    >
-      {/* Main Navigation */}
-      <div className="px-3 sm:px-4 md:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-14 sm:h-16">
-          {/* Logo */}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+          {/* Logo & Brand */}
           <button
-            onClick={() => scrollToSection('home')}
-            className="flex items-center space-x-1.5 sm:space-x-2 md:space-x-2.5 lg:space-x-3 hover:opacity-80 transition-opacity cursor-pointer text-left flex-shrink-0 min-w-0 md:flex-none"
+            onClick={(e) => handleNavClick(e, "home")}
+            className="flex items-center gap-3 shrink-0 text-left cursor-pointer group focus:outline-none"
           >
             <img
               src={logoImage}
               alt="Agape Pentecostal Church Logo"
-              className="h-9 w-9 sm:h-10 sm:w-10 md:h-8 md:w-8 lg:h-9 lg:w-9 xl:h-10 xl:w-10 flex-shrink-0"
+              className="h-9 sm:h-10 w-auto group-hover:scale-105 transition-transform duration-300"
             />
-            <div className="block text-left min-w-0 flex-1 md:flex-none overflow-hidden">
-              <h1 className={`text-xs xs:text-sm sm:text-sm md:text-xs lg:text-sm xl:text-base font-semibold text-left leading-tight truncate ${isPastHero ? 'text-gray-900' : 'text-white/80'
-                }`}>AGAPE PENTECOSTAL CHURCH</h1>
-              <p className={`text-[9px] xs:text-[10px] sm:text-xs md:text-[9px] lg:text-[10px] xl:text-xs text-left truncate ${isPastHero ? 'text-gray-700' : 'text-white/80'
-                }`}>Pastor Prasad Machavarapu</p>
+            <div className="flex flex-col">
+              <span className="font-serif text-sm sm:text-base font-bold text-slate-900 dark:text-white tracking-wider uppercase group-hover:text-[#8B0000] transition-colors leading-none">
+                AGAPE PENTECOSTAL CHURCH
+              </span>
+              <span className="text-[11px] text-slate-500 dark:text-slate-400 font-medium tracking-wide leading-tight mt-0.5">
+                Pastor Prasad Machevarapu
+              </span>
             </div>
           </button>
 
-          {/* Tablet & Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-2 lg:space-x-3 xl:space-x-4 ml-2 lg:ml-4">
-            <button
-              onClick={() => scrollToSection('services')}
-              className={`font-medium text-[10px] md:text-xs lg:text-sm transition-all duration-300 whitespace-nowrap ${activeSection === 'services'
-                ? 'text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-secondary-500'
-                : isPastHero
-                  ? 'text-gray-700 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
-                  : 'text-white/80 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
-                }`}
-            >
-              Services
-            </button>
-            <button
-              onClick={() => scrollToSection('events')}
-              className={`font-medium text-[10px] md:text-xs lg:text-sm transition-all duration-300 whitespace-nowrap ${activeSection === 'events'
-                ? 'text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-secondary-500'
-                : isPastHero
-                  ? 'text-gray-700 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
-                  : 'text-white/80 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
-                }`}
-            >
-              Events
-            </button>
-            <button
-              onClick={() => scrollToSection('leadership')}
-              className={`font-medium text-[10px] md:text-xs lg:text-sm transition-all duration-300 whitespace-nowrap ${activeSection === 'leadership'
-                ? 'text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-secondary-500'
-                : isPastHero
-                  ? 'text-gray-700 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
-                  : 'text-white/80 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
-                }`}
-            >
-              Leadership
-            </button>
-            <button
-              onClick={() => scrollToSection('about')}
-              className={`font-medium text-[10px] md:text-xs lg:text-sm transition-all duration-300 whitespace-nowrap ${activeSection === 'about'
-                ? 'text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-secondary-500'
-                : isPastHero
-                  ? 'text-gray-700 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
-                  : 'text-white/80 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
-                }`}
-            >
-              About Us
-            </button>
-            <button
-              onClick={() => scrollToSection('contact')}
-              className={`font-medium text-[10px] md:text-xs lg:text-sm transition-all duration-300 whitespace-nowrap ${activeSection === 'books'
-                ? 'text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-secondary-500'
-                : isPastHero
-                  ? 'text-gray-700 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
-                  : 'text-white/80 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
-                }`}
-            >
-              Contact Us
-            </button>
-          </nav>
+          {/* Desktop Navigation Links */}
+          <div className="hidden lg:flex items-center gap-6 xl:gap-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.id}
+                href={`#${link.id}`}
+                onClick={(e) => handleNavClick(e, link.id)}
+                className="text-xs xl:text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-[#8B0000] dark:hover:text-white transition-colors cursor-pointer"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
 
-          {/* CTA Button */}
-          {/* <div className="hidden md:flex items-center ml-2 lg:ml-3 xl:ml-4">
-            <button
+          {/* Call to Action Button */}
+          <div className="hidden md:flex items-center gap-3">
+            <Button
+              className="bg-[#8B0000] hover:bg-[#6c0000] text-white rounded-full px-5 py-2 text-xs font-semibold uppercase tracking-wider shadow-sm transition-all hover:scale-[1.02] border border-white/20 flex items-center gap-2"
               onClick={() => {
-                setIsMenuOpen(false);
-                navigate('/books');
+                navigate("/books")
+                window.scrollTo(0, 0)
               }}
-              className={`px-2 md:px-3 lg:px-4 py-1.5 xl:py-2 rounded-lg font-semibold text-[10px] md:text-xs lg:text-sm transition-all duration-200 flex items-center shadow-sm whitespace-nowrap gap-1 ${isPastHero
-                ? 'bg-gradient-to-r from-primary-600 to-secondary-600 text-white hover:from-primary-700 hover:to-secondary-700'
-                : 'border border-white text-white hover:bg-white/10'
-                }`}
             >
-              <Library className="w-3 h-3 md:w-3.5 md:h-3.5 lg:w-4 lg:h-4" />
-              Get Books
-              <ArrowRight className="w-3 h-3 md:w-3.5 md:h-3.5 lg:w-4 lg:h-4" />
-            </button>
-          </div> */}
+              <BookOpen className="w-4 h-4" />
+              <span>Get Books</span>
+            </Button>
+          </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Hamburger Menu Toggle */}
           <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`md:hidden transition-colors p-2 -mr-2 touch-manipulation ${isPastHero
-              ? 'text-gray-700 hover:text-blue-600'
-              : 'text-white hover:text-blue-300'
-              }`}
+            className="lg:hidden p-2 text-slate-700 dark:text-slate-200 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-none"
+            onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
-            {isMenuOpen ? <X className="w-6 h-6 sm:w-7 sm:h-7" /> : <Menu className="w-6 h-6 sm:w-7 sm:h-7" />}
+            {isOpen ? <X className="w-6 h-6 text-[#8B0000]" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
-        {/* Mobile Navigation */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              className={`md:hidden py-2 border-t pointer-events-auto overflow-hidden ${isPastHero ? 'border-gray-200 bg-white/95' : 'border-white/20'
-                }`}
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-            >
-              <motion.div
-                className="flex flex-col space-y-0.5 pointer-events-auto"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.2, delay: 0.05 }}
-              >
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    scrollToSection('services');
-                  }}
-                  className={`text-left px-3 py-1.5 text-xs font-medium transition-all duration-300 touch-manipulation relative z-10 cursor-pointer ${activeSection === 'services'
-                    ? 'text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-secondary-500'
-                    : isPastHero
-                      ? 'text-gray-700 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
-                      : 'text-white hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
-                    }`}
+        {/* Mobile Navigation Dropdown */}
+        {isOpen && (
+          <div className="lg:hidden py-4 px-4 sm:px-6 border-t border-slate-200/60 dark:border-white/10 bg-white/95 dark:bg-slate-950/95 backdrop-blur-2xl shadow-xl animate-fade-up">
+            <div className="flex flex-col gap-2">
+              {navLinks.map((link) => (
+                <a
+                  key={link.id}
+                  href={`#${link.id}`}
+                  className="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-[#8B0000] transition-all cursor-pointer"
+                  onClick={(e) => handleNavClick(e, link.id)}
                 >
-                  Services
-                </button>
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    scrollToSection('events');
+                  <span>{link.label}</span>
+                  <ChevronRight className="w-4 h-4 text-slate-400" />
+                </a>
+              ))}
+              <div className="pt-3 mt-1 border-t border-slate-200/60 dark:border-white/10">
+                <Button
+                  className="bg-[#8B0000] hover:bg-[#6c0000] text-white rounded-xl w-full py-3 text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-2 shadow-sm"
+                  onClick={() => {
+                    setIsOpen(false)
+                    navigate("/books")
+                    window.scrollTo(0, 0)
                   }}
-                  className={`text-left px-3 py-1.5 text-xs font-medium transition-all duration-300 touch-manipulation relative z-10 cursor-pointer ${activeSection === 'events'
-                    ? 'text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-secondary-500'
-                    : isPastHero
-                      ? 'text-gray-700 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
-                      : 'text-white hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
-                    }`}
                 >
-                  Events
-                </button>
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    scrollToSection('leadership');
-                  }}
-                  className={`text-left px-3 py-1.5 text-xs font-medium transition-all duration-300 touch-manipulation relative z-10 cursor-pointer ${activeSection === 'leadership'
-                    ? 'text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-secondary-500'
-                    : isPastHero
-                      ? 'text-gray-700 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
-                      : 'text-white hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
-                    }`}
-                >
-                  Leadership
-                </button>
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    scrollToSection('about');
-                  }}
-                  className={`text-left px-3 py-1.5 text-xs font-medium transition-all duration-300 touch-manipulation relative z-10 cursor-pointer ${activeSection === 'about'
-                    ? 'text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-secondary-500'
-                    : isPastHero
-                      ? 'text-gray-700 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
-                      : 'text-white hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
-                    }`}
-                >
-                  About Us
-                </button>
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setIsMenuOpen(false);
-                    navigate('/books');
-                  }}
-                  className={`text-left px-3 py-1.5 text-xs font-medium transition-all duration-300 touch-manipulation relative z-10 cursor-pointer flex items-center gap-2 ${activeSection === 'books'
-                    ? 'text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-secondary-500'
-                    : isPastHero
-                      ? 'text-gray-700 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
-                      : 'text-white hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500'
-                    }`}
-                >
-                  <Library className="w-4 h-4" />
+                  <BookOpen className="w-4 h-4" />
                   <span>Get Books</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-                <div className={`flex flex-col pt-2 border-t mt-1 ${isPastHero ? 'border-gray-200' : 'border-white/20'
-                  }`}>
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      scrollToSection('contact');
-                    }}
-                    className={`px-3 py-1.5 rounded-md font-semibold text-xs transition-all duration-200 flex items-center justify-center shadow-sm touch-manipulation relative z-10 cursor-pointer ${isPastHero
-                      ? 'bg-gradient-to-r from-primary-600 to-secondary-600 text-white hover:from-primary-700 hover:to-secondary-700'
-                      : 'border border-white text-white hover:bg-white/10'
-                      }`}
-                  >
-                    Contact Us
-                    <ArrowRight className="w-3 h-3 ml-1" />
-                  </button>
-                </div>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
+      </nav>
     </header>
-  );
-};
-
-export default Header;
+  )
+}

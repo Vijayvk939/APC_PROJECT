@@ -1,215 +1,172 @@
-import { useEffect, useRef, useState } from 'react';
-import { Book, Download, Library, ArrowLeft } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import { useState, useEffect, useRef } from "react"
+import { Book, Download, Library, ArrowLeft } from "lucide-react"
+import { useNavigate } from "react-router-dom"
+import { Helmet } from "react-helmet-async"
+import { ScrollBlurText } from "@/components/scroll-blur-text"
+import { ScrollToTopOnLoad } from "@/components/scroll-to-top-on-load"
+import { Button } from "@/components/ui/button"
+import { toast } from "sonner"
 
 interface BookData {
-    id: string;
-    title: string;
-    author: string;
-    description: string;
-    coverColor: string;
+  id: string
+  title: string
+  author: string
+  description: string
+  coverColor: string
 }
 
 const books: BookData[] = [
-    {
-        id: '1',
-        title: 'The Holy Bible (KJV)',
-        author: 'Multiple Authors',
-        description: 'The classic King James text treasured for its beauty and enduring influence.',
-        coverColor: 'bg-red-900',
-    },
-    {
-        id: '2',
-        title: 'Pilgrim\'s Progress',
-        author: 'John Bunyan',
-        description: 'John Bunyan’s beloved allegory that charts the soul’s journey toward heaven.',
-        coverColor: 'bg-blue-900',
-    },
-    {
-        id: '3',
-        title: 'Mere Christianity',
-        author: 'C.S. Lewis',
-        description: 'C.S. Lewis distills the heart of Christian belief with clarity and wit.',
-        coverColor: 'bg-amber-800',
-    },
-    {
-        id: '4',
-        title: 'The Purpose Driven Life',
-        author: 'Rick Warren',
-        description: 'Rick Warren guides readers through forty days of purpose-centered devotion.',
-        coverColor: 'bg-emerald-800',
-    },
-    {
-        id: '5',
-        title: 'The Cost of Discipleship',
-        author: 'Dietrich Bonhoeffer',
-        description: 'Bonhoeffer’s piercing call to costly grace and wholehearted obedience.',
-        coverColor: 'bg-slate-800',
-    },
-    {
-        id: '6',
-        title: 'Knowing God',
-        author: 'J.I. Packer',
-        description: 'J.I. Packer’s classic invitation to deeper, more intimate knowledge of God.',
-        coverColor: 'bg-indigo-900',
-    }
-];
+  {
+    id: "1",
+    title: "The Holy Bible (KJV)",
+    author: "Multiple Authors",
+    description: "The classic King James text treasured for its beauty and enduring influence.",
+    coverColor: "bg-primary",
+  },
+  {
+    id: "2",
+    title: "Pilgrim's Progress",
+    author: "John Bunyan",
+    description: "John Bunyan’s beloved allegory that charts the soul’s journey toward heaven.",
+    coverColor: "bg-secondary",
+  },
+  {
+    id: "3",
+    title: "Mere Christianity",
+    author: "C.S. Lewis",
+    description: "C.S. Lewis distills the heart of Christian belief with clarity and wit.",
+    coverColor: "bg-accent",
+  },
+  {
+    id: "4",
+    title: "The Purpose Driven Life",
+    author: "Rick Warren",
+    description: "Rick Warren guides readers through forty days of purpose-centered devotion.",
+    coverColor: "bg-primary",
+  },
+  {
+    id: "5",
+    title: "The Cost of Discipleship",
+    author: "Dietrich Bonhoeffer",
+    description: "Bonhoeffer’s piercing call to costly grace and wholehearted obedience.",
+    coverColor: "bg-foreground text-background",
+  },
+  {
+    id: "6",
+    title: "Knowing God",
+    author: "J.I. Packer",
+    description: "J.I. Packer’s classic invitation to deeper, more intimate knowledge of God.",
+    coverColor: "bg-secondary",
+  },
+]
 
-const Books = () => {
-    const [toastMessage, setToastMessage] = useState('');
-    const [isToastVisible, setIsToastVisible] = useState(false);
-    const hideToastTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
-    const navigate = useNavigate();
+export default function Books() {
+  const navigate = useNavigate()
+  const sectionRef = useRef<HTMLDivElement>(null)
 
-    useEffect(() => {
-        return () => {
-            if (hideToastTimeout.current) {
-                clearTimeout(hideToastTimeout.current);
-            }
-        };
-    }, []);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-fade-up")
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
 
-    const showToast = (message: string) => {
-        setToastMessage(message);
-        setIsToastVisible(true);
+    const elements = sectionRef.current?.querySelectorAll(".reveal")
+    elements?.forEach((el) => observer.observe(el))
 
-        if (hideToastTimeout.current) {
-            clearTimeout(hideToastTimeout.current);
-        }
+    return () => observer.disconnect()
+  }, [])
 
-        hideToastTimeout.current = setTimeout(() => {
-            setIsToastVisible(false);
-        }, 3000);
-    };
+  const handleDownload = (bookTitle: string) => {
+    toast.success(`"${bookTitle}" download initiated!`)
+  }
 
-    const handleDownload = (bookTitle: string) => {
-        // In a real application, this would trigger a file download
-        showToast(`"${bookTitle}" downloaded successfully.`);
-    };
+  return (
+    <>
+      <Helmet>
+        <title>Spiritual Library | Agape Pentecostal Church</title>
+        <link rel="canonical" href="https://www.agapepentecostalchurch.com/books" />
+        {typeof window !== "undefined" && window.location.hostname.includes("vercel.app") && (
+          <meta name="robots" content="noindex, nofollow" />
+        )}
+      </Helmet>
 
-    return (
-        <>
-            <Helmet>
-                <link rel="canonical" href="https://www.agapepentecostalchurch.com/books" />
-                {typeof window !== 'undefined' && window.location.hostname.includes('vercel.app') && (
-                  <meta name="robots" content="noindex, nofollow" />
-                )}
-            </Helmet>
-            <div className="pt-24 pb-16 min-h-screen bg-gradient-to-b from-primary-50 via-white to-secondary-50">
-            <div className="container mx-auto px-4">
-                {isToastVisible && (
-                    <div className="fixed top-24 right-6 z-50">
-                        <div className="flex items-start space-x-3 rounded-xl bg-primary-900 text-white px-4 py-3 shadow-2xl border border-primary-600/50">
-                            <Download className="w-4 h-4 mt-0.5 text-secondary-300" />
-                            <span className="text-sm font-medium">{toastMessage}</span>
-                        </div>
-                    </div>
-                )}
+      <ScrollToTopOnLoad />
 
-                <motion.div 
-                    className="text-center mb-12 relative"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.4 }}
-                    transition={{ duration: 0.6 }}
-                >
-                    <button
-                        onClick={() => navigate(-1)}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/80 backdrop-blur-md border border-primary-100 text-primary-700 text-sm font-semibold shadow-md hover:shadow-lg hover:bg-white transition-all duration-200 absolute right-0 top-0"
-                    >
-                        <ArrowLeft className="w-4 h-4" />
-                        Back
-                    </button>
-                    <motion.div
-                        className="inline-flex items-center px-3 xs:px-4 py-1.5 xs:py-2 mb-4 rounded-full bg-gradient-to-r from-primary-500/10 to-secondary-500/10 border border-primary-200/50 shadow-lg shadow-primary-900/5"
-                        initial={{ scale: 0.9, opacity: 0 }}
-                        whileInView={{ scale: 1, opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.4, delay: 0.1 }}
-                    >
-                        <Library className="w-3 h-3 xs:w-4 xs:h-4 text-primary-600 mr-1.5 xs:mr-2" />
-                        <span className="text-xs xs:text-sm font-medium text-primary-700">Featured Collection</span>
-                    </motion.div>
-                    <motion.h1
-                        className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600 mb-4"
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.15 }}
-                    >
-                        Spiritual Library
-                    </motion.h1>
-                    <motion.div
-                        className="w-24 xs:w-32 h-1 mx-auto mb-4 rounded-full bg-gradient-to-r from-primary-400 via-primary-500 to-secondary-500"
-                        initial={{ width: 0 }}
-                        whileInView={{ width: '6rem' }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.7, delay: 0.2 }}
-                    />
-                    <motion.p
-                        className="text-lg text-dark-500 max-w-2xl mx-auto"
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.25 }}
-                    >
-                        Explore spiritual books and resources to fuel your faith journey.
-                    </motion.p>
-                </motion.div>
+      <div ref={sectionRef} className="pt-28 pb-20 min-h-screen bg-background text-foreground relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Header Bar */}
+          <div className="flex justify-between items-center mb-8">
+            <Button
+              variant="outline"
+              onClick={() => navigate("/")}
+              className="rounded-full px-5 flex items-center gap-2"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Back to Home</span>
+            </Button>
+          </div>
 
-                <motion.div 
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.2 }}
-                    variants={{
-                        hidden: {},
-                        visible: {
-                            transition: {
-                                staggerChildren: 0.1,
-                                delayChildren: 0.2,
-                            },
-                        },
-                    }}
-                >
-                    {books.map((book, index) => (
-                        <motion.div 
-                            key={book.id} 
-                            className="bg-white/80 backdrop-blur-sm border border-primary-100 rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col"
-                            custom={index}
-                            variants={{
-                                hidden: { opacity: 0, y: 30, scale: 0.98 },
-                                visible: { opacity: 1, y: 0, scale: 1 },
-                            }}
-                            transition={{ type: 'spring', stiffness: 120, damping: 18 }}
-                        >
-                            <div className={`h-64 ${book.coverColor} flex items-center justify-center p-6 relative group`}>
-                                <Book className="w-20 h-20 text-white/80 group-hover:scale-110 transition-transform duration-300" />
-                                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-300" />
-                            </div>
-
-                            <div className="p-6 flex-1 flex flex-col">
-                                <h3 className="text-xl font-bold text-gray-900 mb-1">{book.title}</h3>
-                                <p className="text-sm text-primary-600 font-medium mb-3">{book.author}</p>
-                                <p className="text-dark-500 text-sm mb-6 flex-1">{book.description}</p>
-
-                                <button
-                                    onClick={() => handleDownload(book.title)}
-                                    className="w-full flex items-center justify-center space-x-2 bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-700 hover:to-secondary-700 text-white py-2.5 px-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
-                                >
-                                    <Download className="w-4 h-4" />
-                                    <span>Download PDF</span>
-                                </button>
-                            </div>
-                        </motion.div>
-                    ))}
-                </motion.div>
+          {/* Section Heading */}
+          <div className="text-center mb-16">
+            <div className="reveal opacity-0 flex items-center justify-center gap-2 mb-4">
+              <Library className="w-5 h-5 text-primary" />
+              <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground font-medium">
+                Featured Collection
+              </p>
             </div>
-        </div>
-        </>
-    );
-};
+            <ScrollBlurText
+              text="Spiritual Library & Books"
+              className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium text-foreground text-balance mb-6"
+            />
+            <p className="reveal opacity-0 animation-delay-200 text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
+              Explore spiritual books and resources to fuel your faith journey.
+            </p>
+            <div className="reveal opacity-0 animation-delay-300 w-16 h-0.5 bg-gradient-to-r from-primary via-accent to-secondary mx-auto mt-6" />
+          </div>
 
-export default Books;
+          {/* Book Cards Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {books.map((book, idx) => (
+              <div
+                key={book.id}
+                className={`reveal opacity-0 ${idx % 3 === 1 ? "animation-delay-100" : idx % 3 === 2 ? "animation-delay-200" : ""} group bg-card/60 backdrop-blur-sm rounded-3xl overflow-hidden border border-border/40 shadow-lg hover:shadow-2xl hover:border-primary/40 hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between`}
+              >
+                {/* Book Cover */}
+                <div className={`h-52 ${book.coverColor} flex items-center justify-center p-6 relative`}>
+                  <Book className="w-20 h-20 text-white/90 group-hover:scale-110 transition-transform duration-500" />
+                </div>
+
+                {/* Content */}
+                <div className="p-6 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h3 className="font-serif text-xl font-bold text-foreground mb-1 group-hover:text-primary transition-colors">
+                      {book.title}
+                    </h3>
+                    <p className="text-xs font-semibold text-primary mb-3">{book.author}</p>
+                    <p className="text-xs sm:text-sm text-muted-foreground mb-6 leading-relaxed">
+                      {book.description}
+                    </p>
+                  </div>
+
+                  <Button
+                    onClick={() => handleDownload(book.title)}
+                    className="w-full rounded-2xl bg-primary text-primary-foreground hover:bg-primary/90 py-3 font-semibold text-sm flex items-center justify-center gap-2 shadow-md"
+                  >
+                    <Download className="w-4 h-4" />
+                    <span>Download PDF</span>
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </>
+  )
+}

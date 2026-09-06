@@ -165,10 +165,10 @@ const SpecialPrayerCardCarousel = React.forwardRef<HTMLDivElement, SpecialPrayer
       }
 
       return {
-        transform: `translateX(${position * 280}px) translateZ(${isActive ? 0 : -200}px) rotateY(${position * -8}deg) scale(${isActive ? 1.1 : 0.85})`,
-        opacity: isActive ? 1 : 0.6,
+        transform: `translateX(${position * 260}px) translateZ(${isActive ? 0 : -180}px) rotateY(${position * -6}deg) scale(${isActive ? 1.04 : 0.86})`,
+        opacity: isActive ? 1 : 0.65,
         zIndex: isActive ? 20 : 10 - Math.abs(diff),
-        filter: isActive ? 'brightness(1)' : 'brightness(0.7)',
+        filter: isActive ? 'brightness(1)' : 'brightness(0.65)',
         pointerEvents: isActive ? 'auto' : 'none',
       };
     };
@@ -181,23 +181,23 @@ const SpecialPrayerCardCarousel = React.forwardRef<HTMLDivElement, SpecialPrayer
         onMouseLeave={() => setIsPaused(false)}
         {...props}
       >
-        {/* 3D Carousel Container - Matching project pattern */}
+        {/* 3D Carousel Container */}
         <div 
-          className="relative flex items-center justify-center h-[500px] sm:h-[600px] lg:h-[700px] overflow-visible py-4"
+          className={cn("relative flex items-center justify-center overflow-visible my-2", cardHeight)}
           style={{
             perspective: '2000px',
             perspectiveOrigin: 'center center',
           }}
         >
-          <div className="relative w-full h-full flex items-center justify-center pt-4">
+          <div className="relative w-full h-full flex items-center justify-center">
             {cards.map((card, index) => (
               <div
                 key={index}
                 className="absolute transition-all duration-700 ease-out rounded-3xl overflow-hidden"
                 style={{
                   ...getCardStyle(index),
-                  width: '95vw',
-                  maxWidth: '500px',
+                  width: '88vw',
+                  maxWidth: '440px',
                   height: '100%',
                 }}
               >
@@ -205,7 +205,7 @@ const SpecialPrayerCardCarousel = React.forwardRef<HTMLDivElement, SpecialPrayer
                   {...card}
                   cardIndex={index}
                   isActive={index === currentIndex}
-                  className={cardHeight}
+                  className="w-full h-full"
                 />
               </div>
             ))}
