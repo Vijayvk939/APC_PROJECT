@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, BookOpen } from "lucide-react"
 
 import bgVideo from "/images/APC_DASHBOARD-BG.mp4"
-import bgPastorImg from "/images/Prasad_DAS_Banner.jpg"
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -70,7 +69,6 @@ export default function Hero() {
             loop
             muted
             playsInline
-            poster={bgPastorImg}
             className="w-full h-full object-cover object-center"
           >
             <source src={bgVideo} type="video/mp4" />
@@ -79,7 +77,7 @@ export default function Hero() {
 
         {/* Clean Vignette Overlay (Left to Right) */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/45 to-transparent pointer-events-none" />
-        
+
         {/* Subtle Bottom Shade */}
         <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
       </div>
