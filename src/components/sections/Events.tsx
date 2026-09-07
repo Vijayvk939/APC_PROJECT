@@ -5,12 +5,16 @@ import { Badge } from "@/components/ui/badge"
 import { SpecialPrayerCardCarousel } from "@/components/features/events"
 import { specialPrayerEvents, regularPrograms } from "@/data/events"
 import pastorImage from "/images/SamuelPrasad1.jpg"
+import prayerEventsBg from "/images/Prayer_Events&Programs.png"
+import aboutBg from "/images/About.png"
+
+const specialPrayersBg = prayerEventsBg
 
 const pastorInfo = {
-  name: "Pastor Prasad Machavarapu",
+  name: "Pastor Samuel Prasad Machavarapu",
   role: "SENIOR PASTOR & VISIONARY LEADER",
   image: pastorImage,
-  bio: "Pastor Prasad Machavarapu has been faithfully serving the Agape Pentecostal Church in Vijayawada with passion, wisdom, and unwavering commitment to God's Word. His heart for people and dedication to biblical truth has helped countless individuals grow in their faith journey through powerful messages and glorious worship.",
+  bio: "Pastor Samuel Prasad Machavarapu has been faithfully serving the Agape Pentecostal Church in Vijayawada with passion, wisdom, and unwavering commitment to God's Word. His heart for people and dedication to biblical truth has helped countless individuals grow in their faith journey through powerful messages and glorious worship.",
   education: [
     "Diploma in Theology - World Bible College",
     "Advanced Biblical Studies & Ministry Training",
@@ -56,7 +60,7 @@ export default function Events() {
       {/* Background PNG Overlay (Full Width) */}
       <div className="absolute inset-x-0 top-0 w-full pointer-events-none z-0 overflow-hidden">
         <img
-          src="/images/Prayer_Events&Programs.png"
+          src={prayerEventsBg}
           alt=""
           className="w-full h-auto min-w-full object-cover opacity-65 dark:opacity-25 select-none pointer-events-none"
         />
@@ -126,7 +130,7 @@ export default function Events() {
         {/* Background Image Overlay (Full Width) */}
         <div className="absolute inset-0 pointer-events-none select-none z-0">
           <img
-            src="/images/Special-Prayers-Design.png"
+            src={specialPrayersBg}
             alt=""
             className="w-full h-full object-cover min-w-full opacity-95 select-none pointer-events-none"
           />
@@ -162,7 +166,7 @@ export default function Events() {
         {/* Section Background Overlay: About.png */}
         <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
           <img
-            src="/images/About.png"
+            src={aboutBg}
             alt=""
             className="w-full h-full object-cover opacity-85 dark:opacity-25 select-none pointer-events-none"
           />
@@ -213,7 +217,7 @@ export default function Events() {
 
                   {/* Name (Two-tone) */}
                   <h3 className="font-serif text-xl sm:text-2xl font-bold tracking-tight mb-1">
-                    <span className="block text-primary font-serif">Pastor Prasad</span>
+                    <span className="block text-primary font-serif">Pastor Samuel Prasad</span>
                     <span className="block text-foreground font-serif">Machavarapu</span>
                   </h3>
 

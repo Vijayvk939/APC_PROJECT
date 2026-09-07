@@ -4,6 +4,8 @@ import { ScrollBlurText } from "@/components/scroll-blur-text"
 import { Badge } from "@/components/ui/badge"
 import { videos } from "@/data/videos"
 
+import transformativeBg from "/images/Transformative_Messages.png"
+
 export default function VideoSection() {
   const sectionRef = useRef<HTMLElement>(null)
 
@@ -30,7 +32,7 @@ export default function VideoSection() {
       {/* Background Image Overlay */}
       <div className="absolute inset-0 pointer-events-none select-none z-0">
         <img
-          src="/images/Transformative_Messages.png"
+          src={transformativeBg}
           alt=""
           className="w-full h-full object-cover min-w-full opacity-70 select-none pointer-events-none"
         />

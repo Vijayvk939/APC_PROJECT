@@ -70,47 +70,47 @@ export default function About() {
         </div>
 
         {/* Content Grid */}
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12 sm:mb-16">
           {/* Story & Mission text */}
           <div className="space-y-6">
-            <div className="reveal opacity-0 bg-card/60 backdrop-blur-sm rounded-3xl p-8 border border-border/40 shadow-lg">
-              <h3 className="font-serif text-2xl font-bold text-foreground mb-4">Our Journey</h3>
-              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-4">
+            <div className="reveal opacity-0 bg-card/60 backdrop-blur-sm rounded-3xl p-5 sm:p-8 border border-border/40 shadow-lg">
+              <h3 className="font-serif text-xl sm:text-2xl font-bold text-foreground mb-3 sm:mb-4">Our Journey</h3>
+              <p className="text-xs sm:text-base text-muted-foreground leading-relaxed mb-3 sm:mb-4">
                 Founded in 2006, Agape Pentecostal Church began as a small gathering of believers with a big vision: to create a place where God's love could transform lives and build a stronger community. What started with just a few families has grown into a vibrant congregation of hundreds.
               </p>
-              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+              <p className="text-xs sm:text-base text-muted-foreground leading-relaxed">
                 Today, we continue to be guided by the same principles that founded our church - unconditional love, authentic worship, and a commitment to serving both our congregation and broader community.
               </p>
             </div>
 
-            <div className="reveal opacity-0 animation-delay-200 bg-gradient-to-br from-primary via-accent to-secondary rounded-3xl p-8 text-primary-foreground shadow-xl">
-              <h3 className="font-serif text-2xl font-bold mb-3">Our Mission</h3>
-              <p className="text-sm sm:text-base leading-relaxed opacity-95">
+            <div className="reveal opacity-0 animation-delay-200 bg-gradient-to-br from-primary via-accent to-secondary rounded-3xl p-5 sm:p-8 text-primary-foreground shadow-xl">
+              <h3 className="font-serif text-xl sm:text-2xl font-bold mb-3">Our Mission</h3>
+              <p className="text-xs sm:text-base leading-relaxed opacity-95">
                 To create a welcoming church where people can encounter God's love, grow in their faith, and discover their divine purpose through meaningful relationships and transformative worship experiences.
               </p>
             </div>
 
-            <div className="reveal opacity-0 animation-delay-300 bg-card/60 backdrop-blur-sm rounded-3xl p-8 border border-border/40 shadow-lg space-y-4">
-              <h3 className="font-serif text-xl font-bold text-foreground flex items-center gap-2">
-                <MapPin className="w-5 h-5 text-primary" />
+            <div className="reveal opacity-0 animation-delay-300 bg-card/60 backdrop-blur-sm rounded-3xl p-5 sm:p-8 border border-border/40 shadow-lg space-y-4">
+              <h3 className="font-serif text-lg sm:text-xl font-bold text-foreground flex items-center gap-2">
+                <MapPin className="w-5 h-5 text-primary shrink-0" />
                 <span>Our Location</span>
               </h3>
-              <p className="text-xs sm:text-sm text-muted-foreground">
+              <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
                 Gurukrupa Rd, Kamakoti Nagar, VD Puram, Vijayawada, Andhra Pradesh 520012
               </p>
-              <div className="flex flex-wrap gap-3 pt-2">
+              <div className="flex flex-col sm:flex-row gap-3 pt-2">
                 <a
                   href="https://maps.app.goo.gl/FzWhZsGQTtNoy49LA"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-5 py-2.5 rounded-full bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 transition-all flex items-center gap-2 shadow-md"
+                  className="w-full sm:w-auto px-5 py-2.5 rounded-full bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 transition-all flex items-center justify-center gap-2 shadow-md"
                 >
                   <MapPin className="w-4 h-4" />
                   <span>Get Directions</span>
                 </a>
                 <a
                   href="tel:+919390232344"
-                  className="px-5 py-2.5 rounded-full bg-muted text-muted-foreground text-xs font-semibold hover:bg-muted/80 transition-all flex items-center gap-2"
+                  className="w-full sm:w-auto px-5 py-2.5 rounded-full bg-muted text-muted-foreground text-xs font-semibold hover:bg-muted/80 transition-all flex items-center justify-center gap-2"
                 >
                   <Phone className="w-4 h-4" />
                   <span>Call Us</span>
@@ -122,31 +122,31 @@ export default function About() {
           {/* Image & Core Values */}
           <div className="space-y-6">
             <div className="reveal opacity-0 rounded-3xl overflow-hidden shadow-2xl border border-border/40 relative">
-              <img src={churchImage} alt="Church" className="w-full h-80 sm:h-96 object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6 text-background flex justify-between items-center">
+              <img src={churchImage} alt="Church" className="w-full h-64 sm:h-80 md:h-96 object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/30 to-transparent" />
+              <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 text-background flex justify-between items-center gap-2">
                 <div>
-                  <p className="font-serif text-2xl font-bold">20+ Years</p>
-                  <p className="text-xs text-background/80">Serving God & People</p>
+                  <p className="font-serif text-lg sm:text-2xl font-bold">20+ Years</p>
+                  <p className="text-[10px] sm:text-xs text-background/80">Serving God & People</p>
                 </div>
-                <div>
-                  <p className="font-serif text-2xl font-bold">500+ Members</p>
-                  <p className="text-xs text-background/80">Vibrant Congregation</p>
+                <div className="text-right">
+                  <p className="font-serif text-lg sm:text-2xl font-bold">500+ Members</p>
+                  <p className="text-[10px] sm:text-xs text-background/80">Vibrant Congregation</p>
                 </div>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
               {values.map((val, idx) => (
                 <div
                   key={val.title}
-                  className={`reveal opacity-0 ${idx === 0 ? "" : idx === 1 ? "animation-delay-100" : idx === 2 ? "animation-delay-200" : "animation-delay-300"} bg-card/60 backdrop-blur-sm rounded-2xl p-5 border border-border/40 shadow-md flex items-start gap-3`}
+                  className={`reveal opacity-0 ${idx === 0 ? "" : idx === 1 ? "animation-delay-100" : idx === 2 ? "animation-delay-200" : "animation-delay-300"} bg-card/60 backdrop-blur-sm rounded-2xl p-4 sm:p-5 border border-border/40 shadow-md flex items-start gap-3`}
                 >
-                  <div className="p-2.5 rounded-xl bg-primary/10 text-primary shrink-0">
-                    <val.icon className="w-5 h-5" />
+                  <div className="p-2 sm:p-2.5 rounded-xl bg-primary/10 text-primary shrink-0">
+                    <val.icon className="w-4 sm:w-5 h-4 sm:h-5" />
                   </div>
                   <div>
-                    <h4 className="font-serif font-bold text-foreground text-base mb-1">{val.title}</h4>
+                    <h4 className="font-serif font-bold text-foreground text-sm sm:text-base mb-1">{val.title}</h4>
                     <p className="text-xs text-muted-foreground leading-relaxed">{val.description}</p>
                   </div>
                 </div>

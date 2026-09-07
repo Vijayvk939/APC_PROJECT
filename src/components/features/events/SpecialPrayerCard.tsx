@@ -164,8 +164,10 @@ const SpecialPrayerCardCarousel = React.forwardRef<HTMLDivElement, SpecialPrayer
         return { display: 'none' };
       }
 
+      const offset = typeof window !== 'undefined' && window.innerWidth < 640 ? 140 : 260;
+
       return {
-        transform: `translateX(${position * 260}px) translateZ(${isActive ? 0 : -180}px) rotateY(${position * -6}deg) scale(${isActive ? 1.04 : 0.86})`,
+        transform: `translateX(${position * offset}px) translateZ(${isActive ? 0 : -180}px) rotateY(${position * -6}deg) scale(${isActive ? 1.04 : 0.86})`,
         opacity: isActive ? 1 : 0.65,
         zIndex: isActive ? 20 : 10 - Math.abs(diff),
         filter: isActive ? 'brightness(1)' : 'brightness(0.65)',

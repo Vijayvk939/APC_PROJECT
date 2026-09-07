@@ -3,6 +3,9 @@ import { Church, Users, Clock, MapPin, ArrowRight, Play, Phone } from "lucide-re
 import { ScrollBlurText } from "@/components/scroll-blur-text"
 import { Badge } from "@/components/ui/badge"
 
+import worshipServicesBg from "/images/Worship_ServicesPNG.png"
+import specialPrayersBg from "/images/Prayer_Events&Programs.png"
+
 const worshipServices = [
   {
     icon: Church,
@@ -68,7 +71,7 @@ export default function WorshipServices() {
       {/* Background PNG Overlay */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         <img
-          src="/images/Worship_ServicesPNG.png"
+          src={worshipServicesBg}
           alt=""
           className="w-full h-full object-cover opacity-90 dark:opacity-30 select-none pointer-events-none"
         />
@@ -148,9 +151,9 @@ export default function WorshipServices() {
           <div className="relative bg-gradient-to-r from-[#8B0000] via-[#700000] to-[#4A0E17] rounded-3xl p-8 sm:p-10 text-white shadow-xl overflow-hidden border border-white/20">
             {/* Background Special-Prayers-Design.png Image Overlay */}
             <img
-              src="/images/Special-Prayers-Design.png"
+              src={specialPrayersBg}
               alt=""
-              className="absolute inset-0 w-full h-full object-cover opacity-70 mix-blend-screen pointer-events-none select-none"
+              className="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-screen pointer-events-none select-none"
             />
 
             <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
@@ -160,12 +163,12 @@ export default function WorshipServices() {
                   Experience worship and God's Word with our welcoming church family.
                 </p>
               </div>
-              <div className="flex flex-wrap items-center justify-center gap-3 w-full md:w-auto">
+              <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 w-full md:w-auto">
                 <a
                   href="https://maps.app.goo.gl/FdKWAgfJd1mNDVDz8"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-5 py-3 rounded-full bg-white text-[#8B0000] font-semibold text-sm hover:bg-white/90 transition-all flex items-center gap-2 shadow-md"
+                  className="w-full sm:w-auto px-5 py-3 rounded-full bg-white text-[#8B0000] font-semibold text-sm hover:bg-white/90 transition-all flex items-center justify-center gap-2 shadow-md"
                 >
                   <MapPin className="w-4 h-4 text-[#8B0000]" />
                   <span>Plan Visit</span>
@@ -175,14 +178,14 @@ export default function WorshipServices() {
                   href="https://www.youtube.com/@agapepentecostalchurch/streams"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-5 py-3 rounded-full bg-white/15 backdrop-blur-md text-white font-medium text-sm hover:bg-white/25 transition-all border border-white/30 flex items-center gap-2"
+                  className="w-full sm:w-auto px-5 py-3 rounded-full bg-white/15 backdrop-blur-md text-white font-medium text-sm hover:bg-white/25 transition-all border border-white/30 flex items-center justify-center gap-2"
                 >
                   <Play className="w-4 h-4" />
                   <span>Watch Online</span>
                 </a>
                 <a
                   href="tel:+919390232344"
-                  className="px-5 py-3 rounded-full bg-white/15 backdrop-blur-md text-white font-medium text-sm hover:bg-white/25 transition-all border border-white/30 flex items-center gap-2"
+                  className="w-full sm:w-auto px-5 py-3 rounded-full bg-white/15 backdrop-blur-md text-white font-medium text-sm hover:bg-white/25 transition-all border border-white/30 flex items-center justify-center gap-2"
                 >
                   <Phone className="w-4 h-4" />
                   <span>+91 9390232344</span>
