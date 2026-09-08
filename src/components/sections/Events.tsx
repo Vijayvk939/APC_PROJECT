@@ -1,14 +1,13 @@
 import { useEffect, useRef } from "react"
-import { Calendar, Clock, Church, Heart, Users, BookOpen, Phone, MapPin, Megaphone, TrendingUp } from "lucide-react"
+import { Clock, Heart, Users, BookOpen, Phone, MapPin, Megaphone, TrendingUp } from "lucide-react"
 import { ScrollBlurText } from "@/components/scroll-blur-text"
 import { Badge } from "@/components/ui/badge"
 import { SpecialPrayerCardCarousel } from "@/components/features/events"
 import { specialPrayerEvents, regularPrograms } from "@/data/events"
-import pastorImage from "/images/SamuelPrasad1.jpg"
-import prayerEventsBg from "/images/Prayer_Events&Programs.png"
-import aboutBg from "/images/About.png"
-
-const specialPrayersBg = prayerEventsBg
+import pastorImage from "/images/SamuelPrasad1.webp"
+import prayerEventsBg from "/images/Design/Prayer_Events&Programs.webp"
+import specialPrayersBg from "/images/Design/Special_Events.webp"
+import aboutBg from "/images/About.webp"
 
 const pastorInfo = {
   name: "Pastor Samuel Prasad Machavarapu",
@@ -126,24 +125,26 @@ export default function Events() {
       </div>
 
       {/* Special Prayer Events Carousel - Styled with Special-Prayers-Design.png */}
-      <div className="w-full bg-[#1a080c] text-white py-12 sm:py-16 relative overflow-hidden mb-10">
-        {/* Background Image Overlay (Full Width) */}
+      <div className="w-full bg-[#120306] text-white py-14 sm:py-20 relative overflow-hidden mb-10">
+        {/* Background Image Overlay (Full Width with Light Black Layer) */}
         <div className="absolute inset-0 pointer-events-none select-none z-0">
           <img
             src={specialPrayersBg}
             alt=""
-            className="w-full h-full object-cover min-w-full opacity-95 select-none pointer-events-none"
+            className="w-full h-full object-cover min-w-full opacity-100 select-none pointer-events-none"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#1a080c]/50 via-transparent to-[#1a080c]/70 pointer-events-none" />
+          {/* Light Black Overlay Layer */}
+          <div className="absolute inset-0 bg-black/35 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#120306]/50 via-transparent to-[#120306]/70 pointer-events-none" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-10">
-            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold mb-3 text-white">
+          <div className="text-center mb-10 sm:mb-12">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold mb-2.5 text-white tracking-tight">
               Special Prayer Events
             </h2>
-            <div className="w-16 h-0.5 bg-gradient-to-r from-primary via-accent to-secondary mx-auto mb-4" />
-            <p className="text-sm sm:text-base text-white/90 max-w-2xl mx-auto drop-shadow-sm">
+            <div className="w-12 h-0.5 bg-[#B22222] mx-auto mb-4 rounded-full" />
+            <p className="text-xs sm:text-sm md:text-base text-white/90 max-w-2xl mx-auto font-sans leading-relaxed">
               Extended prayer gatherings focused on faith and breakthrough.
             </p>
           </div>
@@ -152,10 +153,10 @@ export default function Events() {
             <SpecialPrayerCardCarousel
               cards={specialPrayerEvents}
               autoPlay={true}
-              autoPlayInterval={3000}
+              autoPlayInterval={4000}
               showIndicators={true}
               showNavigation={true}
-              cardHeight="h-[22rem] sm:h-[25rem] lg:h-[28rem]"
+              cardHeight="h-[24rem] sm:h-[27rem] lg:h-[29rem]"
             />
           </div>
         </div>

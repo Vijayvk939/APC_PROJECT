@@ -33,61 +33,59 @@ const SpecialPrayerCard = React.forwardRef<HTMLDivElement, SpecialPrayerCardProp
       >
         <a
           href={href}
-          className="relative block w-full h-full rounded-3xl overflow-hidden 
-                     transition-all duration-500 ease-in-out"
+          className="relative block w-full h-full rounded-[24px] sm:rounded-[32px] overflow-hidden 
+                     transition-all duration-500 ease-in-out border border-white/10"
           aria-label={`Explore details for ${title}`}
           style={{
-             boxShadow: `0 0 40px -15px hsl(${themeColor} / 0.5)`,
+             boxShadow: isActive ? `0 20px 50px -10px rgba(0,0,0,0.8), 0 0 30px -5px hsl(${themeColor} / 0.4)` : 'none',
              transition: 'all 0.5s ease-in-out'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.boxShadow = `0 0 60px -15px hsl(${themeColor} / 0.6)`;
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.boxShadow = `0 0 40px -15px hsl(${themeColor} / 0.5)`;
           }}
         >
           {/* Background Image with Parallax Zoom */}
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat
-                       transition-all duration-500 ease-in-out group-hover:scale-[1.05]"
+                       transition-all duration-500 ease-in-out group-hover:scale-[1.04]"
             style={{ 
               backgroundImage: `url(${imageUrl})`,
               transformOrigin: 'center center',
-              filter: isActive ? 'grayscale(0%)' : 'grayscale(100%)',
+              filter: isActive ? 'grayscale(0%)' : 'grayscale(85%)',
             }}
           />
 
-          {/* Gradient Overlay - Matching project pattern */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+          {/* Gradient Overlay - Smooth dark fade for crisp text readability */}
+          <div className={cn(
+            "absolute inset-0 transition-opacity duration-500",
+            isActive 
+              ? "bg-gradient-to-t from-black/90 via-black/45 to-transparent" 
+              : "bg-black/50"
+          )} />
           
-          {/* Content - Only show when card is active, aligned to bottom left */}
+          {/* Content - Aligned cleanly to bottom left */}
           {isActive && (
             <div 
-              className="absolute inset-0 flex flex-col items-start justify-end text-left px-4 xs:px-5 sm:px-6 pb-4 xs:pb-5 sm:pb-6 text-white"
+              className="absolute inset-0 flex flex-col items-start justify-end text-left px-5 sm:px-7 pb-6 sm:pb-8 text-white z-10"
               onClick={(e) => e.stopPropagation()}
             >
-              <h3 className="text-base xs:text-lg sm:text-xl md:text-xl lg:text-2xl font-bold text-white mb-0.5 xs:mb-1 leading-tight">
-              {title}
-            </h3>
+              <h3 className="font-serif text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2 leading-snug drop-shadow-md">
+                {title}
+              </h3>
               
-              {/* Divider Line */}
-              <div className="w-12 h-0.5 bg-white my-1 xs:my-1.5" />
+              {/* Date and Time Details */}
+              <div className="flex flex-col items-start gap-1.5 text-xs sm:text-sm text-white/90 font-sans mb-2">
+                <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
+                  <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/80 shrink-0" />
+                  <span className="font-medium">{date}</span>
+                </div>
+                <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
+                  <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/80 shrink-0" />
+                  <span className="font-medium">{time}</span>
+                </div>
+              </div>
             
-            {/* Date and Time */}
-              <div className="flex flex-col items-start gap-0.5 xs:gap-1 text-[10px] xs:text-xs sm:text-sm text-white/90 leading-tight">
-                <div className="flex items-center gap-1" onClick={(e) => e.stopPropagation()}>
-                  <Calendar className="w-3 h-3 xs:w-3.5 xs:h-3.5 text-white/80" />
-                <span>{date}</span>
-              </div>
-                <div className="flex items-center gap-1" onClick={(e) => e.stopPropagation()}>
-                  <Clock className="w-3 h-3 xs:w-3.5 xs:h-3.5 text-white/80" />
-                <span>{time}</span>
-              </div>
+              <p className="text-xs sm:text-sm text-white/80 max-w-md leading-relaxed font-sans line-clamp-2">
+                {description}
+              </p>
             </div>
-            
-              <p className="text-[9px] xs:text-[10px] sm:text-xs text-white/90 mt-1 xs:mt-1.5 max-w-md leading-tight">{description}</p>
-          </div>
           )}
         </a>
       </div>
@@ -167,10 +165,10 @@ const SpecialPrayerCardCarousel = React.forwardRef<HTMLDivElement, SpecialPrayer
       const offset = typeof window !== 'undefined' && window.innerWidth < 640 ? 140 : 260;
 
       return {
-        transform: `translateX(${position * offset}px) translateZ(${isActive ? 0 : -180}px) rotateY(${position * -6}deg) scale(${isActive ? 1.04 : 0.86})`,
-        opacity: isActive ? 1 : 0.65,
+        transform: `translateX(${position * offset}px) translateZ(${isActive ? 0 : -200}px) rotateY(${position * -4}deg) scale(${isActive ? 1.05 : 0.85})`,
+        opacity: isActive ? 1 : 0.45,
         zIndex: isActive ? 20 : 10 - Math.abs(diff),
-        filter: isActive ? 'brightness(1)' : 'brightness(0.65)',
+        filter: isActive ? 'brightness(1)' : 'brightness(0.4) grayscale(85%)',
         pointerEvents: isActive ? 'auto' : 'none',
       };
     };
@@ -195,11 +193,11 @@ const SpecialPrayerCardCarousel = React.forwardRef<HTMLDivElement, SpecialPrayer
             {cards.map((card, index) => (
               <div
                 key={index}
-                className="absolute transition-all duration-700 ease-out rounded-3xl overflow-hidden"
+                className="absolute transition-all duration-700 ease-out rounded-[24px] sm:rounded-[32px] overflow-hidden"
                 style={{
                   ...getCardStyle(index),
-                  width: '88vw',
-                  maxWidth: '440px',
+                  width: '85vw',
+                  maxWidth: '420px',
                   height: '100%',
                 }}
               >
@@ -214,28 +212,28 @@ const SpecialPrayerCardCarousel = React.forwardRef<HTMLDivElement, SpecialPrayer
           </div>
         </div>
 
-        {/* Navigation Buttons - Matching project pattern */}
+        {/* Navigation Buttons - Circular translucent dark style */}
         {showNavigation && cards.length > 1 && (
           <>
             <button
               onClick={goToPrevious}
-              className="absolute left-4 sm:left-8 lg:left-12 top-1/2 -translate-y-1/2 z-30 
-                         bg-white/10 backdrop-blur-sm hover:bg-white/20 
-                         text-white p-3 sm:p-4 rounded-full 
-                         transition-all duration-300"
+              className="absolute left-2 sm:left-6 lg:left-10 top-1/2 -translate-y-1/2 z-30 
+                         bg-black/40 hover:bg-black/70 border border-white/10 
+                         text-white p-2.5 sm:p-3.5 rounded-full shadow-2xl backdrop-blur-md
+                         transition-all duration-300 hover:scale-110 active:scale-95"
               aria-label="Previous card"
             >
-              <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8" />
+              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
             <button
               onClick={goToNext}
-              className="absolute right-4 sm:right-8 lg:right-12 top-1/2 -translate-y-1/2 z-30 
-                         bg-white/10 backdrop-blur-sm hover:bg-white/20 
-                         text-white p-3 sm:p-4 rounded-full 
-                         transition-all duration-300"
+              className="absolute right-2 sm:right-6 lg:right-10 top-1/2 -translate-y-1/2 z-30 
+                         bg-black/40 hover:bg-black/70 border border-white/10 
+                         text-white p-2.5 sm:p-3.5 rounded-full shadow-2xl backdrop-blur-md
+                         transition-all duration-300 hover:scale-110 active:scale-95"
               aria-label="Next card"
             >
-              <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8" />
+              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
           </>
         )}

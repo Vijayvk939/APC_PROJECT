@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { Toaster } from 'sonner';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
-import Home from './pages/Home';
-import Books from './pages/Books';
+
+const Home = lazy(() => import('./pages/Home'));
+const Books = lazy(() => import('./pages/Books'));
 
 function App() {
   // Redirect vercel.app domains to production domain (client-side backup)
@@ -45,10 +46,16 @@ function App() {
           <Toaster position="top-right" richColors />
           <Header />
           <main className="flex-grow">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/books" element={<Books />} />
-            </Routes>
+            <Suspense fallback={
+              <div className="min-h-[60vh] flex items-center justify-center">
+                <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+              </div>
+            }>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/books" element={<Books />} />
+              </Routes>
+            </Suspense>
           </main>
           <Footer />
         </div>

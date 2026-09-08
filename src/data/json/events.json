@@ -1,7 +1,7 @@
 {
   "specialPrayerEvents": [
     {
-      "imageUrl": "/images/Events/BVMP_CA.jpg",
+      "imageUrl": "/images/Events/BVMP_CA.webp",
       "title": "APC(Bhavanipuram)",
       "date": "April 13",
       "time": "Special Service",
@@ -11,7 +11,7 @@
       "themeColor": "222 47% 11%"
     },
     {
-      "imageUrl": "/images/Events/GLP_CA.jpg",
+      "imageUrl": "/images/Events/GLP_CA.webp",
       "title": "APC(Gollapudi)",
       "date": "February 13",
       "time": "Special Service",
@@ -21,7 +21,7 @@
       "themeColor": "222 47% 11%"
     },
     {
-      "imageUrl": "/images/Events/21days_fastings.jpg",
+      "imageUrl": "/images/Events/21days_fastings.webp",
       "title": "21 Days Fasting Prayer",
       "date": "July 14 - August 3",
       "time": "Daily Prayer Times",
@@ -31,7 +31,7 @@
       "themeColor": "222 47% 11%"
     },
     {
-      "imageUrl": "/images/Events/40DaysPrayers.jpg",
+      "imageUrl": "/images/Events/40DaysPrayers.webp",
       "title": "40 Days Family Growth & Safety Prayer",
       "date": "September 16 - October 26",
       "time": "Daily Prayer Times",
@@ -41,7 +41,7 @@
       "themeColor": "222 47% 11%"
     },
     {
-      "imageUrl": "/images/Events/Semi_Christmas.jpg",
+      "imageUrl": "/images/Events/Semi_Christmas.webp",
       "title": "Family Semi-Christmas Prayers",
       "date": "December 1-31",
       "time": "Daily Prayer Times",
@@ -51,7 +51,7 @@
       "themeColor": "222 47% 11%"
     },
     {
-      "imageUrl": "/images/Events/New-year_GM.jpg",
+      "imageUrl": "/images/Events/New-year_GM.webp",
       "title": "New Year Gospel Meeting",
       "date": "January 1st",
       "time": "Special Service",

@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>Agape Pentecostal Church | Vijayawada</title>
+        <title>Agape Pentecostal Church</title>
         <link rel="canonical" href="https://www.agapepentecostalchurch.com/" />
         {typeof window !== "undefined" && window.location.hostname.includes("vercel.app") && (
           <meta name="robots" content="noindex, nofollow" />

@@ -1,36 +1,89 @@
 # Agape Pentecostal Church - Website
 
-A modern, responsive website for Agape Pentecostal Church built with React, TypeScript, and Vite.
+A modern, high-performance, fully responsive web application for **Agape Pentecostal Church (Vijayawada)** built with React 18, TypeScript, Tailwind CSS, and Vite.
+
+---
 
 ## 📋 Table of Contents
 
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Running the Project](#running-the-project)
-- [Project Structure](#project-structure)
-- [Tech Stack](#tech-stack)
-- [Available Scripts](#available-scripts)
-- [Folder Structure Details](#folder-structure-details)
+- [Features](#-features)
+- [Performance & Optimization Highlights](#-performance--optimization-highlights)
+- [Tech Stack](#-tech-stack)
+- [Prerequisites](#-prerequisites)
+- [Installation](#-installation)
+- [Running the Project](#-running-the-project)
+- [Project Structure](#-project-structure)
+- [Data Management](#-data-management)
+- [Responsive Design Support](#-responsive-design-support)
+- [License](#-license)
+
+---
+
+## ✨ Features
+
+- **⚡ Fast Initial Load**: Route code splitting (`React.lazy` & `Suspense`) and vendor chunk splitting via Vite.
+- **🎨 Premium UI/UX**: Dark mode theme with rich crimson `#8B0000` / `#B22222` accents, glassmorphic cards, smooth gradients, and scroll animations.
+- **🎥 Fast Background Video**: Compressed 1080p hero loop with `+faststart` MP4 streaming and poster fallback.
+- **🖼️ WebP Image Engine**: 100% of images converted to WebP, reducing overall image payload by **81.2%** (saved over 42 MB).
+- **📚 Spiritual Library & Books**: Dedicated `/books` page featuring downloadable PDFs and resources.
+- **📅 Events & Programs Carousel**: 3D interactive carousel for special prayer events.
+- **📹 Sermon & Video Library**: Grid showcase for YouTube sermons and worship songs.
+- **📱 100% Fully Responsive**: Pixel-perfect layout across Mobile, Tablet, Laptop, and 4K TV screens.
+
+---
+
+## ⚡ Performance & Optimization Highlights
+
+| Optimization | Description | Impact |
+| :--- | :--- | :--- |
+| **Image Compression** | Converted all `.png` / `.jpg` assets to optimized `.webp` | **`51.86 MB → 9.74 MB (-81.2%)`** |
+| **Video Optimization** | Re-encoded hero background loop, stripped audio, added `+faststart` | **`20.71 MB → 2.47 MB (-88.1%)`** |
+| **Route Code-Splitting** | Lazy loaded `/` and `/books` pages in `App.tsx` | Reduced initial JavaScript payload |
+| **Vendor Chunking** | Isolated React core & UI libraries in `vite.config.ts` | Permanent browser caching across builds |
+| **Package Pruning** | Uninstalled heavy unused libraries (e.g. Three.js) | Saved 600KB+ in node_modules |
+
+---
+
+## 🛠️ Tech Stack
+
+### Core Framework & Routing
+- **React 18.3.1** - Component-based UI framework
+- **React Router DOM 7.9.6** - Client-side routing (`/` and `/books`)
+- **TypeScript 5.5.3** - Type-safe development
+- **Vite 5.4.2** - Lightning-fast build tool and dev server
+
+### Styling & Animation
+- **Tailwind CSS 3.4.1** - Utility-first CSS engine
+- **Framer Motion 12.23.24** - Motion and transition animations
+- **Lucide React 0.344.0** - Vector icon system
+- **PostCSS & Autoprefixer** - Vendor prefixing & CSS compilation
+
+### Utilities & UX
+- **Sonner 2.0.8** - Toast notification system
+- **React Helmet Async 2.0.5** - Dynamic `<head>` & SEO meta management
+- **Embla Carousel 8.6.0** - Carousel touch gestures
+
+---
 
 ## 🔧 Prerequisites
 
-- **Node.js**: Version 18.x or higher (recommended: 18.0.0+)
-- **npm**: Version 9.x or higher (comes with Node.js)
+- **Node.js**: `18.0.0` or higher
+- **npm**: `9.0.0` or higher
 - **Git**: For version control
 
-### Check Your Node Version
-
+Check installed versions:
 ```bash
 node --version
+npm --version
 ```
 
-If you don't have Node.js installed, download it from [nodejs.org](https://nodejs.org/)
+---
 
 ## 🚀 Installation
 
-1. **Clone the repository** (if applicable)
+1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Vijayvk939/APC_PROJECT.git
    cd APC_PROJECT
    ```
 
@@ -39,271 +92,101 @@ If you don't have Node.js installed, download it from [nodejs.org](https://nodej
    npm install
    ```
 
-   This will install all required packages listed in `package.json`.
+---
 
 ## ▶️ Running the Project
 
 ### Development Mode
-
-Start the development server:
-
+Start the Vite dev server with Hot Module Replacement (HMR):
 ```bash
 npm run dev
 ```
-
-The application will be available at:
-- **Local**: `http://localhost:5173`
-- **Network**: The terminal will display the network URL
-
-The dev server includes:
-- Hot Module Replacement (HMR) - changes reflect instantly
-- Fast refresh for React components
-- Source maps for debugging
+Open **`http://localhost:5173`** in your browser.
 
 ### Build for Production
-
-Create an optimized production build:
-
+Generate an optimized production bundle in `dist/`:
 ```bash
 npm run build
 ```
 
-The build output will be in the `dist/` folder.
-
 ### Preview Production Build
-
 Preview the production build locally:
-
 ```bash
 npm run preview
 ```
 
-### Linting
-
-Check code for linting errors:
-
+### Code Linting
+Run ESLint to check for code quality and formatting errors:
 ```bash
 npm run lint
 ```
+
+---
 
 ## 📁 Project Structure
 
 ```
 APC_PROJECT/
-├── public/                 # Static assets served as-is
-│   ├── images/            # Image assets (Events, Gallery, etc.)
-│   └── favicon.ico        # Site favicon
+├── public/                     # Static public assets
+│   ├── favicon.ico            # Favicon icon
+│   └── images/                # Optimized WebP image assets & video
+│       ├── APC_DASHBOARD-BG.mp4 # Compressed hero loop (2.47 MB)
+│       ├── Design/            # Section background overlays (.webp)
+│       ├── Events/            # Event banner images (.webp)
+│       └── Gallery/           # Gallery photo images (.webp)
 │
-├── src/                    # Source code
-│   ├── components/         # React components
-│   │   ├── features/      # Feature-specific components
-│   │   │   └── events/
-│   │   │       ├── SpecialPrayerCard.tsx
-│   │   │       └── index.ts
-│   │   ├── layout/        # Layout components
-│   │   │   ├── Header.tsx
-│   │   │   ├── Footer.tsx
-│   │   │   └── index.ts
-│   │   └── sections/      # Page sections
-│   │       ├── Hero.tsx
-│   │       ├── About.tsx
-│   │       ├── Contact.tsx
-│   │       ├── Events.tsx
-│   │       ├── Gallery.tsx
-│   │       ├── Leadership.tsx
-│   │       ├── VideoSection.tsx
-│   │       ├── WorshipServices.tsx
-│   │       └── index.ts
+├── src/                        # Main application source code
+│   ├── components/            # React UI components
+│   │   ├── features/          # Feature components (SpecialPrayerCard, etc.)
+│   │   ├── layout/            # Layout (Header, Footer)
+│   │   ├── sections/          # Page sections (Hero, About, Events, VideoSection, Gallery, Contact)
+│   │   └── ui/                # Reusable UI primitives (Button, Input, Badge, etc.)
 │   │
-│   ├── data/              # Data management
-│   │   ├── json/          # JSON data files
-│   │   │   ├── events.json
-│   │   │   ├── videos.json
-│   │   │   └── contact.json
-│   │   ├── loaders/       # TypeScript loaders for JSON
-│   │   │   ├── events.ts
-│   │   │   ├── videos.ts
-│   │   │   └── contact.ts
-│   │   ├── events.ts      # Re-exports (backward compatible)
-│   │   ├── videos.ts      # Re-exports (backward compatible)
-│   │   └── contact.ts     # Re-exports (backward compatible)
+│   ├── data/                  # Data layer
+│   │   ├── json/              # Editable JSON files (events.json, gallery.json, etc.)
+│   │   └── loaders/           # TypeScript data mapping loaders
 │   │
-│   ├── types/             # TypeScript type definitions
-│   │   ├── events.ts
-│   │   ├── videos.ts
-│   │   ├── contact.ts
-│   │   └── index.ts
+│   ├── pages/                 # Top-level page routes
+│   │   ├── Home.tsx           # Home page
+│   │   └── Books.tsx          # Spiritual Books Library page
 │   │
-│   ├── lib/               # Utility functions
-│   │   └── utils.ts       # Helper functions (cn, etc.)
-│   │
-│   ├── App.tsx            # Main application component
-│   ├── main.tsx           # Application entry point
-│   └── index.css          # Global styles
+│   ├── types/                 # TypeScript interfaces and type definitions
+│   ├── lib/                   # Utility helpers (utils.ts)
+│   ├── App.tsx                # Main App entry with Router & Lazy Suspense
+│   ├── main.tsx               # DOM mounting entry
+│   └── index.css              # Global styles & Tailwind imports
 │
-├── dist/                  # Production build output (generated)
-│
-├── node_modules/          # Dependencies (generated)
-│
-├── .gitignore            # Git ignore rules
-├── eslint.config.js      # ESLint configuration
-├── index.html            # HTML template
-├── package.json          # Project dependencies and scripts
-├── package-lock.json     # Locked dependency versions
-├── postcss.config.js     # PostCSS configuration
-├── tailwind.config.js    # Tailwind CSS configuration
-├── tsconfig.json         # TypeScript configuration
-├── tsconfig.app.json     # TypeScript app config
-├── tsconfig.node.json    # TypeScript node config
-└── vite.config.ts        # Vite configuration
+├── vite.config.ts             # Vite & Rollup manual chunks configuration
+├── package.json               # Package dependencies and scripts
+└── tsconfig.json              # TypeScript configuration
 ```
 
-## 🛠️ Tech Stack
-
-### Core
-- **React 18.3.1** - UI library
-- **TypeScript 5.5.3** - Type safety
-- **Vite 5.4.2** - Build tool and dev server
-
-### Styling
-- **Tailwind CSS 3.4.1** - Utility-first CSS framework
-- **PostCSS 8.4.35** - CSS processing
-- **Autoprefixer 10.4.18** - CSS vendor prefixing
-
-### UI & Animation
-- **Framer Motion 12.23.24** - Animation library
-- **Lucide React 0.344.0** - Icon library
-- **Three.js 0.181.2** - 3D graphics (if used)
-
-### Utilities
-- **clsx 2.1.1** - Conditional class names
-- **tailwind-merge 3.4.0** - Merge Tailwind classes
-
-### Development Tools
-- **ESLint 9.9.1** - Code linting
-- **TypeScript ESLint 8.3.0** - TypeScript linting
-
-## 📜 Available Scripts
-
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server |
-| `npm run build` | Build for production |
-| `npm run preview` | Preview production build |
-| `npm run lint` | Run ESLint |
-
-## 📂 Folder Structure Details
-
-### `/src/components/`
-
-#### `layout/`
-- **Header.tsx** - Navigation header component
-- **Footer.tsx** - Footer component with links and info
-
-#### `sections/`
-- **Hero.tsx** - Hero/banner section
-- **About.tsx** - About the church section
-- **Contact.tsx** - Contact information and maps
-- **Events.tsx** - Events and prayer programs
-- **Gallery.tsx** - Photo gallery
-- **Leadership.tsx** - Church leadership team
-- **VideoSection.tsx** - YouTube videos section
-- **WorshipServices.tsx** - Worship service information
-
-#### `features/events/`
-- **SpecialPrayerCard.tsx** - Carousel card component for special events
-
-### `/src/data/`
-
-#### `json/`
-Raw JSON data files that can be easily edited:
-- **events.json** - Events and prayer programs data
-- **videos.json** - Video content data
-- **contact.json** - Contact information
-
-#### `loaders/`
-TypeScript loaders that:
-- Import JSON files
-- Map icon names to icon components
-- Map image paths to imported images
-- Export typed data
-
-### `/src/types/`
-TypeScript type definitions for:
-- Events data structures
-- Video data structures
-- Contact data structures
-
-### `/src/lib/`
-Utility functions:
-- **utils.ts** - Helper functions like `cn()` for class name merging
+---
 
 ## 🔄 Data Management
 
-The project uses a JSON-based data structure:
+The application features decoupled content management using **JSON files**:
 
-1. **Edit JSON files** in `src/data/json/` to update content
-2. **Loaders** in `src/data/loaders/` process JSON and add:
-   - Icon components (from string names)
-   - Image imports (from paths)
-3. **Re-exports** in `src/data/` maintain backward compatibility
+1. **Edit Content**: Update JSON files under `src/data/json/` (`events.json`, `gallery.json`, `contact.json`, etc.).
+2. **Data Loaders**: Loaders in `src/data/loaders/` map icon string keys to Lucide icons and match WebP image paths automatically.
+3. **Components**: UI components render typed data seamlessly.
 
-### Example: Adding a New Event
+---
 
-1. Edit `src/data/json/events.json`
-2. Add event object to `specialPrayerEvents` array
-3. The loader automatically processes it
-4. Component uses the data automatically
+## 📱 Responsive Design Support
 
-## 🎨 Styling
+Tested and optimized across all viewports:
+- **Mobile (`< 640px`)**: Touch-friendly navigation menu drawer, stacked action buttons, and responsive text sizing.
+- **Tablet (`640px - 1024px`)**: 2-column card layouts and scaling hero heights.
+- **Laptop / Desktop (`1024px - 1440px`)**: Multi-column grids with hover micro-animations and full navbar.
+- **4K TV & Ultrawide (`> 1440px`)**: Centered max-width container (`max-w-7xl`) preventing distortion.
 
-- **Tailwind CSS** is used for all styling
-- Custom colors are defined in `tailwind.config.js`
-- Global styles are in `src/index.css`
-- Responsive breakpoints: `xs`, `sm`, `md`, `lg`, `xl`
-
-## 🔗 Path Aliases
-
-The project uses path aliases for cleaner imports:
-
-```typescript
-import { something } from '@/components/...'
-import { data } from '@/data/...'
-import { type } from '@/types/...'
-```
-
-Configured in:
-- `vite.config.ts` - For Vite
-- `tsconfig.app.json` - For TypeScript
-
-## 📝 Notes
-
-- The development server runs on port **5173** by default
-- Hot Module Replacement (HMR) is enabled for instant updates
-- TypeScript strict mode is enabled
-- All components are written in TypeScript
-- Images should be placed in `public/images/` directory
-
-## 🐛 Troubleshooting
-
-### Port Already in Use
-If port 5173 is busy, Vite will automatically try the next available port.
-
-### Module Not Found Errors
-Run `npm install` to ensure all dependencies are installed.
-
-### Type Errors
-Run `npm run lint` to check for TypeScript errors.
+---
 
 ## 📄 License
 
-[Add your license information here]
-
-## 👥 Contributors
-
-[Add contributor information here]
+This project is proprietary software built for **Agape Pentecostal Church (Vijayawada)**.
 
 ---
 
 **Built with ❤️ for Agape Pentecostal Church**
-

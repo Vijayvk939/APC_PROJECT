@@ -1,3 +1,2 @@
 // Re-export from JSON loaders for backward compatibility
-export { contactInfo } from './loaders/contact';
-
+export { contactInfo, contactCards, mapLocations } from './loaders/contact';

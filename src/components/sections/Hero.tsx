@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, BookOpen } from "lucide-react"
 
 import bgVideo from "/images/APC_DASHBOARD-BG.mp4"
-import dashShade from "/images/dash-png.png"
+import dashShade from "/images/Design/dash-png.webp"
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -70,6 +70,8 @@ export default function Hero() {
             loop
             muted
             playsInline
+            preload="auto"
+            poster={dashShade}
             className="w-full h-full object-cover object-center"
           >
             <source src={bgVideo} type="video/mp4" />
@@ -79,17 +81,17 @@ export default function Hero() {
         {/* Top Slight Black Shadow (Behind PNG) */}
         <div className="absolute inset-x-0 top-0 h-36 sm:h-40 bg-gradient-to-b from-black/85 via-black/40 to-transparent pointer-events-none" />
 
-        {/* Left Black Shadow Overlay (Behind PNG) */}
-        <div className="absolute inset-y-0 left-0 w-full sm:w-2/3 md:w-1/2 bg-gradient-to-r from-black/90 via-black/65 to-transparent pointer-events-none" />
+        {/* Left Black Shadow Overlay (Enhanced dark shade for clear text readability) */}
+        <div className="absolute inset-y-0 left-0 w-full sm:w-4/5 md:w-2/3 bg-gradient-to-r from-black/90 via-black/70 to-transparent pointer-events-none z-10" />
 
         {/* Subtle Bottom Shade */}
-        <div className="absolute inset-x-0 bottom-0 h-28 sm:h-24 bg-gradient-to-t from-black/80 sm:from-black/60 to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-28 sm:h-24 bg-gradient-to-t from-black/80 sm:from-black/60 to-transparent pointer-events-none z-10" />
 
         {/* Glowing Dash Shade Overlay */}
         <img
           src={dashShade}
           alt="Shade overlay"
-          className="absolute inset-0 w-full h-full object-cover pointer-events-none opacity-60 sm:opacity-70 mix-blend-screen"
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none opacity-60 sm:opacity-75 mix-blend-screen z-10"
         />
       </div>
 
@@ -133,14 +135,13 @@ export default function Hero() {
             </Button>
             <Button
               size="lg"
-              variant="outline"
-              className="w-full sm:w-auto border border-white/30 bg-black/30 backdrop-blur-md hover:bg-white/15 text-white rounded-full px-6 sm:px-8 py-3 sm:py-3.5 text-xs sm:text-base font-semibold flex items-center justify-center gap-2 transition-all"
+              className="w-full sm:w-auto bg-[#16101e]/90 hover:bg-white/15 backdrop-blur-md border border-white/25 text-white rounded-full px-6 sm:px-8 py-3 sm:py-3.5 text-xs sm:text-base font-semibold flex items-center justify-center gap-2.5 transition-all"
               onClick={() => {
                 navigate("/books")
                 window.scrollTo(0, 0)
               }}
             >
-              <BookOpen className="w-4 h-4" />
+              <BookOpen className="w-4 h-4 text-white" />
               <span>Get Books</span>
             </Button>
           </div>

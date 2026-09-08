@@ -1,0 +1,24 @@
+{
+  "values": [
+    {
+      "icon": "Heart",
+      "title": "Love",
+      "description": "Unconditional love for everyone."
+    },
+    {
+      "icon": "Users",
+      "title": "Community",
+      "description": "Authentic relationships & fellowship."
+    },
+    {
+      "icon": "BookOpen",
+      "title": "Truth",
+      "description": "Grounded in Biblical truth."
+    },
+    {
+      "icon": "Sparkles",
+      "title": "Transformation",
+      "description": "Lives changed through grace."
+    }
+  ]
+}

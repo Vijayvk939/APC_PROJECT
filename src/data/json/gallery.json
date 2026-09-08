@@ -1,0 +1,88 @@
+{
+  "galleryImages": [
+    {
+      "id": 1,
+      "url": "/images/Gallery/IMG1.webp",
+      "title": "Blessed Family",
+      "category": "Family & Unity",
+      "description": "A beautiful family portrait showing the love, strength, and unity God creates in our homes."
+    },
+    {
+      "id": 2,
+      "url": "/images/Gallery/IMG2.webp",
+      "title": "Women's Prayer Meeting",
+      "category": "Fellowship & Prayer",
+      "description": "Sisters in Christ gathering in heartfelt prayer, worship, and uplifting spiritual fellowship."
+    },
+    {
+      "id": 3,
+      "url": "/images/Gallery/IMG3.webp",
+      "title": "Church Leadership",
+      "category": "Spiritual Guidance",
+      "description": "Our dedicated church leaders serving God and our congregation with wisdom, passion, and devotion."
+    },
+    {
+      "id": 4,
+      "url": "/images/Gallery/IMG4.webp",
+      "title": "Church Candlelight Gathering",
+      "category": "Worship & Hope",
+      "description": "Our church family coming together in prayer and fellowship, holding candles of hope and divine faith."
+    },
+    {
+      "id": 5,
+      "url": "/images/Gallery/IMG5.webp",
+      "title": "Sunday School Dances",
+      "category": "Sunday School & Ministry",
+      "description": "Sunday School students joyfully worshipping God through creative dance and spiritual performances."
+    },
+    {
+      "id": 6,
+      "url": "/images/Gallery/IMG6.webp",
+      "title": "Youth Singing",
+      "category": "Youth & Worship",
+      "description": "Youth praising God and celebrating His grace through vibrant songs, music, and joyful worship."
+    },
+    {
+      "id": 7,
+      "url": "/images/Gallery/IMG7.webp",
+      "title": "Gospel & Praise Service",
+      "category": "Glorious Worship",
+      "description": "Praising the Lord with joyful songs, uplifting music, and fervent devotion in our congregation."
+    },
+    {
+      "id": 8,
+      "url": "/images/Gallery/IMG8.webp",
+      "title": "Sunday School Singing",
+      "category": "Sunday School & Praise",
+      "description": "Sunday School students praising the Lord with heartfelt songs and melodic voices."
+    },
+    {
+      "id": 9,
+      "url": "/images/Gallery/IMG9.webp",
+      "title": "Youth & Community Outreach",
+      "category": "Community & Growth",
+      "description": "Empowering young believers to shine light, build strong faith, and serve our local community."
+    },
+    {
+      "id": 10,
+      "url": "/images/Gallery/IMG10.webp",
+      "title": "Sunday School Worship",
+      "category": "Sunday School & Worship",
+      "description": "Sunday School students coming together in reverent worship and praising God's holy name."
+    },
+    {
+      "id": 11,
+      "url": "/images/Gallery/IMG11.webp",
+      "title": "Annual Church Celebration",
+      "category": "Anniversary & Grace",
+      "description": "Commemorating years of God's unshakeable faithfulness, growth, and divine blessings in our church."
+    },
+    {
+      "id": 12,
+      "url": "/images/Gallery/IMG12.webp",
+      "title": "Divine Anointing & Prayer",
+      "category": "Breakthrough & Healing",
+      "description": "Laying on of hands and praying for divine healing, restoration, and spiritual breakthroughs."
+    }
+  ]
+}

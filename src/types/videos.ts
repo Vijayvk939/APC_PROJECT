@@ -2,7 +2,7 @@ export interface Video {
   id: string;
   title: string;
   subtitle: string;
-  description: string;
+  description?: string;
   duration: string;
   type: string;
   views: string;

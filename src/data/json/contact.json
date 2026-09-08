@@ -20,6 +20,49 @@
       "status": "Active",
       "accentColor": "bg-rose-700"
     }
-  ]
+  ],
+  "contactCards": [
+    {
+      "icon": "Mail",
+      "title": "Email Us",
+      "value": "agapepentecostalchurchapc@gmail.com",
+      "href": "https://mail.google.com/mail/?view=cm&fs=1&to=agapepentecostalchurchapc@gmail.com",
+      "description": "Send us your prayer requests or inquiries"
+    },
+    {
+      "icon": "Phone",
+      "title": "Call Us",
+      "value": "+91 9390232344",
+      "href": "tel:+919390232344",
+      "description": "Mon-Sat 9AM - 9PM IST"
+    },
+    {
+      "icon": "MapPin",
+      "title": "Bhavanipuram Church",
+      "value": "Gurukrupa Rd, Kamakoti Nagar, VD Puram, Vijayawada",
+      "href": "https://maps.app.goo.gl/TtSY3e6czcttqpndA",
+      "description": "Sunday 8:30 AM Service"
+    },
+    {
+      "icon": "MapPin",
+      "title": "Gollapudi Church",
+      "value": "Gollapudi, Vijayawada, Andhra Pradesh",
+      "href": "https://maps.app.goo.gl/Gv4g4vY5BAHWFkMAA",
+      "description": "Sunday 6:30 PM Service"
+    }
+  ],
+  "mapLocations": {
+    "bhavanipuram": {
+      "title": "Bhavanipuram Church",
+      "subtitle": "Gurukrupa Rd, Kamakoti Nagar, Vijayawada",
+      "embedUrl": "https://maps.google.com/maps?q=Agape+Pentecostal+Church+Bhavanipuram&hl=en&ll=16.5263063,80.5999032&z=16&output=embed",
+      "mapsUrl": "https://maps.app.goo.gl/TtSY3e6czcttqpndA"
+    },
+    "gollapudi": {
+      "title": "Gollapudi Church",
+      "subtitle": "Gollapudi, Vijayawada, Andhra Pradesh",
+      "embedUrl": "https://maps.google.com/maps?q=Agape+Pentecostal+Church+Gollapudi&hl=en&z=16&output=embed",
+      "mapsUrl": "https://maps.app.goo.gl/Gv4g4vY5BAHWFkMAA"
+    }
+  }
 }
-

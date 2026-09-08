@@ -11,3 +11,17 @@ export interface ContactInfo {
   accentColor: string;
 }
 
+export interface ContactCard {
+  icon: LucideIcon;
+  title: string;
+  value: string;
+  href: string;
+  description: string;
+}
+
+export interface MapLocation {
+  title: string;
+  subtitle: string;
+  embedUrl: string;
+  mapsUrl: string;
+}

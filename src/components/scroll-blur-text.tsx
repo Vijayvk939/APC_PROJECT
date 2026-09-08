@@ -52,11 +52,11 @@ export function ScrollBlurText({ text, className = "", startBlur = 80, endBlur =
               filter: `blur(${blur}px)`,
               opacity,
               display: "inline-block",
+              marginRight: index < words.length - 1 ? "0.28em" : "0",
               transition: "filter 0.3s ease-out, opacity 0.3s ease-out",
             }}
           >
             {word}
-            {index < words.length - 1 ? "\u00A0" : ""}
           </span>
         )
       })}
