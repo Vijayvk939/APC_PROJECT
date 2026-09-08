@@ -30,11 +30,11 @@ export default function VideoSection() {
   return (
     <section ref={sectionRef} id="videos" className="py-12 sm:py-16 lg:py-20 bg-[#120306] text-white relative overflow-hidden">
       {/* Background Image Overlay (Full Width with Light Black Layer) */}
-      <div className="absolute inset-0 pointer-events-none select-none z-0">
+      <div className="absolute inset-x-0 top-0 w-full pointer-events-none select-none z-0 overflow-hidden">
         <img
           src={transformativeBg}
           alt=""
-          className="w-full h-full object-cover min-w-full opacity-100 select-none pointer-events-none"
+          className="w-full h-auto min-w-full object-cover opacity-100 select-none pointer-events-none"
         />
         {/* Light Black Overlay Layer */}
         <div className="absolute inset-0 bg-black/35 pointer-events-none" />
@@ -81,7 +81,7 @@ export default function VideoSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#260e14] via-black/30 to-black/20" />
 
                 {/* Category Badge */}
-                <Badge className="absolute top-3.5 left-3.5 sm:top-4 sm:left-4 bg-[#8B0000] text-white font-bold text-[11px] sm:text-xs px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-md border border-white/10 z-10">
+                <Badge className="absolute top-3.5 left-3.5 sm:top-4 sm:left-4 bg-[#8B0000] text-white font-bold text-[11px] sm:text-xs px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-md border border-white/10 z-10 whitespace-nowrap">
                   {video.category}
                 </Badge>
 

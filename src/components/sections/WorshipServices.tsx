@@ -31,12 +31,12 @@ export default function WorshipServices() {
 
   return (
     <section ref={sectionRef} id="services" className="py-10 sm:py-14 lg:py-16 bg-muted/30 relative overflow-hidden">
-      {/* Background PNG Overlay */}
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+      {/* Background PNG Overlay (Full Width) */}
+      <div className="absolute inset-x-0 top-0 w-full pointer-events-none z-0 overflow-hidden">
         <img
           src={worshipServicesBg}
           alt=""
-          className="w-full h-full object-cover opacity-90 dark:opacity-30 select-none pointer-events-none"
+          className="w-full h-auto min-w-full object-cover opacity-85 dark:opacity-25 select-none pointer-events-none"
         />
       </div>
 

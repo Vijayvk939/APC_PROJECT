@@ -37,15 +37,15 @@ const SpecialPrayerCard = React.forwardRef<HTMLDivElement, SpecialPrayerCardProp
                      transition-all duration-500 ease-in-out border border-white/10"
           aria-label={`Explore details for ${title}`}
           style={{
-             boxShadow: isActive ? `0 20px 50px -10px rgba(0,0,0,0.8), 0 0 30px -5px hsl(${themeColor} / 0.4)` : 'none',
-             transition: 'all 0.5s ease-in-out'
+            boxShadow: isActive ? `0 20px 50px -10px rgba(0,0,0,0.8), 0 0 30px -5px hsl(${themeColor} / 0.4)` : 'none',
+            transition: 'all 0.5s ease-in-out'
           }}
         >
           {/* Background Image with Parallax Zoom */}
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat
                        transition-all duration-500 ease-in-out group-hover:scale-[1.04]"
-            style={{ 
+            style={{
               backgroundImage: `url(${imageUrl})`,
               transformOrigin: 'center center',
               filter: isActive ? 'grayscale(0%)' : 'grayscale(85%)',
@@ -55,21 +55,21 @@ const SpecialPrayerCard = React.forwardRef<HTMLDivElement, SpecialPrayerCardProp
           {/* Gradient Overlay - Smooth dark fade for crisp text readability */}
           <div className={cn(
             "absolute inset-0 transition-opacity duration-500",
-            isActive 
-              ? "bg-gradient-to-t from-black/90 via-black/45 to-transparent" 
+            isActive
+              ? "bg-gradient-to-t from-black/90 via-black/45 to-transparent"
               : "bg-black/50"
           )} />
-          
+
           {/* Content - Aligned cleanly to bottom left */}
           {isActive && (
-            <div 
+            <div
               className="absolute inset-0 flex flex-col items-start justify-end text-left px-5 sm:px-7 pb-6 sm:pb-8 text-white z-10"
               onClick={(e) => e.stopPropagation()}
             >
               <h3 className="font-serif text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2 leading-snug drop-shadow-md">
                 {title}
               </h3>
-              
+
               {/* Date and Time Details */}
               <div className="flex flex-col items-start gap-1.5 text-xs sm:text-sm text-white/90 font-sans mb-2">
                 <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
@@ -81,7 +81,7 @@ const SpecialPrayerCard = React.forwardRef<HTMLDivElement, SpecialPrayerCardProp
                   <span className="font-medium">{time}</span>
                 </div>
               </div>
-            
+
               <p className="text-xs sm:text-sm text-white/80 max-w-md leading-relaxed font-sans line-clamp-2">
                 {description}
               </p>
@@ -107,14 +107,14 @@ interface SpecialPrayerCardCarouselProps extends React.HTMLAttributes<HTMLDivEle
 
 // Carousel Component - 3D Style
 const SpecialPrayerCardCarousel = React.forwardRef<HTMLDivElement, SpecialPrayerCardCarouselProps>(
-  ({ 
-    className, 
-    cards, 
-    autoPlay = true, 
+  ({
+    className,
+    cards,
+    autoPlay = true,
     autoPlayInterval = 5000,
     showNavigation = true,
     cardHeight = "h-[26rem] sm:h-[30rem] lg:h-[32rem]",
-    ...props 
+    ...props
   }, ref) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
@@ -146,14 +146,14 @@ const SpecialPrayerCardCarousel = React.forwardRef<HTMLDivElement, SpecialPrayer
     const getCardStyle = (index: number): React.CSSProperties => {
       // Calculate circular difference for proper looping
       let diff = index - currentIndex;
-      
+
       // Handle wrapping: if diff is too large, wrap around
       if (diff > cards.length / 2) {
         diff = diff - cards.length;
       } else if (diff < -cards.length / 2) {
         diff = diff + cards.length;
       }
-      
+
       const isActive = diff === 0;
       const position = diff;
 
@@ -182,7 +182,7 @@ const SpecialPrayerCardCarousel = React.forwardRef<HTMLDivElement, SpecialPrayer
         {...props}
       >
         {/* 3D Carousel Container */}
-        <div 
+        <div
           className={cn("relative flex items-center justify-center overflow-visible my-2", cardHeight)}
           style={{
             perspective: '2000px',

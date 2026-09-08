@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { values } from "@/data/about"
 import ourStoryBg from "/images/Design/Our_Story.webp"
 import churchImage from "/images/BVPM_CHURCH.webp"
+import specialPrayersBg from "/images/Design/Prayer_Events&Programs.webp"
 
 
 export default function About() {
@@ -83,14 +84,18 @@ export default function About() {
 
             {/* Our Mission Card */}
             <div className="reveal opacity-0 animation-delay-200 group bg-gradient-to-br from-[#8B0000] via-[#700000] to-[#4A0E17] rounded-3xl p-6 sm:p-8 text-white shadow-xl border border-white/20 relative overflow-hidden">
-              {/* Background Glow Overlay */}
-              <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-white/5 rounded-full blur-2xl pointer-events-none group-hover:scale-150 transition-transform duration-700" />
+              {/* Background Image Overlay */}
+              <img
+                src={specialPrayersBg}
+                alt=""
+                className="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-screen pointer-events-none select-none"
+              />
 
-              <div className="flex items-center gap-2 mb-3">
+              <div className="relative z-10 flex items-center gap-2 mb-3">
                 <ShieldCheck className="w-5 h-5 text-amber-300 shrink-0" />
                 <h3 className="font-serif text-xl sm:text-2xl font-bold text-white">Our Mission</h3>
               </div>
-              <p className="text-xs sm:text-base leading-relaxed text-white/90 drop-shadow-sm">
+              <p className="relative z-10 text-xs sm:text-base leading-relaxed text-white/90 drop-shadow-sm">
                 To create a welcoming church where people can encounter God's love, grow in their faith, and discover their divine purpose through meaningful relationships and transformative worship experiences.
               </p>
             </div>

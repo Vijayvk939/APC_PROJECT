@@ -104,16 +104,16 @@ export default function Events() {
                   <program.icon className="w-7 h-7 text-primary" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between gap-2 mb-1">
-                    <h4 className="font-serif text-lg sm:text-xl font-bold text-foreground group-hover:text-primary transition-colors truncate">
+                  <div className="flex items-start justify-between gap-2 mb-1">
+                    <h4 className="font-serif text-lg sm:text-xl font-bold text-foreground group-hover:text-primary transition-colors leading-snug">
                       {program.title}
                     </h4>
-                    <Badge variant="secondary" className="bg-primary/10 text-primary shrink-0">
+                    <Badge variant="secondary" className="bg-primary/10 text-primary shrink-0 whitespace-nowrap">
                       {program.status}
                     </Badge>
                   </div>
-                  <div className="flex items-center gap-2 text-xs font-semibold text-primary bg-primary/5 rounded-xl px-3 py-1.5 inline-flex mt-1">
-                    <Clock className="w-3.5 h-3.5" />
+                  <div className="flex items-center gap-2 text-xs font-semibold text-primary bg-primary/5 rounded-xl px-3 py-1.5 inline-flex mt-1 whitespace-nowrap">
+                    <Clock className="w-3.5 h-3.5 shrink-0" />
                     <span>{program.schedule}</span>
                   </div>
                 </div>
@@ -165,11 +165,11 @@ export default function Events() {
       {/* Spiritual Leadership Section */}
       <div id="leadership" className="relative py-12 sm:py-16 overflow-hidden">
         {/* Section Background Overlay: About.png */}
-        <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+        <div className="absolute inset-x-0 top-0 w-full pointer-events-none z-0 overflow-hidden">
           <img
             src={aboutBg}
             alt=""
-            className="w-full h-full object-cover opacity-85 dark:opacity-25 select-none pointer-events-none"
+            className="w-full h-auto min-w-full object-cover opacity-65 dark:opacity-25 select-none pointer-events-none"
           />
         </div>
 

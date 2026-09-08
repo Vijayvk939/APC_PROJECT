@@ -132,11 +132,10 @@ export default function Gallery() {
             {galleryImages.map((image, index) => (
               <div
                 key={image.id}
-                className={`absolute inset-0 transition-all duration-700 ease-in-out ${
-                  index === currentSlide
+                className={`absolute inset-0 transition-all duration-700 ease-in-out ${index === currentSlide
                     ? "opacity-100 scale-100 z-10 pointer-events-auto"
                     : "opacity-0 scale-105 z-0 pointer-events-none"
-                }`}
+                  }`}
               >
                 {/* Image */}
                 <img
@@ -149,18 +148,18 @@ export default function Gallery() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent" />
 
                 {/* Top Bar Info & Controls inside card */}
-                <div className="absolute top-4 left-4 right-4 sm:top-6 sm:left-6 sm:right-6 flex items-center justify-between z-20">
+                <div className="absolute top-3 left-3 right-3 sm:top-6 sm:left-6 sm:right-6 flex items-center justify-between gap-2 z-20 min-w-0">
                   <Badge
                     variant="secondary"
-                    className="bg-black/40 backdrop-blur-md text-white border border-white/20 px-3 py-1 text-xs font-medium flex items-center gap-1.5"
+                    className="bg-black/40 backdrop-blur-md text-white border border-white/20 px-2.5 sm:px-3 py-1 text-[11px] sm:text-xs font-medium flex items-center gap-1 sm:gap-1.5 whitespace-nowrap shrink min-w-0"
                   >
-                    <Sparkles className="w-3.5 h-3.5 text-primary" />
-                    <span>{image.category}</span>
+                    <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary shrink-0" />
+                    <span className="truncate">{image.category}</span>
                   </Badge>
 
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
                     {/* Counter Badge */}
-                    <span className="text-xs font-semibold px-3 py-1 rounded-full bg-black/40 backdrop-blur-md text-white/90 border border-white/20">
+                    <span className="text-[11px] sm:text-xs font-semibold px-2.5 sm:px-3 py-1 rounded-full bg-black/40 backdrop-blur-md text-white/90 border border-white/20 whitespace-nowrap">
                       {String(index + 1).padStart(2, "0")} / {String(galleryImages.length).padStart(2, "0")}
                     </span>
 
@@ -168,9 +167,9 @@ export default function Gallery() {
                     <button
                       onClick={() => openLightbox(index)}
                       aria-label="Expand image fullscreen"
-                      className="w-8 h-8 rounded-full bg-black/40 backdrop-blur-md text-white border border-white/20 flex items-center justify-center hover:bg-black/60 hover:scale-110 transition-all"
+                      className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/40 backdrop-blur-md text-white border border-white/20 flex items-center justify-center hover:bg-black/60 hover:scale-110 transition-all shrink-0"
                     >
-                      <Maximize2 className="w-3.5 h-3.5" />
+                      <Maximize2 className="w-3 sm:w-3.5 h-3 sm:h-3.5" />
                     </button>
                   </div>
                 </div>
@@ -215,11 +214,10 @@ export default function Gallery() {
                     setCurrentSlide(idx)
                     setIsPaused(true)
                   }}
-                  className={`group relative h-14 sm:h-16 rounded-xl overflow-hidden transition-all duration-300 text-left border ${
-                    isActive
+                  className={`group relative h-14 sm:h-16 rounded-xl overflow-hidden transition-all duration-300 text-left border ${isActive
                       ? "border-primary ring-2 ring-primary/40 shadow-lg scale-105"
                       : "border-border/40 opacity-70 hover:opacity-100 hover:scale-102"
-                  }`}
+                    }`}
                 >
                   <img
                     src={image.url}
@@ -250,12 +248,12 @@ export default function Gallery() {
       {lightboxIndex !== null && (
         <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col justify-between p-4 sm:p-6 animate-in fade-in duration-300">
           {/* Lightbox Header */}
-          <div className="flex items-center justify-between text-white z-20 max-w-6xl mx-auto w-full pt-2">
-            <div className="flex items-center gap-3">
-              <Badge variant="outline" className="text-white border-white/30 px-3 py-1 text-xs">
+          <div className="flex items-center justify-between text-white z-20 max-w-6xl mx-auto w-full pt-2 gap-2">
+            <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+              <Badge variant="outline" className="text-white border-white/30 px-2.5 sm:px-3 py-1 text-xs whitespace-nowrap shrink-0">
                 {galleryImages[lightboxIndex].category}
               </Badge>
-              <span className="text-xs text-white/70 font-medium">
+              <span className="text-xs text-white/70 font-medium whitespace-nowrap">
                 Photo {lightboxIndex + 1} of {galleryImages.length}
               </span>
             </div>

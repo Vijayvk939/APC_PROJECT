@@ -58,12 +58,12 @@ export default function Contact() {
 
   return (
     <section ref={sectionRef} id="contact" className="py-10 sm:py-14 lg:py-16 relative overflow-hidden bg-background">
-      {/* Background Image Overlay */}
-      <div className="absolute inset-0 pointer-events-none select-none z-0">
+      {/* Background Image Overlay (Full Width) */}
+      <div className="absolute inset-x-0 top-0 w-full pointer-events-none select-none z-0 overflow-hidden">
         <img
           src={getConnectedBg}
           alt=""
-          className="w-full h-full object-cover opacity-60 dark:opacity-20 select-none pointer-events-none"
+          className="w-full h-auto min-w-full object-cover opacity-65 dark:opacity-25 select-none pointer-events-none"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/40 to-background/90 pointer-events-none" />
       </div>
@@ -121,9 +121,8 @@ export default function Contact() {
                 href={item.href}
                 target={item.href.startsWith("http") ? "_blank" : undefined}
                 rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                className={`reveal opacity-0 ${
-                  idx === 0 ? "" : idx === 1 ? "animation-delay-100" : idx === 2 ? "animation-delay-200" : "animation-delay-300"
-                } group block p-4 sm:p-5 bg-card/80 backdrop-blur-md rounded-2xl border border-border/50 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden`}
+                className={`reveal opacity-0 ${idx === 0 ? "" : idx === 1 ? "animation-delay-100" : idx === 2 ? "animation-delay-200" : "animation-delay-300"
+                  } group block p-4 sm:p-5 bg-card/80 backdrop-blur-md rounded-2xl border border-border/50 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden`}
               >
                 <div className="flex items-start gap-3.5 sm:gap-4">
                   <div className="p-2.5 sm:p-3 bg-primary/10 rounded-xl group-hover:bg-primary/20 group-hover:scale-105 transition-all shrink-0">
@@ -225,22 +224,20 @@ export default function Contact() {
                   <button
                     type="button"
                     onClick={() => setActiveMapTab("bhavanipuram")}
-                    className={`py-1.5 px-3 rounded-lg text-xs font-semibold transition-all duration-300 ${
-                      activeMapTab === "bhavanipuram"
+                    className={`py-1.5 px-3 rounded-lg text-xs font-semibold transition-all duration-300 ${activeMapTab === "bhavanipuram"
                         ? "bg-primary text-primary-foreground shadow-sm"
                         : "text-muted-foreground hover:text-foreground"
-                    }`}
+                      }`}
                   >
                     Bhavanipuram
                   </button>
                   <button
                     type="button"
                     onClick={() => setActiveMapTab("gollapudi")}
-                    className={`py-1.5 px-3 rounded-lg text-xs font-semibold transition-all duration-300 ${
-                      activeMapTab === "gollapudi"
+                    className={`py-1.5 px-3 rounded-lg text-xs font-semibold transition-all duration-300 ${activeMapTab === "gollapudi"
                         ? "bg-primary text-primary-foreground shadow-sm"
                         : "text-muted-foreground hover:text-foreground"
-                    }`}
+                      }`}
                   >
                     Gollapudi
                   </button>

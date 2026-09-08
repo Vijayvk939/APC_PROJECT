@@ -183,11 +183,10 @@ export default function Books() {
                   key={cat}
                   type="button"
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-300 border ${
-                    selectedCategory === cat
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-300 border ${selectedCategory === cat
                       ? "bg-gradient-to-r from-[#6b0000] via-[#8B0000] to-[#a80e22] text-white border-transparent shadow-md scale-105"
                       : "bg-card/70 text-muted-foreground border-border/50 hover:border-primary/40 hover:text-foreground"
-                  }`}
+                    }`}
                 >
                   {cat}
                 </button>
@@ -219,15 +218,13 @@ export default function Books() {
               {filteredBooks.map((book, idx) => (
                 <div
                   key={book.id}
-                  className={`reveal opacity-0 ${
-                    idx % 4 === 1 ? "animation-delay-100" : idx % 4 === 2 ? "animation-delay-200" : idx % 4 === 3 ? "animation-delay-300" : ""
-                  } group bg-card/90 backdrop-blur-md rounded-2xl sm:rounded-3xl overflow-hidden border border-border/50 shadow-xl hover:shadow-2xl hover:border-primary/50 hover:-translate-y-2 transition-all duration-500 flex flex-col justify-between relative`}
+                  className={`reveal opacity-0 ${idx % 4 === 1 ? "animation-delay-100" : idx % 4 === 2 ? "animation-delay-200" : idx % 4 === 3 ? "animation-delay-300" : ""
+                    } group bg-card/90 backdrop-blur-md rounded-2xl sm:rounded-3xl overflow-hidden border border-border/50 shadow-xl hover:shadow-2xl hover:border-primary/50 hover:-translate-y-2 transition-all duration-500 flex flex-col justify-between relative`}
                 >
                   {/* Realistic 3D Styled Book Cover */}
                   <div
-                    className={`h-56 sm:h-60 bg-gradient-to-br ${
-                      book.gradient || "from-[#8B0000] via-[#5c0000] to-[#260e14]"
-                    } p-6 relative flex flex-col justify-between overflow-hidden shadow-inner`}
+                    className={`h-56 sm:h-60 bg-gradient-to-br ${book.gradient || "from-[#8B0000] via-[#5c0000] to-[#260e14]"
+                      } p-6 relative flex flex-col justify-between overflow-hidden shadow-inner`}
                   >
                     {/* Spine Line Effect */}
                     <div className="absolute left-0 top-0 bottom-0 w-2.5 bg-black/40 border-r border-white/10" />
