@@ -153,19 +153,6 @@ export default function Gallery() {
           </div>
         </div>
 
-        {/* Thumbnail Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
-          {galleryImages.map((image, idx) => (
-            <div
-              key={idx}
-              onClick={() => setCurrentSlide(idx)}
-              className={`cursor-pointer rounded-2xl overflow-hidden border-2 transition-all duration-300 ${idx === currentSlide ? "border-primary scale-105 shadow-md" : "border-transparent opacity-70 hover:opacity-100"
-                }`}
-            >
-              <img src={image.url} alt={image.title} className="w-full h-24 object-cover" />
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   )
