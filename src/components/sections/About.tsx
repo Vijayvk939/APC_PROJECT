@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { values } from "@/data/about"
 import ourStoryBg from "/images/Design/Our_Story.webp"
 import churchImage from "/images/BVPM_CHURCH.webp"
-import specialPrayersBg from "/images/Design/Prayer_Events&Programs.webp"
+import cardDesignBg from "/images/Design/Card-Design.webp"
 
 
 export default function About() {
@@ -83,13 +83,17 @@ export default function About() {
             </div>
 
             {/* Our Mission Card */}
-            <div className="reveal opacity-0 animation-delay-200 group bg-gradient-to-br from-[#8B0000] via-[#700000] to-[#4A0E17] rounded-3xl p-6 sm:p-8 text-white shadow-xl border border-white/20 relative overflow-hidden">
-              {/* Background Image Overlay */}
-              <img
-                src={specialPrayersBg}
-                alt=""
-                className="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-screen pointer-events-none select-none"
-              />
+            <div className="reveal opacity-0 animation-delay-200 group bg-gradient-to-r from-[#A52020] via-[#8B1010] to-[#6B1520] rounded-3xl p-6 sm:p-8 text-white shadow-xl border border-white/10 relative overflow-hidden">
+              {/* Image bleeding in from the right */}
+              <div className="absolute inset-0 pointer-events-none select-none z-0">
+                <img
+                  src={cardDesignBg}
+                  alt=""
+                  className="w-full h-full object-cover object-right opacity-50 select-none pointer-events-none"
+                />
+                {/* Left-to-right gradient mask */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[#A52020] via-[#A52020]/80 to-transparent pointer-events-none" />
+              </div>
 
               <div className="relative z-10 flex items-center gap-2 mb-3">
                 <ShieldCheck className="w-5 h-5 text-amber-300 shrink-0" />

@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge"
 
 import { worshipServices } from "@/data/worship"
 import worshipServicesBg from "/images/Design/Worship_ServicesPNG.webp"
-import specialPrayersBg from "/images/Design/Prayer_Events&Programs.webp"
+import cardDesignBg from "/images/Design/Card-Design.webp"
 
 
 export default function WorshipServices() {
@@ -111,13 +111,17 @@ export default function WorshipServices() {
 
         {/* Call to Action Banner */}
         <div className="reveal opacity-0 animation-delay-400">
-          <div className="relative bg-gradient-to-r from-[#8B0000] via-[#700000] to-[#4A0E17] rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 text-white shadow-xl overflow-hidden border border-white/20">
-            {/* Background Special-Prayers-Design.png Image Overlay */}
-            <img
-              src={specialPrayersBg}
-              alt=""
-              className="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-screen pointer-events-none select-none"
-            />
+          <div className="relative bg-gradient-to-r from-[#A52020] via-[#8B1010] to-[#6B1520] rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 text-white shadow-xl overflow-hidden border border-white/10">
+            {/* Image bleeding in from the right */}
+            <div className="absolute inset-0 pointer-events-none select-none z-0">
+              <img
+                src={cardDesignBg}
+                alt=""
+                className="w-full h-full object-cover object-right opacity-50 select-none pointer-events-none"
+              />
+              {/* Left-to-right gradient mask: solid red on left, fades to transparent on right */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#A52020] via-[#A52020]/80 to-transparent pointer-events-none" />
+            </div>
 
             <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-5 sm:gap-6">
               <div className="text-center lg:text-left">
