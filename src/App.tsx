@@ -4,6 +4,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { Toaster } from 'sonner';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
+import { CreativeLoader } from './components/ui/creative-loader';
 
 const Home = lazy(() => import('./pages/Home'));
 const Books = lazy(() => import('./pages/Books'));
@@ -46,11 +47,7 @@ function App() {
           <Toaster position="top-right" richColors />
           <Header />
           <main className="flex-grow">
-            <Suspense fallback={
-              <div className="min-h-[60vh] flex items-center justify-center">
-                <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
-              </div>
-            }>
+            <Suspense fallback={<CreativeLoader message="Loading Agape Pentecostal Church..." />}>
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/books" element={<Books />} />
