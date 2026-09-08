@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react"
-import { Church, Users, Clock, MapPin, ArrowRight, Play, Phone } from "lucide-react"
+import { Church, Clock, MapPin, ArrowRight, Play, Phone } from "lucide-react"
 import { ScrollBlurText } from "@/components/scroll-blur-text"
 import { Badge } from "@/components/ui/badge"
 
