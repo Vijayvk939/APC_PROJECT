@@ -7,7 +7,8 @@
       "time": "8:30 AM - 11:00 AM",
       "location": "Bhavanipuram",
       "highlights": ["Live Worship", "Church Fellowship", "Inspiring Sermons", "Communion Service"],
-      "status": "Active"
+      "status": "Active",
+      "image": "/images/Design/Sunday_Prayer.webp"
     },
     {
       "icon": "Users",
@@ -16,7 +17,8 @@
       "time": "9:00 AM - 11:00 AM",
       "location": "Bhavanipuram",
       "highlights": ["Bible Stories", "Worship Songs", "Arts & Crafts", "Prayer Time"],
-      "status": "Active"
+      "status": "Active",
+      "image": "/images/Design/Sunday_School.webp"
     },
     {
       "icon": "Church",
@@ -25,7 +27,8 @@
       "time": "6:30 PM - 8:30 PM",
       "location": "Gollapudi",
       "highlights": ["Evening Worship", "Inspiring Sermons", "Church Fellowship", "Prayer Ministry"],
-      "status": "Active"
+      "status": "Active",
+      "image": "/images/Design/Sunday_Prayer.webp"
     },
     {
       "icon": "Users",
@@ -34,7 +37,8 @@
       "time": "7:30 PM - 8:30 PM",
       "location": "Gollapudi",
       "highlights": ["Evening Bible Study", "Children's Worship", "Interactive Learning", "Family Time"],
-      "status": "Active"
+      "status": "Active",
+      "image": "/images/Design/Sunday_School.webp"
     }
   ]
 }

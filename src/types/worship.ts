@@ -8,4 +8,6 @@ export interface WorshipService {
   location: string;
   highlights: string[];
   status: string;
+  image?: string;
 }
+

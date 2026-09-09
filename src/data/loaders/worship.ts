@@ -10,4 +10,5 @@ const iconMap: Record<string, typeof Church> = {
 export const worshipServices: WorshipService[] = worshipData.worshipServices.map((service) => ({
   ...service,
   icon: iconMap[service.icon] || Church,
+  image: service.image,
 }));

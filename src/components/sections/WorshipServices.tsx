@@ -6,6 +6,8 @@ import { Badge } from "@/components/ui/badge"
 import { worshipServices } from "@/data/worship"
 import worshipServicesBg from "/images/Design/Worship_ServicesPNG.webp"
 import cardDesignBg from "/images/Design/Card-Design.webp"
+import sundayPrayerImg from "/images/Design/Sunday_Prayer.webp"
+import sundaySchoolImg from "/images/Design/Sunday_School.webp"
 
 
 export default function WorshipServices() {
@@ -61,52 +63,76 @@ export default function WorshipServices() {
 
         {/* Worship Services Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-10 sm:mb-12">
-          {worshipServices.map((service, index) => (
-            <div
-              key={service.title + service.subtitle}
-              className={`reveal opacity-0 ${index === 0 ? "" : index === 1 ? "animation-delay-100" : index === 2 ? "animation-delay-200" : "animation-delay-300"} group bg-card/60 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-border/40 shadow-sm hover:shadow-md hover:border-primary/30 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between relative overflow-hidden`}
-            >
-              <div className="relative z-10">
-                {/* Header Row */}
-                <div className="flex items-center justify-between mb-2.5 sm:mb-3">
-                  <div className="p-2 sm:p-2.5 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors">
-                    <service.icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
-                  </div>
-                  <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20 text-[10px] sm:text-[11px] px-2 sm:px-2.5 py-0.5">
-                    {service.status}
-                  </Badge>
-                </div>
+          {worshipServices.map((service, index) => {
+            const isSchool = service.title.toLowerCase().includes("school")
+            const cardImg =
+              service.image ||
+              (isSchool ? sundaySchoolImg : sundayPrayerImg)
 
-                {/* Title & Subtitle */}
-                <h3 className="font-serif text-base sm:text-xl font-bold text-foreground mb-0.5 group-hover:text-primary transition-colors leading-snug">
-                  {service.title}
-                </h3>
-                <p className="text-xs sm:text-sm font-medium text-muted-foreground mb-3">{service.subtitle}</p>
-
-                {/* Time & Location */}
-                <div className="space-y-1.5 mb-3.5">
-                  <div className="flex items-start text-xs text-muted-foreground bg-muted/50 rounded-lg p-2 gap-2">
-                    <Clock className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-                    <span className="font-medium leading-tight break-words">{service.time}</span>
-                  </div>
-                  <div className="flex items-start text-xs text-muted-foreground bg-muted/50 rounded-lg p-2 gap-2">
-                    <MapPin className="w-3.5 h-3.5 text-secondary shrink-0 mt-0.5" />
-                    <span className="font-medium leading-tight break-words">{service.location}</span>
-                  </div>
-                </div>
-
-                {/* Highlights */}
-                <div className="space-y-1 pt-2 border-t border-border/30">
-                  {service.highlights.map((highlight, hIdx) => (
-                    <div key={hIdx} className="flex items-center text-[11px] sm:text-xs text-muted-foreground">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary mr-2 shrink-0" />
-                      <span className="leading-tight">{highlight}</span>
+            return (
+              <div
+                key={service.title + service.subtitle}
+                className={`reveal opacity-0 ${index === 0 ? "" : index === 1 ? "animation-delay-100" : index === 2 ? "animation-delay-200" : "animation-delay-300"} group bg-card/60 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-border/40 shadow-sm hover:shadow-md hover:border-primary/30 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between relative overflow-hidden`}
+              >
+                <div className="relative z-10">
+                  {/* Header Row */}
+                  <div className="flex items-center justify-between mb-2.5 sm:mb-3">
+                    <div className="p-2 sm:p-2.5 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors">
+                      <service.icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                     </div>
-                  ))}
+                    <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20 text-[10px] sm:text-[11px] px-2 sm:px-2.5 py-0.5">
+                      {service.status}
+                    </Badge>
+                  </div>
+
+                  {/* Title & Subtitle */}
+                  <h3 className="font-serif text-base sm:text-xl font-bold text-foreground mb-0.5 group-hover:text-primary transition-colors leading-snug">
+                    {service.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm font-medium text-muted-foreground mb-3">{service.subtitle}</p>
+
+                  {/* Time & Location */}
+                  <div className="space-y-1 mb-3.5">
+                    <div className="flex items-center text-xs text-muted-foreground bg-muted/50 rounded-lg py-1.5 px-2 gap-2">
+                      <Clock className="w-3.5 h-3.5 text-primary shrink-0" />
+                      <span className="font-medium leading-tight break-words">{service.time}</span>
+                    </div>
+                    <div className="flex items-center text-xs text-muted-foreground bg-muted/50 rounded-lg py-1.5 px-2 gap-2">
+                      <MapPin className="w-3.5 h-3.5 text-secondary shrink-0" />
+                      <span className="font-medium leading-tight break-words">{service.location}</span>
+                    </div>
+                  </div>
+
+                  {/* Highlights */}
+                  <div className="space-y-1 pt-2 border-t border-border/30">
+                    {service.highlights.map((highlight, hIdx) => (
+                      <div key={hIdx} className="flex items-center text-[11px] sm:text-xs text-muted-foreground">
+                        <div className="w-1.5 h-1.5 rounded-full bg-primary mr-2 shrink-0" />
+                        <span className="leading-tight">{highlight}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Right Bottom Thematic Illustration */}
+                <div
+                  className="absolute right-0 bottom-0 pointer-events-none select-none z-0 overflow-hidden w-48 sm:w-56 h-44 sm:h-52 origin-bottom-right transition-transform duration-500 group-hover:scale-105"
+                  style={{
+                    maskImage: "radial-gradient(circle at 100% 100%, black 55%, rgba(0, 0, 0, 0.6) 80%, transparent 100%)",
+                    WebkitMaskImage: "radial-gradient(circle at 100% 100%, black 55%, rgba(0, 0, 0, 0.6) 80%, transparent 100%)",
+                  }}
+                >
+                  <img
+                    src={cardImg}
+                    alt=""
+                    className={`w-full h-full object-cover object-bottom-right opacity-80 dark:opacity-30 group-hover:opacity-95 dark:group-hover:opacity-45 transition-opacity duration-500 pointer-events-none select-none origin-bottom-right ${
+                      isSchool ? "scale-[0.84] translate-x-1" : "scale-[1.16] -translate-x-1"
+                    }`}
+                  />
                 </div>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
 
         {/* Call to Action Banner */}
