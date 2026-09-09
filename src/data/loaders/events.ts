@@ -1,12 +1,15 @@
-import { Heart, Users, BookOpen } from 'lucide-react';
-import { SpecialPrayerCardData, RegularPrayerProgram } from '@/types/events';
+import { Heart, Users, BookOpen, Megaphone, TrendingUp } from 'lucide-react';
+import { SpecialPrayerCardData, RegularPrayerProgram, PastorInfo, SpecialtyItem } from '@/types/events';
 import eventsData from '../json/events.json';
+import pastorImage from '/images/SamuelPrasad1.webp';
 
 // Icon mapping
 const iconMap: Record<string, typeof Heart> = {
   Heart,
   Users,
   BookOpen,
+  Megaphone,
+  TrendingUp,
 };
 
 // Import images
@@ -37,4 +40,17 @@ export const regularPrograms: RegularPrayerProgram[] = eventsData.regularProgram
   ...program,
   icon: iconMap[program.icon] || Heart,
 }));
+
+// Process pastor info
+export const pastorInfo: PastorInfo = {
+  ...eventsData.pastorInfo,
+  image: eventsData.pastorInfo.image === '/images/SamuelPrasad1.webp' ? pastorImage : eventsData.pastorInfo.image,
+};
+
+// Process specialty items with icon mapping
+export const specialtyItems: SpecialtyItem[] = eventsData.specialtyItems.map((item) => ({
+  ...item,
+  icon: iconMap[item.icon] || Heart,
+}));
+
 

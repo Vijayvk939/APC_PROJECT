@@ -1,3 +1,3 @@
 // Re-export from JSON loaders for backward compatibility
-export { specialPrayerEvents, regularPrograms } from './loaders/events';
+export { specialPrayerEvents, regularPrograms, pastorInfo, specialtyItems } from './loaders/events';
 

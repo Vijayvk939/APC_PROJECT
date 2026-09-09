@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import { Mail, MapPin, Phone, User, Send, MessageCircle, Clock, Loader2, ExternalLink, HeartHandshake } from "lucide-react"
+import { Mail, MapPin, User, Send, MessageCircle, Clock, Loader2, ExternalLink, HeartHandshake, AlertCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -7,6 +7,8 @@ import { ScrollBlurText } from "@/components/scroll-blur-text"
 import { Badge } from "@/components/ui/badge"
 import { toast } from "sonner"
 import { contactCards, mapLocations } from "@/data/contact"
+import { countries, Country } from "@/data/countries"
+import { PhoneInputField } from "@/components/ui/phone-input"
 import getConnectedBg from "/images/Design/Get_Connected.webp"
 
 
@@ -19,7 +21,53 @@ export default function Contact() {
     phone: "",
     message: ""
   })
+  const [selectedCountry, setSelectedCountry] = useState<Country>(() => {
+    return countries.find((c) => c.code === "IN") || countries[0]
+  })
+  const [formError, setFormError] = useState<string>("")
   const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const getValidationError = (data = formData): string => {
+    const trimmedName = data.name.trim()
+    const trimmedEmail = data.email.trim()
+    const trimmedPhone = data.phone.trim()
+    const trimmedMessage = data.message.trim()
+
+    if (!trimmedName) return "Please enter your name."
+    if (trimmedName.length < 2) return "Name must be at least 2 characters."
+    if (trimmedName.length > 80) return "Name cannot exceed 80 characters."
+
+    if (!trimmedEmail) return "Please enter your email."
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+    if (!emailRegex.test(trimmedEmail)) return "Enter valid email (e.g. name@example.com)"
+
+    if (trimmedPhone) {
+      const minDigits = selectedCountry?.minDigits || 10
+      const maxDigits = selectedCountry?.maxDigits || 15
+      const digits = trimmedPhone.replace(/\D/g, "")
+      if (digits.length < minDigits || digits.length > maxDigits) {
+        return `Please enter a valid ${minDigits}-digit phone number.`
+      }
+    }
+
+    if (!trimmedMessage) return "Please enter your message."
+    if (trimmedMessage.length < 10) return "Message must be at least 10 characters."
+
+    return ""
+  }
+
+  const handleChange = (field: keyof typeof formData, value: string) => {
+    let cleanValue = value
+    if (field === "phone") {
+      // Allow only digits and dashes for formatted display
+      cleanValue = value.replace(/[^\d-]/g, "").slice(0, 20)
+    }
+    const updated = { ...formData, [field]: cleanValue }
+    setFormData(updated)
+    if (formError) {
+      setFormError(getValidationError(updated))
+    }
+  }
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -41,17 +89,50 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!formData.name || (!formData.email && !formData.phone) || !formData.message) {
-      toast.error("Please fill in your name, contact info, and message.")
+
+    const error = getValidationError()
+    if (error) {
+      setFormError(error)
+      toast.error(error)
       return
     }
 
+    setFormError("")
     setIsSubmitting(true)
-    setTimeout(() => {
+    try {
+      const cleanDigits = formData.phone.trim().replace(/\D/g, "")
+      const submitPhone = cleanDigits
+        ? `${selectedCountry?.dialCode || "+91"} ${cleanDigits}`
+        : ""
+
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          phone: submitPhone,
+          message: formData.message.trim(),
+        }),
+      })
+
+      const data = await response.json().catch(() => ({}))
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to send your message. Please try again later.")
+      }
+
       toast.success("Thank you! Your message has been sent to Agape Pentecostal Church.")
       setFormData({ name: "", email: "", phone: "", message: "" })
+      setFormError("")
+    } catch (error: any) {
+      console.error("Error submitting contact form:", error)
+      toast.error(error.message || "Failed to send message. Please contact us directly by phone or email.")
+    } finally {
       setIsSubmitting(false)
-    }, 1000)
+    }
   }
 
   const currentMap = mapLocations[activeMapTab]
@@ -151,45 +232,66 @@ export default function Contact() {
                 <p className="text-xs text-muted-foreground">We welcome your prayer requests and inquiries</p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-3.5 sm:space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-3.5 sm:space-y-4" noValidate>
+                {/* Name Field */}
                 <div className="relative">
                   <User className="absolute left-3.5 sm:left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
                   <Input
-                    placeholder="Your Name"
+                    placeholder="Your Name *"
                     value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="pl-9 sm:pl-10 h-10 sm:h-11 bg-background/60 rounded-xl border-border/50 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-xs sm:text-sm"
+                    onChange={(e) => handleChange("name", e.target.value)}
+                    className="pl-9 sm:pl-10 h-10 sm:h-11 bg-white dark:bg-card rounded-xl border-border/50 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-xs sm:text-sm"
                   />
                 </div>
 
+                {/* Email Field */}
                 <div className="relative">
                   <Mail className="absolute left-3.5 sm:left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
                   <Input
                     type="email"
-                    placeholder="Email Address"
+                    placeholder="Email Address *"
                     value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="pl-9 sm:pl-10 h-10 sm:h-11 bg-background/60 rounded-xl border-border/50 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-xs sm:text-sm"
+                    onChange={(e) => handleChange("email", e.target.value)}
+                    className="pl-9 sm:pl-10 h-10 sm:h-11 bg-white dark:bg-card rounded-xl border-border/50 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-xs sm:text-sm"
                   />
                 </div>
 
-                <div className="relative">
-                  <Phone className="absolute left-3.5 sm:left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
-                  <Input
-                    type="tel"
-                    placeholder="Phone Number"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="pl-9 sm:pl-10 h-10 sm:h-11 bg-background/60 rounded-xl border-border/50 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-xs sm:text-sm"
-                  />
-                </div>
-
-                <Textarea
-                  placeholder="Your prayer request or message..."
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="min-h-[120px] sm:min-h-[130px] p-3 sm:p-3.5 bg-background/60 rounded-xl resize-none border-border/50 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-xs sm:text-sm"
+                {/* Phone Field with Searchable Country Code */}
+                <PhoneInputField
+                  value={formData.phone}
+                  onChange={(value, countryData) => {
+                    setSelectedCountry(countryData)
+                    handleChange("phone", value)
+                  }}
+                  disabled={isSubmitting}
+                  error={Boolean(formError && formError.toLowerCase().includes("phone"))}
+                  placeholder="Phone Number"
                 />
+
+                {/* Message Field */}
+                <div className="space-y-1">
+                  <div className="relative">
+                    <Textarea
+                      placeholder="Your prayer request or message... *"
+                      value={formData.message}
+                      onChange={(e) => handleChange("message", e.target.value)}
+                      maxLength={2000}
+                      className="min-h-[120px] sm:min-h-[130px] p-3 sm:p-3.5 bg-white dark:bg-card rounded-xl resize-none border-border/50 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-xs sm:text-sm"
+                    />
+                  </div>
+                  <div className="flex items-center justify-between px-1 text-[10px] sm:text-[11px] text-muted-foreground">
+                    <span>Min. 10 characters</span>
+                    <span className="font-mono">{formData.message.length}/2000</span>
+                  </div>
+                </div>
+
+                {/* Single Validation Error Message */}
+                {formError && (
+                  <div className="flex items-center gap-2 p-2.5 rounded-xl bg-destructive/10 border border-destructive/25 text-destructive text-xs font-medium animate-in fade-in slide-in-from-top-1">
+                    <AlertCircle className="w-4 h-4 shrink-0 text-destructive" />
+                    <span>{formError}</span>
+                  </div>
+                )}
 
                 <Button
                   type="submit"
@@ -225,8 +327,8 @@ export default function Contact() {
                     type="button"
                     onClick={() => setActiveMapTab("bhavanipuram")}
                     className={`py-1.5 px-3 rounded-lg text-xs font-semibold transition-all duration-300 ${activeMapTab === "bhavanipuram"
-                        ? "bg-primary text-primary-foreground shadow-sm"
-                        : "text-muted-foreground hover:text-foreground"
+                      ? "bg-primary text-primary-foreground shadow-sm"
+                      : "text-muted-foreground hover:text-foreground"
                       }`}
                   >
                     Bhavanipuram
@@ -235,8 +337,8 @@ export default function Contact() {
                     type="button"
                     onClick={() => setActiveMapTab("gollapudi")}
                     className={`py-1.5 px-3 rounded-lg text-xs font-semibold transition-all duration-300 ${activeMapTab === "gollapudi"
-                        ? "bg-primary text-primary-foreground shadow-sm"
-                        : "text-muted-foreground hover:text-foreground"
+                      ? "bg-primary text-primary-foreground shadow-sm"
+                      : "text-muted-foreground hover:text-foreground"
                       }`}
                   >
                     Gollapudi

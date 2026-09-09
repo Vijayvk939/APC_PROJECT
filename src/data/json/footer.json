@@ -1,0 +1,58 @@
+{
+  "brand": {
+    "name": "AGAPE PENTECOSTAL",
+    "subtitle": "Church • Pastor Samuel Prasad Machavarapu",
+    "description": "Building a church where every heart finds home, every soul discovers purpose, and every life reflects God's unconditional love."
+  },
+  "contact": {
+    "address": "Gurukrupa Rd, Kamakoti Nagar, VD Puram, Vijayawada, AP 520012",
+    "mapUrl": "https://maps.google.com/?q=Gurukrupa+Rd,+Kamakoti+Nagar,+VD+Puram,+Vijayawada,+AP+520012",
+    "phone": "+91 9390232344",
+    "phoneRaw": "+919390232344",
+    "email": "agapepentecostalchurchapc@gmail.com"
+  },
+  "links": {
+    "services": [
+      { "label": "Sunday 1st Service", "href": "#services" },
+      { "label": "Sunday School", "href": "#services" },
+      { "label": "Sunday 2nd Service", "href": "#services" },
+      { "label": "Friday Fasting Prayer", "href": "#events" },
+      { "label": "Saturday Weekend Service", "href": "#events" }
+    ],
+    "church": [
+      { "label": "About Us", "href": "#about" },
+      { "label": "Spiritual Leadership", "href": "#leadership" },
+      { "label": "Church Gallery", "href": "#gallery" },
+      { "label": "Contact Us", "href": "#contact" }
+    ],
+    "media": [
+      { "label": "Sermons & Videos", "href": "#videos" },
+      { "label": "Prayer Events", "href": "#events" },
+      { "label": "YouTube Channel", "href": "https://www.youtube.com/@agapepentecostalchurch" },
+      { "label": "Books & Downloads", "href": "/books" }
+    ]
+  },
+  "socialLinks": [
+    {
+      "platform": "Facebook",
+      "href": "https://facebook.com/Agape-Pentecostal-Church-100304551730613",
+      "icon": "Facebook"
+    },
+    {
+      "platform": "Instagram",
+      "href": "https://instagram.com/prasadmachavarapu?igshid=1icl4cqfr69xz",
+      "icon": "Instagram"
+    },
+    {
+      "platform": "YouTube",
+      "href": "https://youtube.com/channel/UCjdJChq8HST_jDuZSElFz3Q",
+      "icon": "Youtube"
+    },
+    {
+      "platform": "Twitter",
+      "href": "https://twitter.com/PrasadMachavar2?s=09",
+      "icon": "Twitter"
+    }
+  ],
+  "copyright": "© 2026 Agape Pentecostal Church. All Rights Reserved. • Vijayawada, AP"
+}

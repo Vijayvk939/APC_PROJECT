@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom"
 import { Menu, X, BookOpen, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
+import headerData from "@/data/json/header.json"
 import logoImage from "/images/AGP.webp"
 
 export default function Header() {
@@ -11,6 +12,8 @@ export default function Header() {
   const [isPastHero, setIsPastHero] = useState(false)
   const navigate = useNavigate()
   const location = useLocation()
+
+  const { brand, navLinks, cta } = headerData
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,16 +50,6 @@ export default function Header() {
     }
   }
 
-  const navLinks = [
-    { id: "services", label: "Services" },
-    { id: "events", label: "Events" },
-    { id: "videos", label: "Sermons" },
-    { id: "leadership", label: "Leadership" },
-    { id: "gallery", label: "Gallery" },
-    { id: "about", label: "About" },
-    { id: "contact", label: "Contact" },
-  ]
-
   return (
     <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
       <nav
@@ -84,11 +77,11 @@ export default function Header() {
             <div className="flex flex-col">
               <span className={`font-serif text-xs xs:text-sm sm:text-base font-bold tracking-wider uppercase group-hover:text-[#D91B36] transition-colors leading-none ${isPastHero ? "text-slate-900 dark:text-white" : "text-white"
                 }`}>
-                AGAPE PENTECOSTAL CHURCH
+                {brand.name}
               </span>
               <span className={`text-[10px] sm:text-[11px] font-medium tracking-wide leading-tight mt-0.5 transition-colors ${isPastHero ? "text-slate-600 dark:text-slate-400" : "text-white/60"
                 }`}>
-                Pastor Samuel Prasad Machavarapu
+                {brand.subtitle}
               </span>
             </div>
           </button>
@@ -117,12 +110,12 @@ export default function Header() {
             <Button
               className="bg-[#8B0000] hover:bg-[#6c0000] text-white rounded-full px-5 py-2 text-xs font-bold uppercase tracking-wider transition-all hover:scale-[1.03] border border-white/20 flex items-center gap-2"
               onClick={() => {
-                navigate("/books")
+                navigate(cta.href)
                 window.scrollTo(0, 0)
               }}
             >
               <BookOpen className="w-4 h-4 text-white" />
-              <span className="text-white">GET BOOKS</span>
+              <span className="text-white">{cta.label}</span>
             </Button>
           </div>
 
@@ -165,12 +158,12 @@ export default function Header() {
                   className="bg-[#8B0000] hover:bg-[#6c0000] text-white rounded-full w-full py-3 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 border border-white/20"
                   onClick={() => {
                     setIsOpen(false)
-                    navigate("/books")
+                    navigate(cta.href)
                     window.scrollTo(0, 0)
                   }}
                 >
                   <BookOpen className="w-4 h-4 text-white" />
-                  <span className="text-white">GET BOOKS</span>
+                  <span className="text-white">{cta.label}</span>
                 </Button>
               </div>
             </div>

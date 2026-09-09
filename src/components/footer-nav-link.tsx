@@ -8,6 +8,10 @@ export function FooterNavLink({ href, children, className = "" }: FooterNavLinkP
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (href.startsWith("#")) {
       e.preventDefault()
+      if (window.location.pathname !== "/") {
+        window.location.href = "/" + href
+        return
+      }
       const targetId = href.replace("#", "")
       const element = document.getElementById(targetId)
       if (element) {

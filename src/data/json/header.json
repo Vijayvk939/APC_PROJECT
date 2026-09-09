@@ -1,0 +1,19 @@
+{
+  "brand": {
+    "name": "AGAPE PENTECOSTAL CHURCH",
+    "subtitle": "Pastor Samuel Prasad Machavarapu"
+  },
+  "navLinks": [
+    { "id": "services", "label": "Services" },
+    { "id": "events", "label": "Events" },
+    { "id": "videos", "label": "Sermons" },
+    { "id": "leadership", "label": "Leadership" },
+    { "id": "gallery", "label": "Gallery" },
+    { "id": "about", "label": "About" },
+    { "id": "contact", "label": "Contact" }
+  ],
+  "cta": {
+    "label": "GET BOOKS",
+    "href": "/books"
+  }
+}

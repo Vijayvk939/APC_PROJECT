@@ -1,37 +1,12 @@
 import { useEffect, useRef } from "react"
-import { Clock, Heart, Users, BookOpen, Phone, MapPin, Megaphone, TrendingUp } from "lucide-react"
+import { Clock, Heart, Users, BookOpen, Phone, MapPin } from "lucide-react"
 import { ScrollBlurText } from "@/components/scroll-blur-text"
 import { Badge } from "@/components/ui/badge"
 import { SpecialPrayerCardCarousel } from "@/components/features/events"
-import { specialPrayerEvents, regularPrograms } from "@/data/events"
-import pastorImage from "/images/SamuelPrasad1.webp"
+import { specialPrayerEvents, regularPrograms, pastorInfo, specialtyItems } from "@/data/events"
 import prayerEventsBg from "/images/Design/Prayer_Events&Programs.webp"
 import specialPrayersBg from "/images/Design/Special_Events.webp"
 import aboutBg from "/images/About.webp"
-
-const pastorInfo = {
-  name: "Pastor Samuel Prasad Machavarapu",
-  role: "SENIOR PASTOR & VISIONARY LEADER",
-  image: pastorImage,
-  bio: "Pastor Samuel Prasad Machavarapu has been faithfully serving the Agape Pentecostal Church in Vijayawada with passion, wisdom, and unwavering commitment to God's Word. His heart for people and dedication to biblical truth has helped countless individuals grow in their faith journey through powerful messages and glorious worship.",
-  education: [
-    "Diploma in Theology - World Bible College",
-    "Advanced Biblical Studies & Ministry Training",
-    "Leadership Development & Church Administration"
-  ],
-  contact: {
-    phone: "+91 9390232344",
-    location: "Vijayawada, Andhra Pradesh"
-  }
-}
-
-const specialtyItems = [
-  { label: "Powerful Preaching", icon: Megaphone },
-  { label: "Gospel Speaker", icon: BookOpen },
-  { label: "Church Growth", icon: TrendingUp },
-  { label: "Agape Bible School Faculty", icon: Users },
-  { label: "Glorious Worship", icon: Heart },
-]
 
 export default function Events() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -218,8 +193,8 @@ export default function Events() {
 
                   {/* Name (Two-tone) */}
                   <h3 className="font-serif text-xl sm:text-2xl font-bold tracking-tight mb-1">
-                    <span className="block text-primary font-serif">Pastor Samuel Prasad</span>
-                    <span className="block text-foreground font-serif">Machavarapu</span>
+                    <span className="block text-primary font-serif">{pastorInfo.firstName}</span>
+                    <span className="block text-foreground font-serif">{pastorInfo.lastName}</span>
                   </h3>
 
                   {/* Sub-divider with Cross */}

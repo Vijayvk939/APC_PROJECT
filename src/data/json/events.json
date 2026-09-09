@@ -98,6 +98,31 @@
       "status": "Active",
       "accentColor": "bg-rose-700"
     }
+  ],
+  "pastorInfo": {
+    "name": "Pastor Samuel Prasad Machavarapu",
+    "firstName": "Pastor Samuel Prasad",
+    "lastName": "Machavarapu",
+    "role": "SENIOR PASTOR & VISIONARY LEADER",
+    "image": "/images/SamuelPrasad1.webp",
+    "bio": "Pastor Samuel Prasad Machavarapu has been faithfully serving the Agape Pentecostal Church in Vijayawada with passion, wisdom, and unwavering commitment to God's Word. His heart for people and dedication to biblical truth has helped countless individuals grow in their faith journey through powerful messages and glorious worship.",
+    "education": [
+      "Diploma in Theology - World Bible College",
+      "Advanced Biblical Studies & Ministry Training",
+      "Leadership Development & Church Administration"
+    ],
+    "contact": {
+      "phone": "+91 9390232344",
+      "location": "Vijayawada, Andhra Pradesh"
+    }
+  },
+  "specialtyItems": [
+    { "label": "Powerful Preaching", "icon": "Megaphone" },
+    { "label": "Gospel Speaker", "icon": "BookOpen" },
+    { "label": "Church Growth", "icon": "TrendingUp" },
+    { "label": "Agape Bible School Faculty", "icon": "Users" },
+    { "label": "Glorious Worship", "icon": "Heart" }
   ]
 }
+
 
