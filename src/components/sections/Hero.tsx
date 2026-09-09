@@ -153,12 +153,8 @@ export default function Hero() {
             <span className="h-3.5 w-[2.5px] bg-[#8B0000] rounded-full inline-block" />
             <span>PEOPLE • PURPOSE • A BRIGHTER TOMORROW</span>
           </div>
-          <div className="flex items-center gap-2.5 sm:gap-3">
-            <div className="flex items-center gap-1.5 opacity-90">
-              <span className="w-4 sm:w-6 h-[2px] bg-white/35 rounded-full inline-block" />
-              <span className="w-6 sm:w-8 h-[2.5px] bg-[#FF2D55] rounded-full shadow-[0_0_8px_rgba(255,45,85,0.8)] inline-block" />
-              <span className="w-4 sm:w-6 h-[2px] bg-white/35 rounded-full inline-block" />
-            </div>
+          <div className="flex items-center gap-2 sm:gap-2.5">
+            <span className="h-3.5 w-[2.5px] bg-[#8B0000] rounded-full inline-block" />
             <span>FAITH • LOVE • SERVICE</span>
           </div>
         </div>
