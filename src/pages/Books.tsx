@@ -317,7 +317,17 @@ export default function Books() {
 
           {/* Special Request Callout Box */}
           <div className="reveal opacity-0 animation-delay-300 mt-16 sm:mt-20">
-            <div className="relative bg-gradient-to-r from-[#8B0000] via-[#600000] to-[#360810] rounded-2xl sm:rounded-3xl p-6 sm:p-10 text-white shadow-2xl overflow-hidden border border-white/20">
+            <div className="relative bg-gradient-to-r from-[#A52020] via-[#8B1010] to-[#6B1520] rounded-2xl sm:rounded-3xl p-6 sm:p-10 text-white shadow-2xl overflow-hidden border border-white/10">
+              {/* Decorative book icons bleeding in from the right */}
+              <div className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden">
+                <BookOpen className="absolute -bottom-4 right-6 w-36 h-36 text-white/10 rotate-12" />
+                <BookOpen className="absolute top-3 right-40 w-20 h-20 text-white/8 -rotate-6" />
+                <Book className="absolute top-5 right-16 w-14 h-14 text-white/8 rotate-3" />
+                <Book className="absolute bottom-4 right-52 w-10 h-10 text-white/6 -rotate-12" />
+              </div>
+              {/* Left-to-right gradient mask: solid on left, fades to transparent on right */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#A52020] via-[#8B1010]/80 to-transparent pointer-events-none z-0" />
+
               <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
                 <div className="text-center md:text-left max-w-2xl">
                   <Badge className="bg-white/20 text-white border-white/30 text-xs px-3 py-1 mb-3 rounded-full">
@@ -334,7 +344,7 @@ export default function Books() {
                 <div className="flex flex-wrap items-center justify-center gap-3 shrink-0 w-full md:w-auto">
                   <Button
                     onClick={() => navigate("/#contact")}
-                    className="w-full sm:w-auto rounded-full bg-white text-[#8B0000] hover:bg-white/95 font-bold text-xs sm:text-sm px-6 py-3 shadow-lg transition-all"
+                    className="w-full sm:w-auto rounded-full bg-white text-[#A52020] hover:bg-white/95 font-bold text-xs sm:text-sm px-6 py-3 shadow-lg transition-all"
                   >
                     Contact Church Office
                   </Button>
