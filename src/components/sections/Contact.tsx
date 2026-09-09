@@ -144,7 +144,7 @@ export default function Contact() {
         <img
           src={getConnectedBg}
           alt=""
-          className="w-full h-auto min-w-full object-cover opacity-65 dark:opacity-25 select-none pointer-events-none"
+          className="w-full h-auto min-w-full object-cover opacity-40 dark:opacity-15 select-none pointer-events-none"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/40 to-background/90 pointer-events-none" />
       </div>

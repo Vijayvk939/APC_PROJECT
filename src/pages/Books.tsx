@@ -1,21 +1,19 @@
-import { useEffect, useRef, useState, useMemo } from "react"
-import { Book, Download, Library, ArrowLeft, Search, Star, Globe, FileText, Sparkles, BookOpen } from "lucide-react"
+import { useEffect, useRef } from "react"
+import { Book, Download, ArrowLeft, Star, Globe, FileText, Sparkles, BookOpen } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 import { Helmet } from "react-helmet-async"
 import { ScrollBlurText } from "@/components/scroll-blur-text"
 import { ScrollToTopOnLoad } from "@/components/scroll-to-top-on-load"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { toast } from "sonner"
 import { books } from "@/data/books"
+import { BookData } from "@/types/books"
 import arcBg from "/images/Design/ARC-PNG.webp"
 
 export default function Books() {
   const navigate = useNavigate()
   const sectionRef = useRef<HTMLDivElement>(null)
-  const [searchQuery, setSearchQuery] = useState("")
-  const [selectedCategory, setSelectedCategory] = useState("All")
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -35,33 +33,9 @@ export default function Books() {
     return () => observer.disconnect()
   }, [])
 
-  // Categories list
-  const categories = useMemo(() => {
-    const cats = new Set(books.map((b) => b.category || "General"))
-    return ["All", ...Array.from(cats)]
-  }, [])
-
-  // Filtered books
-  const filteredBooks = useMemo(() => {
-    const q = searchQuery.trim().toLowerCase()
-    return books.filter((book) => {
-      const matchesSearch =
-        !q ||
-        book.title.toLowerCase().includes(q) ||
-        book.author.toLowerCase().includes(q) ||
-        book.description.toLowerCase().includes(q) ||
-        (book.category && book.category.toLowerCase().includes(q)) ||
-        (book.language && book.language.toLowerCase().includes(q))
-
-      const matchesCategory = selectedCategory === "All" || book.category === selectedCategory
-
-      return matchesSearch && matchesCategory
-    })
-  }, [searchQuery, selectedCategory])
-
-  const handleDownload = (bookTitle: string, fileSize?: string) => {
-    toast.success(`"${bookTitle}" download started! (${fileSize || "PDF"})`, {
-      description: "Thank you for exploring our spiritual library.",
+  const handleDownload = (book: BookData) => {
+    toast.success(`"${book.title}" download started!`, {
+      description: "Opening PDF download link. Thank you for exploring our spiritual library.",
     })
   }
 
@@ -71,7 +45,7 @@ export default function Books() {
         <title>Spiritual Library & Books | Agape Pentecostal Church</title>
         <meta
           name="description"
-          content="Explore and download free Christian books, Bibles, theology resources, and spiritual study guides at Agape Pentecostal Church."
+          content="Explore and download free Christian books, Telugu spiritual PDF messages, and Bible study guides by Pastor Samuel Prasad Machavarapu."
         />
         <link rel="canonical" href="https://www.agapepentecostalchurch.com/books" />
         {typeof window !== "undefined" && window.location.hostname.includes("vercel.app") && (
@@ -132,7 +106,7 @@ export default function Books() {
               className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground text-balance mb-6"
             />
             <p className="reveal opacity-0 animation-delay-200 text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Explore timeless Christian books, study guides, and biblical literature to nourish your spirit and deepen your walk with God.
+              Explore inspiring Telugu spiritual books, study guides, and biblical messages by Pastor Samuel Prasad Machavarapu to nourish your spirit and deepen your walk with God.
             </p>
             <div className="reveal opacity-0 animation-delay-300 w-16 h-0.5 bg-gradient-to-r from-primary via-accent to-secondary mx-auto mt-6" />
 
@@ -148,74 +122,14 @@ export default function Books() {
               </div>
               <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-card/80 backdrop-blur-md border border-border/40 shadow-sm">
                 <Globe className="w-3.5 h-3.5 text-primary shrink-0" />
-                <span className="font-medium text-foreground">Telugu & English Editions</span>
+                <span className="font-medium text-foreground">Telugu PDF Editions</span>
               </div>
             </div>
           </div>
 
-          {/* Search & Category Filter Controls */}
-          <div className="reveal opacity-0 animation-delay-200 mb-10 sm:mb-12 space-y-5">
-            {/* Search Input Bar */}
-            <div className="max-w-xl mx-auto relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
-              <Input
-                type="text"
-                placeholder="Search books by title, author, or keyword..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-11 pr-4 h-11 sm:h-12 bg-card/80 backdrop-blur-md rounded-2xl sm:rounded-full border-border/60 focus:border-primary focus:ring-2 focus:ring-primary/20 text-xs sm:text-sm shadow-md transition-all"
-              />
-              {searchQuery && (
-                <button
-                  type="button"
-                  onClick={() => setSearchQuery("")}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-muted-foreground hover:text-foreground font-medium"
-                >
-                  Clear
-                </button>
-              )}
-            </div>
-
-            {/* Category Filter Pills */}
-            <div className="flex flex-wrap items-center justify-center gap-2">
-              {categories.map((cat) => (
-                <button
-                  key={cat}
-                  type="button"
-                  onClick={() => setSelectedCategory(cat)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-300 border ${selectedCategory === cat
-                      ? "bg-gradient-to-r from-[#6b0000] via-[#8B0000] to-[#a80e22] text-white border-transparent shadow-md scale-105"
-                      : "bg-card/70 text-muted-foreground border-border/50 hover:border-primary/40 hover:text-foreground"
-                    }`}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
-          </div>
-
           {/* Book Cards Grid */}
-          {filteredBooks.length === 0 ? (
-            <div className="text-center py-16 bg-card/40 rounded-3xl border border-border/40 max-w-lg mx-auto p-8">
-              <Library className="w-12 h-12 text-muted-foreground/60 mx-auto mb-3" />
-              <h3 className="font-serif text-lg font-bold text-foreground mb-1">No Books Found</h3>
-              <p className="text-xs sm:text-sm text-muted-foreground mb-4">
-                We couldn't find any books matching "{searchQuery}".
-              </p>
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSearchQuery("")
-                  setSelectedCategory("All")
-                }}
-                className="rounded-full text-xs"
-              >
-                Reset Search
-              </Button>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
-              {filteredBooks.map((book, idx) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
+            {books.map((book, idx) => (
                 <div
                   key={book.id}
                   className={`reveal opacity-0 ${idx % 4 === 1 ? "animation-delay-100" : idx % 4 === 2 ? "animation-delay-200" : idx % 4 === 3 ? "animation-delay-300" : ""
@@ -251,7 +165,7 @@ export default function Books() {
                       <div className="w-14 h-14 mx-auto rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-white/20 transition-all duration-500 mb-2">
                         <Book className="w-7 h-7 text-white" />
                       </div>
-                      <h4 className="font-serif text-sm sm:text-base font-bold text-white leading-tight line-clamp-2 px-2 drop-shadow-md">
+                      <h4 className="font-serif text-sm sm:text-base font-bold text-white leading-snug line-clamp-3 px-2 drop-shadow-md">
                         {book.title}
                       </h4>
                       <p className="text-[11px] text-white/80 font-medium mt-1 italic drop-shadow-sm">
@@ -262,7 +176,7 @@ export default function Books() {
                     {/* Footer Language Badge */}
                     <div className="relative z-10 pl-2 flex items-center justify-between text-[10px] text-white/80 font-medium">
                       <span className="bg-black/30 px-2 py-0.5 rounded-md border border-white/10">
-                        {book.language || "English & Telugu"}
+                        {book.language || "Telugu"}
                       </span>
                       {book.fileSize && <span>{book.fileSize}</span>}
                     </div>
@@ -272,7 +186,7 @@ export default function Books() {
                   <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between bg-card/95">
                     <div>
                       <div className="flex items-center justify-between gap-2 mb-1.5">
-                        <h3 className="font-serif text-base sm:text-lg font-bold text-foreground group-hover:text-primary transition-colors line-clamp-1">
+                        <h3 className="font-serif text-base sm:text-lg font-bold text-foreground group-hover:text-primary transition-colors line-clamp-2 min-h-[3rem]">
                           {book.title}
                         </h3>
                       </div>
@@ -290,30 +204,32 @@ export default function Books() {
                       <div className="grid grid-cols-2 gap-2 mb-4 p-2.5 rounded-xl bg-muted/40 text-[11px] text-muted-foreground border border-border/40">
                         <div className="flex items-center gap-1.5">
                           <FileText className="w-3.5 h-3.5 text-primary shrink-0" />
-                          <span className="font-medium">{book.pages || "PDF Edition"}</span>
+                          <span className="font-medium truncate">{book.pages || "PDF Booklet"}</span>
                         </div>
                         <div className="flex items-center gap-1.5">
                           <Globe className="w-3.5 h-3.5 text-secondary shrink-0" />
-                          <span className="font-medium truncate">{book.language || "PDF"}</span>
+                          <span className="font-medium truncate">{book.language || "Telugu"}</span>
                         </div>
                       </div>
                     </div>
 
                     {/* Actions Row */}
                     <div className="pt-2 border-t border-border/30">
-                      <Button
-                        onClick={() => handleDownload(book.title, book.fileSize)}
-                        className="w-full rounded-xl bg-gradient-to-r from-[#6b0000] via-[#8B0000] to-[#a80e22] text-white hover:opacity-95 py-2.5 text-xs font-bold flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all border border-white/10"
+                      <a
+                        href={book.downloadUrl || "#"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => handleDownload(book)}
+                        className="w-full rounded-xl bg-gradient-to-r from-[#6b0000] via-[#8B0000] to-[#a80e22] text-white hover:opacity-95 py-2.5 text-xs font-bold flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all border border-white/10 select-none cursor-pointer"
                       >
                         <Download className="w-3.5 h-3.5 text-white" />
                         <span>Download PDF</span>
-                      </Button>
+                      </a>
                     </div>
                   </div>
                 </div>
               ))}
-            </div>
-          )}
+          </div>
 
           {/* Special Request Callout Box */}
           <div className="reveal opacity-0 animation-delay-300 mt-16 sm:mt-20">

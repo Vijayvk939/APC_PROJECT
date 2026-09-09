@@ -11,4 +11,6 @@ export interface BookData {
   downloads?: string;
   rating?: string;
   gradient?: string;
+  downloadUrl?: string;
+  fileName?: string;
 }
