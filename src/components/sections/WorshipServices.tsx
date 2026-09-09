@@ -116,7 +116,7 @@ export default function WorshipServices() {
 
                 {/* Right Bottom Thematic Illustration */}
                 <div
-                  className="absolute right-0 bottom-0 pointer-events-none select-none z-0 overflow-hidden w-48 sm:w-56 h-44 sm:h-52 origin-bottom-right transition-transform duration-500 group-hover:scale-105"
+                  className="absolute -right-px -bottom-px pointer-events-none select-none z-0 overflow-hidden w-48 sm:w-56 h-44 sm:h-52 origin-bottom-right transition-transform duration-500 group-hover:scale-105"
                   style={{
                     maskImage: "radial-gradient(circle at 100% 100%, black 55%, rgba(0, 0, 0, 0.6) 80%, transparent 100%)",
                     WebkitMaskImage: "radial-gradient(circle at 100% 100%, black 55%, rgba(0, 0, 0, 0.6) 80%, transparent 100%)",
@@ -126,7 +126,7 @@ export default function WorshipServices() {
                     src={cardImg}
                     alt=""
                     className={`w-full h-full object-cover object-bottom-right opacity-80 dark:opacity-30 group-hover:opacity-95 dark:group-hover:opacity-45 transition-opacity duration-500 pointer-events-none select-none origin-bottom-right ${
-                      isSchool ? "scale-[0.84] translate-x-1" : "scale-[1.16] -translate-x-1"
+                      isSchool ? "scale-[0.85]" : "scale-[1.15]"
                     }`}
                   />
                 </div>
