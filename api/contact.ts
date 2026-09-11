@@ -1,25 +1,38 @@
 import nodemailer from "nodemailer";
 
-// Configuration for Agape Pentecostal Church
-const SITE_NAME = process.env.CONTACT_SITE_NAME || "Agape Pentecostal Church";
-const SITE_URL = process.env.SITE_URL || "https://agapepentecostalchurch.com";
-const DEFAULT_RECIPIENTS = "agapepentecostalchurchapc@gmail.com, vijaymachavarapu.m@gmail.com, agapeprasad.m@gmail.com";
-const CONTACT_TO = process.env.CONTACT_TO_EMAIL || DEFAULT_RECIPIENTS;
-const SMTP_USER = process.env.SMTP_USER || "agapepentecostalchurchapc@gmail.com";
-const SMTP_PASS = process.env.SMTP_PASS || "soti ehus qhvg gwzv";
-const SMTP_FROM = process.env.SMTP_FROM || `${SITE_NAME} <${SMTP_USER}>`;
+// Load local environment file if available in Node runtime
+try {
+  if (typeof process.loadEnvFile === "function") {
+    process.loadEnvFile();
+  }
+} catch {
+  // Ignored in environments where .env is not present (e.g. production serverless)
+}
 
-// Configure Gmail SMTP transporter using Gmail App Password
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  host: "smtp.gmail.com",
-  port: 587,
-  secure: false,
-  auth: {
-    user: SMTP_USER,
-    pass: SMTP_PASS,
-  },
-});
+// Configuration for Agape Pentecostal Church
+const SITE_NAME = process.env.CONTACT_SITE_NAME || process.env.SITE_NAME || "Agape Pentecostal Church";
+const SITE_URL = process.env.SITE_URL || "https://agapepentecostalchurch.com";
+
+function getTransporter() {
+  const user = process.env.SMTP_USER;
+  const pass = process.env.SMTP_PASS;
+
+  if (!user || !pass) {
+    throw new Error("SMTP credentials are not configured. Please set SMTP_USER and SMTP_PASS environment variables.");
+  }
+
+  // Configure Gmail SMTP transporter using Gmail App Password from environment
+  return nodemailer.createTransport({
+    service: "gmail",
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
+    auth: {
+      user,
+      pass,
+    },
+  });
+}
 
 interface ContactPayload {
   name: string;
@@ -34,6 +47,16 @@ export async function sendContactEmail(data: ContactPayload) {
   if (!name || !email || !message) {
     throw new Error("Missing required fields: name, email, and message are required.");
   }
+
+  const smtpUser = process.env.SMTP_USER || "";
+  const contactTo = process.env.CONTACT_TO_EMAIL || smtpUser;
+  const smtpFrom = process.env.SMTP_FROM || (smtpUser ? `${SITE_NAME} <${smtpUser}>` : SITE_NAME);
+
+  if (!contactTo) {
+    throw new Error("Recipient email is not configured. Please set CONTACT_TO_EMAIL or SMTP_USER in environment variables.");
+  }
+
+  const transporter = getTransporter();
 
   const cleanPhone = phone ? phone.replace(/[^\d+]/g, "") : "";
   const phoneLineHtml = cleanPhone
@@ -57,8 +80,8 @@ export async function sendContactEmail(data: ContactPayload) {
   });
 
   const mailOptions = {
-    from: SMTP_FROM,
-    to: CONTACT_TO,
+    from: smtpFrom,
+    to: contactTo,
     replyTo: email,
     subject: `New Prayer Request / Message from ${name} | ${SITE_NAME}`,
     html: `<!DOCTYPE html>

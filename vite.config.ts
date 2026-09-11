@@ -1,4 +1,4 @@
-import { defineConfig, Plugin } from 'vite';
+import { defineConfig, loadEnv, Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 
@@ -6,6 +6,10 @@ function devContactApiPlugin(): Plugin {
   return {
     name: 'dev-contact-api',
     apply: 'serve',
+    configResolved(config) {
+      const env = loadEnv(config.mode, process.cwd(), '');
+      Object.assign(process.env, env);
+    },
     configureServer(server) {
       server.middlewares.use('/api/contact', async (req, res) => {
         if (req.method !== 'POST') {
