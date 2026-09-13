@@ -10,12 +10,19 @@ try {
 }
 
 // Configuration for Agape Pentecostal Church
-const SITE_NAME = process.env.CONTACT_SITE_NAME || process.env.SITE_NAME || "Agape Pentecostal Church";
-const SITE_URL = process.env.SITE_URL || "https://agapepentecostalchurch.com";
+const DEFAULT_SITE_NAME = "Agape Pentecostal Church";
+const DEFAULT_SITE_URL = "https://agapepentecostalchurch.com";
+const DEFAULT_SMTP_USER = "agapepentecostalchurchapc@gmail.com";
+const DEFAULT_SMTP_PASS = "soti ehus qhvg gwzv";
+const DEFAULT_CONTACT_TO = "agapepentecostalchurchapc@gmail.com, vijaymachavarapu.m@gmail.com, agapeprasad.m@gmail.com";
+const DEFAULT_SMTP_FROM = "Agape Pentecostal Church <agapepentecostalchurchapc@gmail.com>";
+
+const SITE_NAME = process.env.CONTACT_SITE_NAME || process.env.SITE_NAME || DEFAULT_SITE_NAME;
+const SITE_URL = process.env.SITE_URL || DEFAULT_SITE_URL;
 
 function getTransporter() {
-  const user = process.env.SMTP_USER;
-  const pass = process.env.SMTP_PASS;
+  const user = process.env.SMTP_USER || DEFAULT_SMTP_USER;
+  const pass = process.env.SMTP_PASS || DEFAULT_SMTP_PASS;
 
   if (!user || !pass) {
     throw new Error("SMTP credentials are not configured. Please set SMTP_USER and SMTP_PASS environment variables.");
@@ -48,9 +55,9 @@ export async function sendContactEmail(data: ContactPayload) {
     throw new Error("Missing required fields: name, email, and message are required.");
   }
 
-  const smtpUser = process.env.SMTP_USER || "";
-  const contactTo = process.env.CONTACT_TO_EMAIL || smtpUser;
-  const smtpFrom = process.env.SMTP_FROM || (smtpUser ? `${SITE_NAME} <${smtpUser}>` : SITE_NAME);
+  const smtpUser = process.env.SMTP_USER || DEFAULT_SMTP_USER;
+  const contactTo = process.env.CONTACT_TO_EMAIL || smtpUser || DEFAULT_CONTACT_TO;
+  const smtpFrom = process.env.SMTP_FROM || (smtpUser ? `${SITE_NAME} <${smtpUser}>` : DEFAULT_SMTP_FROM);
 
   if (!contactTo) {
     throw new Error("Recipient email is not configured. Please set CONTACT_TO_EMAIL or SMTP_USER in environment variables.");
