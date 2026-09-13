@@ -1,10 +1,11 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
-import { Calendar, Clock, ChevronLeft, ChevronRight } from "lucide-react";
+import { Calendar, Clock, MapPin, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { SpecialPrayerCardData } from "@/types/events";
+import "./SpecialPrayerSlider.css";
 
-// Define the props for the SpecialPrayerCard component
+// Individual SpecialPrayerCard component preserved for standalone use
 interface SpecialPrayerCardProps extends React.HTMLAttributes<HTMLDivElement> {
   imageUrl: string;
   title: string;
@@ -14,80 +15,48 @@ interface SpecialPrayerCardProps extends React.HTMLAttributes<HTMLDivElement> {
   description: string;
   category: string;
   href?: string;
-  themeColor: string; // e.g., "150 50% 25%" for a deep green
-  cardIndex?: number; // For displaying card number in carousel
-  isActive?: boolean; // Whether this card is the active one in carousel
+  themeColor?: string;
+  cardIndex?: number;
+  isActive?: boolean;
 }
 
 const SpecialPrayerCard = React.forwardRef<HTMLDivElement, SpecialPrayerCardProps>(
-  ({ className, imageUrl, title, date, time, description, href = "#", themeColor, isActive, ...props }, ref) => {
+  ({ className, imageUrl, title, date, time, description, href = "#contact", ...props }, ref) => {
     return (
-      // The 'group' class enables hover effects on child elements
       <div
         ref={ref}
-        style={{
-          "--theme-color": themeColor,
-        } as React.CSSProperties}
-        className={cn("group w-full h-full", className)}
+        className={cn("group relative w-full h-full rounded-[20px] overflow-hidden border border-white/10 shadow-2xl", className)}
         {...props}
       >
-        <a
-          href={href}
-          className="relative block w-full h-full rounded-[24px] sm:rounded-[32px] overflow-hidden 
-                     transition-all duration-500 ease-in-out border border-white/10"
-          aria-label={`Explore details for ${title}`}
-          style={{
-            boxShadow: isActive ? `0 20px 50px -10px rgba(0,0,0,0.8), 0 0 30px -5px hsl(${themeColor} / 0.4)` : 'none',
-            transition: 'all 0.5s ease-in-out'
-          }}
-        >
-          {/* Background Image with Parallax Zoom */}
-          <div
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat
-                       transition-all duration-500 ease-in-out group-hover:scale-[1.04]"
-            style={{
-              backgroundImage: `url(${imageUrl})`,
-              transformOrigin: 'center center',
-              filter: isActive ? 'grayscale(0%)' : 'grayscale(85%)',
-            }}
-          />
-
-          {/* Gradient Overlay - Smooth dark fade for crisp text readability */}
-          <div className={cn(
-            "absolute inset-0 transition-opacity duration-500",
-            isActive
-              ? "bg-gradient-to-t from-black/90 via-black/45 to-transparent"
-              : "bg-black/50"
-          )} />
-
-          {/* Content - Aligned cleanly to bottom left */}
-          {isActive && (
-            <div
-              className="absolute inset-0 flex flex-col items-start justify-end text-left px-5 sm:px-7 pb-6 sm:pb-8 text-white z-10"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <h3 className="font-serif text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2 leading-snug drop-shadow-md">
-                {title}
-              </h3>
-
-              {/* Date and Time Details */}
-              <div className="flex flex-col items-start gap-1.5 text-xs sm:text-sm text-white/90 font-sans mb-2">
-                <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
-                  <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/80 shrink-0" />
-                  <span className="font-medium">{date}</span>
-                </div>
-                <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
-                  <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/80 shrink-0" />
-                  <span className="font-medium">{time}</span>
-                </div>
-              </div>
-
-              <p className="text-xs sm:text-sm text-white/80 max-w-md leading-relaxed font-sans line-clamp-2">
-                {description}
-              </p>
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-500 group-hover:scale-105"
+          style={{ backgroundImage: `url(${imageUrl})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+        <div className="absolute inset-0 flex flex-col items-start justify-end p-6 text-white z-10">
+          <h3 className="font-serif text-2xl font-bold mb-2 text-white drop-shadow-md">
+            {title}
+          </h3>
+          <div className="flex flex-col gap-1 text-xs text-white/90 mb-2">
+            <div className="flex items-center gap-1.5">
+              <Calendar className="w-3.5 h-3.5" />
+              <span>{date}</span>
             </div>
-          )}
-        </a>
+            <div className="flex items-center gap-1.5">
+              <Clock className="w-3.5 h-3.5" />
+              <span>{time}</span>
+            </div>
+          </div>
+          <p className="text-xs text-white/80 line-clamp-2 leading-relaxed mb-3">
+            {description}
+          </p>
+          <a
+            href={href}
+            className="inline-block px-4 py-1.5 text-xs font-semibold bg-white/90 text-black rounded-lg hover:bg-white transition-colors"
+          >
+            See More
+          </a>
+        </div>
       </div>
     );
   }
@@ -95,149 +64,295 @@ const SpecialPrayerCard = React.forwardRef<HTMLDivElement, SpecialPrayerCardProp
 
 SpecialPrayerCard.displayName = "SpecialPrayerCard";
 
-// Carousel Props
+// Default fallback items from template
+const defaultSampleCards: SpecialPrayerCardData[] = [
+  {
+    imageUrl:
+      "https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?q=80&w=1074&auto=format&fit=crop",
+    title: "Special Prayer Nights",
+    date: "Every Friday",
+    time: "7:00 PM",
+    location: "Main Sanctuary",
+    description: "Experience deep worship, united intercession, and personal breakthrough.",
+    category: "Prayer Night",
+    themeColor: "222 47% 11%",
+  },
+  {
+    imageUrl:
+      "https://images.unsplash.com/photo-1439792675105-701e6a4ab6f0?q=80&w=1173&auto=format&fit=crop",
+    title: "21 Days Fasting Prayer",
+    date: "July 14 - August 3",
+    time: "Daily Prayer Times",
+    location: "Main Sanctuary",
+    description: "21-day fasting prayer journey for spiritual breakthrough and renewal.",
+    category: "Fasting Prayer",
+    themeColor: "222 47% 11%",
+  },
+  {
+    imageUrl:
+      "https://images.unsplash.com/photo-1483982258113-b72862e6cff6?q=80&w=1170&auto=format&fit=crop",
+    title: "Family Growth & Safety",
+    date: "September 16 - October 26",
+    time: "Daily Prayer Times",
+    location: "Main Sanctuary",
+    description: "Prayer focus on family growth, safety, and spiritual covering.",
+    category: "Family Prayer",
+    themeColor: "222 47% 11%",
+  },
+  {
+    imageUrl:
+      "https://images.unsplash.com/photo-1477346611705-65d1883cee1e?q=80&w=2070&auto=format&fit=crop",
+    title: "New Year Gospel Meeting",
+    date: "January 1st",
+    time: "Special Service",
+    location: "Main Sanctuary",
+    description: "Start the new year with a gospel meeting of renewal and commitment.",
+    category: "Gospel Meeting",
+    themeColor: "222 47% 11%",
+  },
+];
+
+// Carousel Component Props
 interface SpecialPrayerCardCarouselProps extends React.HTMLAttributes<HTMLDivElement> {
-  cards: SpecialPrayerCardData[];
+  cards?: SpecialPrayerCardData[];
   autoPlay?: boolean;
   autoPlayInterval?: number;
   showIndicators?: boolean;
   showNavigation?: boolean;
   cardHeight?: string;
+  headerTitle?: string;
+  headerSubtitle?: string;
 }
 
-// Carousel Component - 3D Style
+// Special Prayer Events Expanding Card Slider Component
 const SpecialPrayerCardCarousel = React.forwardRef<HTMLDivElement, SpecialPrayerCardCarouselProps>(
   ({
     className,
-    cards,
+    cards = [],
     autoPlay = true,
     autoPlayInterval = 5000,
     showNavigation = true,
-    cardHeight = "h-[26rem] sm:h-[30rem] lg:h-[32rem]",
+    headerTitle,
+    headerSubtitle,
     ...props
   }, ref) => {
-    const [currentIndex, setCurrentIndex] = useState(0);
+    const initialList = cards.length > 0 ? cards : defaultSampleCards;
+    const [items, setItems] = useState<SpecialPrayerCardData[]>(initialList);
     const [isPaused, setIsPaused] = useState(false);
+    const touchStartX = useRef<number | null>(null);
+    const isAnimating = useRef(false);
 
-    // Auto-play functionality
+    // Keep items in sync if cards prop changes
     useEffect(() => {
-      if (!autoPlay || isPaused || cards.length <= 1) return;
+      if (cards && cards.length > 0) {
+        setItems(cards);
+      }
+    }, [cards]);
 
-      const interval = setInterval(() => {
-        setCurrentIndex((prev) => (prev + 1) % cards.length);
+    // Slide forward: First element moves to the end of the array
+    const handleNext = () => {
+      if (isAnimating.current) return;
+      isAnimating.current = true;
+      setTimeout(() => {
+        isAnimating.current = false;
+      }, 550);
+
+      setItems((prev) => {
+        if (prev.length <= 1) return prev;
+        const [first, ...rest] = prev;
+        return [...rest, first];
+      });
+    };
+
+    // Slide backward: Last element moves to the beginning of the array
+    const handlePrev = () => {
+      if (isAnimating.current) return;
+      isAnimating.current = true;
+      setTimeout(() => {
+        isAnimating.current = false;
+      }, 550);
+
+      setItems((prev) => {
+        if (prev.length <= 1) return prev;
+        const last = prev[prev.length - 1];
+        const rest = prev.slice(0, prev.length - 1);
+        return [last, ...rest];
+      });
+    };
+
+    // Clicking a preview card advances it into active view
+    const handleCardClick = (clickedIndex: number) => {
+      if (clickedIndex < 2 || isAnimating.current) return; // Index 0 and 1 are background/active
+      isAnimating.current = true;
+      setTimeout(() => {
+        isAnimating.current = false;
+      }, 550);
+
+      const steps = clickedIndex - 1;
+      setItems((prev) => {
+        if (prev.length <= 1) return prev;
+        const toMove = prev.slice(0, steps);
+        const remaining = prev.slice(steps);
+        return [...remaining, ...toMove];
+      });
+    };
+
+    // Auto-play timer with pause on hover
+    useEffect(() => {
+      if (!autoPlay || isPaused || items.length <= 1) return;
+
+      const timer = setInterval(() => {
+        handleNext();
       }, autoPlayInterval);
 
-      return () => clearInterval(interval);
-    }, [autoPlay, autoPlayInterval, isPaused, cards.length]);
+      return () => clearInterval(timer);
+    }, [autoPlay, autoPlayInterval, isPaused, items.length]);
 
-    const goToPrevious = () => {
-      setCurrentIndex((prev) => (prev === 0 ? cards.length - 1 : prev - 1));
+    // Mobile touch swipe gestures
+    const handleTouchStart = (e: React.TouchEvent) => {
+      touchStartX.current = e.touches[0].clientX;
     };
 
-    const goToNext = () => {
-      setCurrentIndex((prev) => (prev === cards.length - 1 ? 0 : prev + 1));
+    const handleTouchEnd = (e: React.TouchEvent) => {
+      if (touchStartX.current === null) return;
+      const diff = touchStartX.current - e.changedTouches[0].clientX;
+      if (diff > 50) {
+        handleNext();
+      } else if (diff < -50) {
+        handlePrev();
+      }
+      touchStartX.current = null;
     };
 
-    if (!cards || cards.length === 0) {
+    // Keyboard accessibility
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+      if (e.key === "ArrowRight") {
+        handleNext();
+      } else if (e.key === "ArrowLeft") {
+        handlePrev();
+      }
+    };
+
+    if (!items || items.length === 0) {
       return null;
     }
-
-
-    const getCardStyle = (index: number): React.CSSProperties => {
-      // Calculate circular difference for proper looping
-      let diff = index - currentIndex;
-
-      // Handle wrapping: if diff is too large, wrap around
-      if (diff > cards.length / 2) {
-        diff = diff - cards.length;
-      } else if (diff < -cards.length / 2) {
-        diff = diff + cards.length;
-      }
-
-      const isActive = diff === 0;
-      const position = diff;
-
-      // Hide cards that are too far away
-      if (Math.abs(diff) > 2) {
-        return { display: 'none' };
-      }
-
-      const offset = typeof window !== 'undefined' && window.innerWidth < 640 ? 140 : 260;
-
-      return {
-        transform: `translateX(${position * offset}px) translateZ(${isActive ? 0 : -200}px) rotateY(${position * -4}deg) scale(${isActive ? 1.05 : 0.85})`,
-        opacity: isActive ? 1 : 0.45,
-        zIndex: isActive ? 20 : 10 - Math.abs(diff),
-        filter: isActive ? 'brightness(1)' : 'brightness(0.4) grayscale(85%)',
-        pointerEvents: isActive ? 'auto' : 'none',
-      };
-    };
 
     return (
       <div
         ref={ref}
-        className={cn("relative w-full", className)}
+        className={cn("special-prayer-slider-wrapper", className)}
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        onKeyDown={handleKeyDown}
+        tabIndex={0}
+        aria-label="Special Prayer Events Slider"
         {...props}
       >
-        {/* 3D Carousel Container */}
-        <div
-          className={cn("relative flex items-center justify-center overflow-visible my-2", cardHeight)}
-          style={{
-            perspective: '2000px',
-            perspectiveOrigin: 'center center',
-          }}
-        >
-          <div className="relative w-full h-full flex items-center justify-center">
-            {cards.map((card, index) => (
+        <div className="slider-container">
+          {/* Section Header */}
+          {headerTitle && (
+            <div className="section-header">
+              <h2 className="section-title">{headerTitle}</h2>
+              <div className="section-divider" />
+              {headerSubtitle && <p className="section-subtitle">{headerSubtitle}</p>}
+            </div>
+          )}
+
+          {/* Slides Track */}
+          <div className="slide">
+            {items.map((item, index) => (
               <div
-                key={index}
-                className="absolute transition-all duration-700 ease-out rounded-[24px] sm:rounded-[32px] overflow-hidden"
-                style={{
-                  ...getCardStyle(index),
-                  width: '85vw',
-                  maxWidth: '420px',
-                  height: '100%',
-                }}
+                key={item.title}
+                className="item"
+                style={{ backgroundImage: `url(${item.imageUrl})` }}
+                onClick={() => handleCardClick(index)}
+                role={index >= 2 ? "button" : undefined}
+                aria-label={index >= 2 ? `Go to ${item.title}` : undefined}
+                tabIndex={index >= 2 ? 0 : -1}
               >
-                <SpecialPrayerCard
-                  {...card}
-                  cardIndex={index}
-                  isActive={index === currentIndex}
-                  className="w-full h-full"
-                />
+                {/* Preview tag shown only on cards deck */}
+                <div className="preview-tag">{item.title}</div>
+
+                {/* Content block shown on active slide (nth-child(2)) */}
+                <div className="content">
+                  {item.category && (
+                    <div className="category-pill">
+                      <span className="text-[#B22222] font-sans font-bold">†</span>
+                      <span>{item.category}</span>
+                    </div>
+                  )}
+                  <div className="name">{item.title}</div>
+                  <div className="accent-bar" />
+                  {(item.date || item.time || item.location) && (
+                    <div className="meta">
+                      {item.date && (
+                        <div className="meta-item">
+                          <Calendar className="w-3.5 h-3.5 text-[#B22222] shrink-0" />
+                          <span>{item.date}</span>
+                        </div>
+                      )}
+                      {item.time && (
+                        <div className="meta-item">
+                          <Clock className="w-3.5 h-3.5 text-[#B22222] shrink-0" />
+                          <span>{item.time}</span>
+                        </div>
+                      )}
+                      {item.location && (
+                        <div className="meta-item">
+                          <MapPin className="w-3.5 h-3.5 text-[#B22222] shrink-0" />
+                          <span>{item.location}</span>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                  <div className="des">{item.description}</div>
+                  <a
+                    className="seeMore group"
+                    href={item.href || "#contact"}
+                    onClick={(e) => {
+                      if (!item.href || item.href === "#") {
+                        e.preventDefault();
+                        const contactElem = document.getElementById("contact");
+                        if (contactElem) {
+                          contactElem.scrollIntoView({ behavior: "smooth" });
+                        }
+                      }
+                    }}
+                  >
+                    <button type="button">
+                      <span>See More</span>
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </button>
+                  </a>
+                </div>
               </div>
             ))}
           </div>
+
+          {/* Navigation Buttons */}
+          {showNavigation && items.length > 1 && (
+            <div className="button">
+              <button
+                type="button"
+                className="prev"
+                onClick={handlePrev}
+                aria-label="Previous event"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                type="button"
+                className="next"
+                onClick={handleNext}
+                aria-label="Next event"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
+          )}
         </div>
-
-        {/* Navigation Buttons - Circular translucent dark style */}
-        {showNavigation && cards.length > 1 && (
-          <>
-            <button
-              onClick={goToPrevious}
-              className="absolute left-2 sm:left-6 lg:left-10 top-1/2 -translate-y-1/2 z-30 
-                         bg-black/40 hover:bg-black/70 border border-white/10 
-                         text-white p-2.5 sm:p-3.5 rounded-full shadow-2xl backdrop-blur-md
-                         transition-all duration-300 hover:scale-110 active:scale-95"
-              aria-label="Previous card"
-            >
-              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
-            </button>
-            <button
-              onClick={goToNext}
-              className="absolute right-2 sm:right-6 lg:right-10 top-1/2 -translate-y-1/2 z-30 
-                         bg-black/40 hover:bg-black/70 border border-white/10 
-                         text-white p-2.5 sm:p-3.5 rounded-full shadow-2xl backdrop-blur-md
-                         transition-all duration-300 hover:scale-110 active:scale-95"
-              aria-label="Next card"
-            >
-              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
-            </button>
-          </>
-        )}
-
       </div>
     );
   }
@@ -247,4 +362,3 @@ SpecialPrayerCardCarousel.displayName = "SpecialPrayerCardCarousel";
 
 export { SpecialPrayerCard, SpecialPrayerCardCarousel };
 export type { SpecialPrayerCardData };
-

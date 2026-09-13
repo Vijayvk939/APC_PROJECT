@@ -5,7 +5,6 @@ import { Badge } from "@/components/ui/badge"
 import { SpecialPrayerCardCarousel } from "@/components/features/events"
 import { specialPrayerEvents, regularPrograms, pastorInfo, specialtyItems } from "@/data/events"
 import prayerEventsBg from "/images/Design/Prayer_Events&Programs.webp"
-import specialPrayersBg from "/images/Design/Special_Events.webp"
 import aboutBg from "/images/About.webp"
 
 export default function Events() {
@@ -99,42 +98,26 @@ export default function Events() {
         </div>
       </div>
 
-      {/* Special Prayer Events Carousel - Styled with Special-Prayers-Design.png */}
-      <div className="w-full bg-[#120306] text-white py-14 sm:py-20 relative overflow-hidden mb-10">
-        {/* Background Image Overlay (Full Width with Light Black Layer) */}
-        <div className="absolute inset-0 pointer-events-none select-none z-0">
-          <img
-            src={specialPrayersBg}
-            alt=""
-            className="w-full h-full object-cover min-w-full opacity-100 select-none pointer-events-none"
-          />
-          {/* Light Black Overlay Layer */}
-          <div className="absolute inset-0 bg-black/35 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#120306]/50 via-transparent to-[#120306]/70 pointer-events-none" />
-        </div>
+      {/* Special Prayer Events Section Header following website theme */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-6 sm:pt-10 pb-4 text-center">
+        <ScrollBlurText
+          text="Special Prayer Events"
+          className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-foreground text-balance mb-6"
+        />
+        <p className="reveal opacity-0 animation-delay-200 text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto">
+          Extended prayer gatherings focused on faith, healing, and spiritual breakthrough.
+        </p>
+        <div className="reveal opacity-0 animation-delay-300 w-16 h-0.5 bg-gradient-to-r from-primary via-accent to-secondary mx-auto mt-6" />
+      </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-10 sm:mb-12">
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold mb-2.5 text-white tracking-tight">
-              Special Prayer Events
-            </h2>
-            <div className="w-12 h-0.5 bg-[#B22222] mx-auto mb-4 rounded-full" />
-            <p className="text-xs sm:text-sm md:text-base text-white/90 max-w-2xl mx-auto font-sans leading-relaxed">
-              Extended prayer gatherings focused on faith and breakthrough.
-            </p>
-          </div>
-
-          <div className="w-full">
-            <SpecialPrayerCardCarousel
-              cards={specialPrayerEvents}
-              autoPlay={true}
-              autoPlayInterval={4000}
-              showIndicators={true}
-              showNavigation={true}
-              cardHeight="h-[24rem] sm:h-[27rem] lg:h-[29rem]"
-            />
-          </div>
-        </div>
+      {/* Special Prayer Events Full-Bleed Section */}
+      <div id="special-prayers" className="w-full relative overflow-hidden mb-12 sm:mb-16">
+        <SpecialPrayerCardCarousel
+          cards={specialPrayerEvents}
+          autoPlay={true}
+          autoPlayInterval={5000}
+          showNavigation={true}
+        />
       </div>
 
       {/* Spiritual Leadership Section */}
