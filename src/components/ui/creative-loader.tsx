@@ -1,14 +1,15 @@
 interface CreativeLoaderProps {
   fullScreen?: boolean
   message?: string
+  className?: string
 }
 
-export function CreativeLoader({ fullScreen = false, message = "Loading..." }: CreativeLoaderProps) {
+export function CreativeLoader({ fullScreen = false, message = "Loading...", className = "" }: CreativeLoaderProps) {
   return (
     <div
       className={`${
-        fullScreen ? "fixed inset-0 z-50 bg-background/80 backdrop-blur-md" : "min-h-[60vh] w-full bg-transparent"
-      } flex flex-col items-center justify-center p-6 select-none`}
+        fullScreen ? "fixed inset-0 z-[9999] bg-white" : "min-h-[60vh] w-full bg-transparent"
+      } flex flex-col items-center justify-center p-6 select-none ${className}`}
     >
       <div className="flex flex-col items-center justify-center text-center">
         {/* Minimal Loader Ring & Cross Icon */}

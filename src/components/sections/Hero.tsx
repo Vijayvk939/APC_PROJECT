@@ -5,12 +5,78 @@ import { ArrowRight, BookOpen } from "lucide-react"
 
 import bgVideo from "/images/APC_DASHBOARD-BG.mp4"
 import dashShade from "/images/Design/dash-png.webp"
+import { CreativeLoader } from "@/components/ui/creative-loader"
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
   const videoContainerRef = useRef<HTMLDivElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false)
+  const [hasVideoError, setHasVideoError] = useState(false)
   const [scrollProgress, setScrollProgress] = useState(0)
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    // Ensure DOM muted property is set for reliable autoplay
+    video.muted = true
+    video.defaultMuted = true
+
+    // Check if video is already ready (e.g. from browser cache)
+    if (video.readyState >= 2) {
+      setIsVideoLoaded(true)
+    }
+
+    const handleLoaded = () => {
+      setIsVideoLoaded(true)
+    }
+
+    const handleError = () => {
+      setHasVideoError(true)
+      setIsVideoLoaded(true)
+    }
+
+    video.addEventListener("loadeddata", handleLoaded)
+    video.addEventListener("canplay", handleLoaded)
+    video.addEventListener("playing", handleLoaded)
+    video.addEventListener("error", handleError)
+
+    // Attempt autoplay
+    const playPromise = video.play()
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        if (video.readyState >= 2) {
+          setIsVideoLoaded(true)
+        }
+      })
+    }
+
+    // Fallback timer: prevent permanent loading if network is constrained
+    const fallbackTimer = setTimeout(() => {
+      setIsVideoLoaded(true)
+    }, 6000)
+
+    return () => {
+      video.removeEventListener("loadeddata", handleLoaded)
+      video.removeEventListener("canplay", handleLoaded)
+      video.removeEventListener("playing", handleLoaded)
+      video.removeEventListener("error", handleError)
+      clearTimeout(fallbackTimer)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!isVideoLoaded) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+    return () => {
+      document.body.style.overflow = ""
+    }
+  }, [isVideoLoaded])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -49,36 +115,67 @@ export default function Hero() {
   const borderRadius = scrollProgress * 24
 
   return (
-    <section
-      ref={sectionRef}
-      id="home"
-      className="relative min-h-screen min-h-[100dvh] flex items-center overflow-hidden bg-background"
-    >
-      {/* Background Container with Video & Radiant Glow Overlay */}
+    <>
+      {/* Full-screen White Screen Loader until Video is Ready */}
       <div
-        ref={videoContainerRef}
-        className="absolute inset-0 w-full h-full overflow-hidden transition-all duration-75 ease-out"
-        style={{
-          transform: `scale(${scale})`,
-          borderRadius: `${borderRadius}px`,
-        }}
+        className={`fixed inset-0 z-[9999] transition-opacity duration-500 bg-white ${
+          isVideoLoaded ? "opacity-0 pointer-events-none" : "opacity-100"
+        }`}
+        aria-hidden={isVideoLoaded}
       >
-        {/* Background Video of Pastor Preaching */}
-        <div className="absolute inset-0 w-full h-full">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            poster={dashShade}
-            className="w-full h-full object-cover object-center"
-          >
-            <source src={bgVideo} type="video/mp4" />
-          </video>
-        </div>
+        <CreativeLoader fullScreen message="Loading Agape Pentecostal Church..." />
+      </div>
 
-        {/* Top Slight Black Shadow (Behind PNG) */}
+      <section
+        ref={sectionRef}
+        id="home"
+        className="relative min-h-screen min-h-[100dvh] flex items-center overflow-hidden bg-background"
+      >
+        {/* Background Container with Video & Radiant Glow Overlay */}
+        <div
+          ref={videoContainerRef}
+          className="absolute inset-0 w-full h-full overflow-hidden transition-all duration-75 ease-out"
+          style={{
+            transform: `scale(${scale})`,
+            borderRadius: `${borderRadius}px`,
+          }}
+        >
+          {/* Background Video & Fallback Preview */}
+          <div className="absolute inset-0 w-full h-full bg-[#120306]">
+            {/* Fallback image while video buffers */}
+            <img
+              src={dashShade}
+              alt="Hero preview"
+              className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ${
+                isVideoLoaded && !hasVideoError ? "opacity-0 pointer-events-none" : "opacity-70"
+              }`}
+            />
+
+            {/* Background Video of Pastor Preaching */}
+            <video
+              ref={videoRef}
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              poster={dashShade}
+              onLoadedData={() => setIsVideoLoaded(true)}
+              onCanPlay={() => setIsVideoLoaded(true)}
+              onPlaying={() => setIsVideoLoaded(true)}
+              onError={() => {
+                setHasVideoError(true)
+                setIsVideoLoaded(true)
+              }}
+              className={`w-full h-full object-cover object-center transition-opacity duration-1000 ease-in-out ${
+                isVideoLoaded && !hasVideoError ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <source src={bgVideo} type="video/mp4" />
+            </video>
+          </div>
+
+          {/* Top Slight Black Shadow (Behind PNG) */}
         <div className="absolute inset-x-0 top-0 h-36 sm:h-40 bg-gradient-to-b from-black/85 via-black/40 to-transparent pointer-events-none" />
 
         {/* Left Black Shadow Overlay (Enhanced dark shade for clear text readability) */}
@@ -160,5 +257,6 @@ export default function Hero() {
         </div>
       </div>
     </section>
+  </>
   )
 }

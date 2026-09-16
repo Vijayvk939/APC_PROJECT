@@ -47,7 +47,7 @@ function App() {
           <Toaster position="top-right" richColors />
           <Header />
           <main className="flex-grow">
-            <Suspense fallback={<CreativeLoader message="Loading Agape Pentecostal Church..." />}>
+            <Suspense fallback={<CreativeLoader fullScreen message="Loading Agape Pentecostal Church..." />}>
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/books" element={<Books />} />
